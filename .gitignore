@@ -1,1 +1,2 @@
-config/secrets.yml
+config/
+spec/fixtures/
