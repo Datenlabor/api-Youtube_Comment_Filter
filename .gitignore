@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 config/
 spec/fixtures/
+=======
+config/secrets.yml
+spec/fixtures
+>>>>>>> 736ab6e80b2ab268e8465b41444b4235026393ba
