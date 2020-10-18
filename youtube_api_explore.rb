@@ -29,7 +29,7 @@ end
 # 1. Set API_KEY, Select testcase
 API_ROOT_URL = 'https://www.googleapis.com/youtube/v3/'
 TEST_VIDEO_ID = 'DA8nk83xumg'
-API_KEY = YAML.safe_load(File.read('config/secrets.yml'))['API_KEY']
+API_KEY = YAML.safe_load(File.read('config/secrets.yml'))['YT_KEY']
 DEFAULT_OPTION = 'part=snippet&order=relevance'
 
 # 2. http request and get response
