@@ -26,7 +26,8 @@ module CodePraise
         'replies' => [] }
     end
 
-    def extract
+    def extract(key)
+      @yt_key = key
       @items = get_items(@raw)
       @items.each do |hash|
         snippet = get_snippet(hash)
@@ -53,8 +54,7 @@ module CodePraise
     end
 
     def call_yt_api(id)
-      config = YAML.safe_load(File.read('../config/secrets.yml'))
-      YoutubeApi.new(config['YT_KEY']).get_reply(id)
+      YoutubeApi.new(@yt_key).get_reply(id)
     end
   end
 end

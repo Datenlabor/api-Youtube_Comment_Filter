@@ -11,11 +11,13 @@ module CodePraise
 
     # Define some errors
     module Errors
+      class BadRequest < StandardError; end
       class NotFound < StandardError; end
       class Unauthorized < StandardError; end
     end
 
     HTTP_ERROR = {
+      400 => Errors::BadRequest,
       401 => Errors::Unauthorized,
       404 => Errors::NotFound
     }.freeze
@@ -30,7 +32,7 @@ module CodePraise
       video_url = yt_api_path(url)
       comment_data_raw = call_yt_url(video_url).parse
       comment = Comment.new(comment_data_raw)
-      comment.extract
+      comment.extract(@yt_key)
     end
 
     def get_reply(parent, part = 'snippet')
