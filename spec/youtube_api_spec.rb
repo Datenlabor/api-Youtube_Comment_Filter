@@ -25,12 +25,12 @@ describe 'Test Youtube API library' do
     it 'Should raise exception on incorrect project' do
       _(proc do
           CodePraise::YoutubeApi.new(YT_TOKEN).get_comment('ffff')
-        end).must_raise CodePraise::YoutubeApi::Requset::BadRequest
+        end).must_raise CodePraise::YoutubeApi::Response::BadRequest
     end
     it 'Should raise exception when given wrong token' do
       _(proc do
           CodePraise::YoutubeApi.new('WRONG_TOKEN').get_comment(VIDEO_ID)
-        end).must_raise CodePraise::YoutubeApi::Request::BadRequest
+        end).must_raise CodePraise::YoutubeApi::Response::BadRequest
     end
   end
   describe 'Test the first comment' do
