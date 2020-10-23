@@ -16,14 +16,14 @@ module CodePraise
     def get_comment(video_id, order = 'relevance', part = 'snippet')
       url = "commentThreads?key=#{@yt_key}&videoId=#{video_id}"
       url += "&order=#{order}&part=#{part}"
-      video_comment = Request.new(@yt_token).get(yt_api_path(url)).parse
+      video_comment = Request.new.get(yt_api_path(url)).parse
       comment = Comment.new(video_comment)
       comment.extract(@yt_key)
     end
 
     def get_reply(parent, part = 'snippet')
       url = "comments?key=#{@yt_key}&parentId=#{parent}&part=#{part}"
-      Request.new(@yt_token).get(yt_api_path(url)).parse
+      Request.new.get(yt_api_path(url)).parse
     end
 
     private
@@ -32,12 +32,7 @@ module CodePraise
       "#{API_ROOT_URL}/#{path}"
     end
     # HTTP request
-    class Request < SimpleDelegator
-      API_ROOT_URL = 'https://www.googleapis.com/youtube/v3'.freeze
-      def initialize(token)
-        @yt_token = token
-      end
-
+    class Request
       def get(url)
         http_response = HTTP.get(url)
         Response.new(http_response).tap do |response|
