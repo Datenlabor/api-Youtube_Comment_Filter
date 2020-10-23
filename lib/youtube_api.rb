@@ -9,36 +9,21 @@ module CodePraise
   class YoutubeApi
     API_ROOT_URL = 'https://www.googleapis.com/youtube/v3'.freeze
 
-    # Define some errors
-    module Errors
-      class BadRequest < StandardError; end
-      class NotFound < StandardError; end
-      class Unauthorized < StandardError; end
-    end
-
-    HTTP_ERROR = {
-      400 => Errors::BadRequest,
-      401 => Errors::Unauthorized,
-      404 => Errors::NotFound
-    }.freeze
-
     def initialize(key)
       @yt_key = key
     end
 
-    def get_comment(videoid, part = 'snippet', order = 'relevance')
-      url = "commentThreads?key=#{@yt_key}&videoId=#{videoid}"
+    def get_comment(video_id, order = 'relevance', part = 'snippet')
+      url = "commentThreads?key=#{@yt_key}&videoId=#{video_id}"
       url += "&order=#{order}&part=#{part}"
-      video_url = yt_api_path(url)
-      comment_data_raw = call_yt_url(video_url).parse
-      comment = Comment.new(comment_data_raw)
+      video_comment = Request.new(@yt_token).get(yt_api_path(url)).parse
+      comment = Comment.new(video_comment)
       comment.extract(@yt_key)
     end
 
     def get_reply(parent, part = 'snippet')
       url = "comments?key=#{@yt_key}&parentId=#{parent}&part=#{part}"
-      reply_url = yt_api_path(url)
-      call_yt_url(reply_url).parse
+      Request.new(@yt_token).get(yt_api_path(url)).parse
     end
 
     private
@@ -46,14 +31,38 @@ module CodePraise
     def yt_api_path(path)
       "#{API_ROOT_URL}/#{path}"
     end
+    # HTTP request
+    class Request < SimpleDelegator
+      API_ROOT_URL = 'https://www.googleapis.com/youtube/v3'.freeze
+      def initialize(token)
+        @yt_token = token
+      end
 
-    def call_yt_url(url)
-      result = HTTP.get(url)
-      successful?(result) ? result : raise(HTTP_ERROR[result.code])
+      def get(url)
+        http_response = HTTP.get(url)
+        Response.new(http_response).tap do |response|
+          raise(response.error) unless response.successful?
+        end
+      end
     end
+    # HTTP response
+    class Response < SimpleDelegator
+      BadRequest = Class.new(StandardError)
+      Unauthorized = Class.new(StandardError)
+      NotFound = Class.new(StandardError)
+      HTTP_ERROR = {
+        400 => BadRequest,
+        401 => Unauthorized,
+        404 => NotFound
+      }.freeze
 
-    def successful?(result)
-      HTTP_ERROR.keys.include?(result.code) ? false : true
+      def successful?
+        HTTP_ERROR.keys.include?(code) ? false : true
+      end
+
+      def error
+        HTTP_ERROR[code]
+      end
     end
   end
 end

@@ -12,7 +12,7 @@ require 'webmock'
 
 require_relative '../lib/youtube_api'
 
-CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
+CONFIG = YAML.safe_load(File.read('../config/secrets.yml'))
 CORRECT = YAML.safe_load(File.read('spec/fixtures/results.yml'))
 VIDEO_ID = 'DA8nk83xumg'
 YT_TOKEN = CONFIG['YT_KEY']
