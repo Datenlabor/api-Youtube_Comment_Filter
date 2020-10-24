@@ -17,8 +17,8 @@ module CodePraise
       url = "commentThreads?key=#{@yt_key}&videoId=#{video_id}"
       url += "&order=#{order}&part=#{part}"
       video_comment = Request.new.get(yt_api_path(url)).parse
-      comment = Comment.new(video_comment)
-      comment.extract(@yt_key)
+      comment = Comment.new(video_comment, @yt_key)
+      comment.extract
     end
 
     def get_reply(parent, part = 'snippet')
@@ -31,6 +31,7 @@ module CodePraise
     def yt_api_path(path)
       "#{API_ROOT_URL}/#{path}"
     end
+
     # HTTP request
     class Request
       def get(url)
@@ -40,11 +41,18 @@ module CodePraise
         end
       end
     end
+
     # HTTP response
     class Response < SimpleDelegator
+      # BadRequest warning!
       BadRequest = Class.new(StandardError)
+
+      # Unauthorized warning!
       Unauthorized = Class.new(StandardError)
+
+      # NotFound warning!
       NotFound = Class.new(StandardError)
+
       HTTP_ERROR = {
         400 => BadRequest,
         401 => Unauthorized,
