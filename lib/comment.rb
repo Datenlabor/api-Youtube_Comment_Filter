@@ -47,14 +47,31 @@ module CodePraise
       # For DataParsing
       class DataParsing
         def initialize(data)
-          @data_parsing = data
+          @data_p = data
+          @data_p_top_snp = data['topLevelComment']['snippet']
+        end
+
+        def parse_text
+          @data_p_top_snp['textDisplay']
+        end
+
+        def parse_author
+          @data_p_top_snp['authorDisplayName']
+        end
+
+        def parse_likecount
+          @data_p_top_snp['likeCount']
+        end
+
+        def parse_totreply
+          @data_p['totalReplyCount']
         end
 
         def parsing
-          { 'text' => @data_parsing['topLevelComment']['snippet']['textDisplay'],
-            'author' => @data_parsing['topLevelComment']['snippet']['authorDisplayName'],
-            'likeCount' => @data_parsing['topLevelComment']['snippet']['likeCount'],
-            'totalReplyCount' => @data_parsing['totalReplyCount'],
+          { 'text' => parse_text,
+            'author' => parse_author,
+            'likeCount' => parse_likecount,
+            'totalReplyCount' => parse_totreply,
             'replies' => [] }
         end
       end
