@@ -1,0 +1,4 @@
+Metrics/BlockLength:
+    Exclude:
+        - 'Rakefile'
+        - 'spec/youtube_api_spec.rb'

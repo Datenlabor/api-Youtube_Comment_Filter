@@ -1,26 +1,36 @@
 # frozen_string_literal: true
 
-require 'minitest/autorun'
-require 'minitest/rg'
-require 'yaml'
-require_relative '../lib/youtube_api'
-
-CONFIG = YAML.safe_load(File.read('../config/secrets.yml'))
-CORRECT = YAML.safe_load(File.read('fixtures/results.yml'))
-VIDEO_ID = 'DA8nk83xumg'
-YT_TOKEN = CONFIG['YT_KEY']
+require_relative 'spec_helper'
 
 describe 'Test Youtube API library' do
+  VCR.configure do |c|
+    c.cassette_library_dir = CASSETTES_FOLDER
+    c.hook_into :webmock
+
+    c.filter_sensitive_data('<YOUTUBE_TOKEN>') { YT_TOKEN }
+    c.filter_sensitive_data('<YOUTUBE_TOKEN_ESC>') { CGI.escape(YT_TOKEN) }
+  end
+
+  before do
+    VCR.insert_cassette CASSETTE_FILE,
+                        record: :new_episodes,
+                        match_requests_on: %i[method uri headers]
+  end
+
+  after do
+    VCR.eject_cassette
+  end
+
   describe 'Test Error API Token' do
     it 'Should raise exception on incorrect project' do
       _(proc do
           CodePraise::YoutubeApi.new(YT_TOKEN).get_comment('ffff')
-        end).must_raise CodePraise::YoutubeApi::Errors::BadRequest
+        end).must_raise CodePraise::YoutubeApi::Response::BadRequest
     end
     it 'Should raise exception when given wrong token' do
       _(proc do
           CodePraise::YoutubeApi.new('WRONG_TOKEN').get_comment(VIDEO_ID)
-        end).must_raise CodePraise::YoutubeApi::Errors::BadRequest
+        end).must_raise CodePraise::YoutubeApi::Response::BadRequest
     end
   end
   describe 'Test the first comment' do
