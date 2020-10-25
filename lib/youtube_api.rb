@@ -4,7 +4,7 @@ require 'http'
 require 'json'
 require_relative 'comment'
 
-module CodePraise
+module GetComment
   # Library for Youtube Web API
   class YoutubeApi
     API_ROOT_URL = 'https://www.googleapis.com/youtube/v3'.freeze
