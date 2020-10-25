@@ -1,7 +1,7 @@
 # frozen_string_literal: false
 
 require_relative 'youtube_api'
-module CodePraise
+module GetComment
   # Model for commnet
   class Comment
     def initialize(comment_data_raw, key)
