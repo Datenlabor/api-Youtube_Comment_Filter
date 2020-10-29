@@ -4,32 +4,58 @@ require_relative 'youtube_api'
 module GetComment
   # Model for commnet
   class Comment
-    def initialize(comment_data_raw, key)
+    def initialize(comment_data_raw, key, video)
       @raw = comment_data_raw
       @yt_key = key
+      @video_id = video
     end
 
     def extract
-      dataprocess = DataProcess.new(@yt_key)
+      dataprocess = DataProcess.new(@yt_key, @video_id)
       dataprocess.processing(@raw)
     end
 
     # For DataProcess
     class DataProcess
-      def initialize(key)
+      def initialize(key, video)
         @items = []
         @data = {}
         @yt_key = key
+        @video_id = video
+      end
+
+      # For Getting the all pages comments
+      class GetAllPage
+        def initialize(data, key, video)
+          @raw_data = data
+          @pages_data = []
+          @yt_key_ = key
+          @video = video
+        end
+
+        def data_append
+          rtn = GetDataItem.new(@raw_data).gets_items
+          rtn.each do |hash|
+            @pages_data.append(hash)
+          end
+        end
+
+        def getting_all_page
+          until data_append && !@raw_data.key?('nextPageToken')
+            @raw_data = YoutubeApi.new(@yt_key_).get_comment_pages(@video, @raw_data['nextPageToken'])
+          end
+          @pages_data
+        end
       end
 
       # For GetDataItem
       class GetDataItem
         def initialize(data)
-          @data_item = data['items']
+          @data_item = data
         end
 
         def gets_items
-          @data_item
+          @data_item['items']
         end
       end
 
@@ -121,7 +147,7 @@ module GetComment
       end
 
       def processing(data)
-        @items = GetDataItem.new(data).gets_items
+        @items = GetAllPage.new(data, @yt_key, @video_id).getting_all_page
         @data = IterateItem.new(@items).iterative
         @data = GetYTReply.new(@data, @yt_key).getting_yt_reply
       end

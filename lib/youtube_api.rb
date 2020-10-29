@@ -13,12 +13,18 @@ module GetComment
       @yt_key = key
     end
 
-    def get_comment(video_id, order = 'relevance', part = 'snippet')
+    def get_comment(video_id)
       url = "commentThreads?key=#{@yt_key}&videoId=#{video_id}"
-      url += "&order=#{order}&part=#{part}"
+      url += '&order=relevance&part=snippet&maxResults=10'
       video_comment = Request.new.get(yt_api_path(url)).parse
-      comment = Comment.new(video_comment, @yt_key)
+      comment = Comment.new(video_comment, @yt_key, video_id)
       comment.extract
+    end
+
+    def get_comment_pages(video_id, token = '')
+      url = "commentThreads?key=#{@yt_key}&videoId=#{video_id}"
+      url += "&order=relevance&part=snippet&pageToken=#{token}&maxResults=10"
+      Request.new.get(yt_api_path(url)).parse
     end
 
     def get_reply(parent, part = 'snippet')
