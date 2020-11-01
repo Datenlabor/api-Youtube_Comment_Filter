@@ -1,6 +1,6 @@
 # Youtube API Explore
 
-Project to collect Youtube Comment from Youtube Data API
+comment to collect Youtube Comment from Youtube Data API
 
 ## Resource
 

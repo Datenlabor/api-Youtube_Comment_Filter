@@ -20,18 +20,17 @@ module GetComment
 
       routing.on 'comments' do
         routing.is do
-          # GET /project/
+          # GET /comment/
           routing.post do
             yt_url = routing.params['youtube_url']
             routing.halt 400 unless yt_url.include? 'youtube.com'
             video_id = youtube_id(yt_url)
-            puts "==Debug== video_id for posting request is #{video_id}"
             routing.redirect "comments/#{video_id}"
           end
         end
 
         routing.on String do |video_id|
-          # GET /project/owner/project
+          # GET /comment/owner/comment
           routing.get do
             yt_comments = Youtube::CommentMapper.new(YT_TOKEN).extract(video_id)
 

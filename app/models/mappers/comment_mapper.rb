@@ -13,7 +13,7 @@ module GetComment
 
       def extract(video_id)
         # CommentMapper.extract_video_id(url)
-        puts "==Debug== video_id to past to get_comment is #{video_id}"
+        # We will get video_id directly from the controller of MVC
         @video_id = video_id
         raw_data = @gateway.get_comment(@video_id)
         # dataprocess = DataProcess.new(@yt_key, @video_id)
@@ -176,6 +176,7 @@ module GetComment
           @items = GetAllPage.new(data, @gateway, @video_id).getting_all_page
           @data = IterateItem.new(@items).iterative
           @data = GetYTReply.new(@data, @gateway).getting_yt_reply
+          @data
         end
       end
       # Extracts entity specific elements from data structure

@@ -1,22 +1,17 @@
 .container
-  .row
-    h2
-      span.project.owner
-        = comments.id
-      span.project.name style="padding-left:20px"
-        = comments.data
-  / .container
-  /   .row
-  /     .col-lg-1.col-md-2.col-sm-2
-  /       span.project.attribute Repo:
-  /     .col-lg-11.col-md-10.col-sm-6
-  /       span.project.detail
-  /         = project.git_url
-  /   .row.top-buffer
-  /     .col-lg-1.col-md-2.col-sm-2
-  /       span.project.attribute Members:
-  /     .col-lg-11.col-md-10.col-sm-6
-  /       .row
-  /         - project.members.each do |member|
-  /           .col-sm-12
-  /             a.project.detail href="https://github.com/#{member.username}" #{member.username}
+  - comments.data.values.each do |comment|
+    .row
+      span.comment.attribute
+        = comment['text']
+  /     span.comment.attribute text:
+  /   .col-lg-11.col-md-10.col-sm-6
+  /     span.comment.detail
+  /       = comments.data.values[0]["text"]
+  / .row.top-buffer
+  /   .col-lg-1.col-md-2.col-sm-2
+  /     span.comment.attribute author:
+  /   .col-lg-11.col-md-10.col-sm-6
+  /     .row
+  /       - comment.members.each do |member|
+  /         .col-sm-12
+  /           a.comment.detail href="https://github.com/#{member.username}" #{member.username}

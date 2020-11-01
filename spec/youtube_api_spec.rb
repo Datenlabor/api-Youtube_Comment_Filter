@@ -22,7 +22,7 @@ describe 'Test Youtube API library' do
   end
 
   describe 'Test Error API Token' do
-    it 'Should raise exception on incorrect project' do
+    it 'Should raise exception on incorrect comment' do
       _(proc do
           GetComment::YoutubeApi.new(YT_TOKEN).get_comment('ffff')
         end).must_raise GetComment::YoutubeApi::Response::BadRequest
