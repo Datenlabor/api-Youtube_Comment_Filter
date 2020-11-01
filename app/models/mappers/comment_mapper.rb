@@ -11,13 +11,23 @@ module GetComment
         @gateway = @gateway_class.new(@yt_key)
       end
 
-      def extract(url)
-        CommentMapper.extract_video_id(url)
+      def extract(video_id)
+        # CommentMapper.extract_video_id(url)
+        puts "==Debug== video_id to past to get_comment is #{video_id}"
+        @video_id = video_id
         raw_data = @gateway.get_comment(@video_id)
         # dataprocess = DataProcess.new(@yt_key, @video_id)
         data = DataProcess.new(@gateway, @video_id).processing(raw_data)
         build_entity(data)
       end
+
+      # def extract(url)
+      #   CommentMapper.extract_video_id(url)
+      #   raw_data = @gateway.get_comment(@video_id)
+      #   # dataprocess = DataProcess.new(@yt_key, @video_id)
+      #   data = DataProcess.new(@gateway, @video_id).processing(raw_data)
+      #   build_entity(data)
+      # end
 
       def build_entity(data)
         DataMapper.new(data).build_entity

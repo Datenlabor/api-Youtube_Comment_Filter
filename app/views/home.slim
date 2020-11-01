@@ -1,0 +1,18 @@
+.container
+  form role="form" action="/comments" method='POST' id='show-comments-form'
+    .row.vertical-align.query-bar
+      .col-md-2.col-sm-3
+        .text-right YouTube URL:
+      .col-md-8.col-sm-6
+        input { 
+          type='text' name='youtube_url'
+          id='youtube_url_input' class="form-control"
+          placeholder="e.g. https://www.youtube.com/watch?v=deVaUvywGMw&ab_channel=TaeKeyboards"
+        }
+      .col-md-2.col-sm-3
+        button { 
+          type='submit' id='repo-form-submit' class='submit' 
+          value='submit' class="btn btn-success" 
+        } Get Comments
+    .row
+      .col-md-12.blank-row

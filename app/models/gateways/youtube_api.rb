@@ -2,7 +2,7 @@
 
 require 'http'
 require 'json'
-require_relative 'comment'
+# require_relative 'comment'
 
 module GetComment
   module Youtube
@@ -17,6 +17,7 @@ module GetComment
       def get_comment(video_id)
         url = "commentThreads?key=#{@yt_key}&videoId=#{video_id}"
         url += '&order=relevance&part=snippet&maxResults=10'
+        puts "==Debug== yt_api_path for requesting is #{yt_api_path(url)}"
         Request.new.get(yt_api_path(url)).parse
       end
 
@@ -40,6 +41,7 @@ module GetComment
       # HTTP request
       class Request
         def get(url)
+          puts "==Debug== url before http request is #{url}"
           http_response = HTTP.get(url)
           Response.new(http_response).tap do |response|
             raise(response.error) unless response.successful?
