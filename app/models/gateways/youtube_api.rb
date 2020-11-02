@@ -16,13 +16,7 @@ module GetComment
 
       def get_comment(video_id)
         url = "commentThreads?key=#{@yt_key}&videoId=#{video_id}"
-        url += '&order=relevance&part=snippet&maxResults=10'
-        Request.new.get(yt_api_path(url)).parse
-      end
-
-      def get_comment_pages(video_id, token = '')
-        url = "commentThreads?key=#{@yt_key}&videoId=#{video_id}"
-        url += "&order=relevance&part=snippet&pageToken=#{token}&maxResults=10"
+        url += '&order=relevance&part=snippet&maxResults=100'
         Request.new.get(yt_api_path(url)).parse
       end
 

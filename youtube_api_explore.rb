@@ -30,7 +30,7 @@ end
 API_ROOT_URL = 'https://www.googleapis.com/youtube/v3/'
 TEST_VIDEO_ID = 'DA8nk83xumg'
 API_KEY = YAML.safe_load(File.read('config/secrets.yml'))['YT_KEY']
-DEFAULT_OPTION = 'part=snippet&order=relevance'
+DEFAULT_OPTION = 'part=snippet&order=relevance&maxResults=100'
 
 # 2. http request and get response
 request_comment_threads_url = "#{API_ROOT_URL}commentThreads?&key=#{API_KEY}&videoId=#{TEST_VIDEO_ID}&#{DEFAULT_OPTION}"

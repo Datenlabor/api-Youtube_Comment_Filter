@@ -10,7 +10,7 @@ require 'minitest/rg'
 require 'vcr'
 require 'webmock'
 
-require_relative '../lib/youtube_api'
+require_relative '../init'
 
 CONFIG = YAML.safe_load(File.read('../config/secrets.yml'))
 CORRECT = YAML.safe_load(File.read('./fixtures/results.yml'))

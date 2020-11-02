@@ -18,7 +18,8 @@ module GetComment
         raw_data = @gateway.get_comment(@video_id)
         # dataprocess = DataProcess.new(@yt_key, @video_id)
         data = DataProcess.new(@gateway, @video_id).processing(raw_data)
-        build_entity(data)
+        EntityBuild.new(data).build_entity
+        data
       end
 
       # def extract(url)
@@ -29,13 +30,20 @@ module GetComment
       #   build_entity(data)
       # end
 
-      def build_entity(data)
-        DataMapper.new(data).build_entity
-      end
-
       def self.extract_video_id(url)
         @video_id = url.sub(/&(.*)/, '')
         @video_id.sub!(/(.*)watch[?]v=/, '')
+      end
+
+      # For Building the Entity class
+      class EntityBuild
+        def initialize(data)
+          @data = data
+        end
+
+        def build_entity
+          DataMapper.new(@data).build_entity
+        end
       end
 
       # For DataProcess
@@ -48,39 +56,14 @@ module GetComment
           @video_id = video
         end
 
-        # For Getting the all pages comments
-        class GetAllPage
-          def initialize(data, gateway, video)
-            @raw_data = data
-            @pages_data = []
-            # @yt_key_ = key
-            @gateway = gateway
-            @video = video
-          end
-
-          def data_append
-            rtn = GetDataItem.new(@raw_data).gets_items
-            rtn.each do |hash|
-              @pages_data.append(hash)
-            end
-          end
-
-          def getting_all_page
-            until data_append && !@raw_data.key?('nextPageToken')
-              @raw_data = @gateway.get_comment_pages(@video, @raw_data['nextPageToken'])
-            end
-            @pages_data
-          end
-        end
-
         # For GetDataItem
         class GetDataItem
           def initialize(data)
-            @data_item = data
+            @data_item = data['items']
           end
 
           def gets_items
-            @data_item['items']
+            @data_item
           end
         end
 
@@ -173,7 +156,7 @@ module GetComment
         end
 
         def processing(data)
-          @items = GetAllPage.new(data, @gateway, @video_id).getting_all_page
+          @items = GetDataItem.new(data).gets_items
           @data = IterateItem.new(@items).iterative
           @data = GetYTReply.new(@data, @gateway).getting_yt_reply
           @data

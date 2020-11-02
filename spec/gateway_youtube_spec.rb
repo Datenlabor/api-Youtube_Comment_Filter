@@ -24,18 +24,18 @@ describe 'Test Youtube API library' do
   describe 'Test Error API Token' do
     it 'Should raise exception on incorrect comment' do
       _(proc do
-          GetComment::YoutubeApi.new(YT_TOKEN).get_comment('ffff')
-        end).must_raise GetComment::YoutubeApi::Response::BadRequest
+          GetComment::Youtube::Api.new(YT_TOKEN).get_comment('ffff')
+        end).must_raise GetComment::Youtube::Api::Response::BadRequest
     end
     it 'Should raise exception when given wrong token' do
       _(proc do
-          GetComment::YoutubeApi.new('WRONG_TOKEN').get_comment(VIDEO_ID)
-        end).must_raise GetComment::YoutubeApi::Response::BadRequest
+          GetComment::Youtube::Api.new('WRONG_TOKEN').get_comment(VIDEO_ID)
+        end).must_raise GetComment::Youtube::Api::Response::BadRequest
     end
   end
   describe 'Test the first comment' do
     before do
-      @video = GetComment::YoutubeApi.new(YT_TOKEN).get_comment(VIDEO_ID)
+      @video = GetComment::Youtube::CommentMapper.new(YT_TOKEN).extract(VIDEO_ID)
       @keys = @video.keys
       @c_keys = CORRECT[0].keys
     end
