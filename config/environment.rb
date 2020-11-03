@@ -1,12 +1,30 @@
-# frozen_string_literal: true
-
 require 'roda'
-require 'yaml'
+require 'econfig'
 
 module GetComment
   # Configuration for the App
   class App < Roda
-    CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
-    YT_TOKEN = CONFIG['YT_KEY']
+    plugin :environments
+
+    extend Econfig::Shortcut
+    Econfig.env = environment.to_s
+    Econfig.root = '.'
+
+    configure :development, :test do
+      ENV['DATABASE_URL'] = "sqlite://#{config.DB_FILENAME}"
+    end
+
+    configure :production do
+      # Set DATABASE_URL environment variable on production platform
+    end
+
+    configure do
+      require 'sequel'
+      DB = Sequel.connect(ENV['DATABASE_URL']) # rubocop:disable Lint/ConstantDefinitionInBlock
+
+      def self.DB # rubocop:disable Naming/MethodName
+        DB
+      end
+    end
   end
 end
