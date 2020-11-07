@@ -15,16 +15,24 @@ module GetComment
       end
 
       def self.find_by_video_id(video_id)
-        db_record = Database::CommentOrm.first(video_id: video_id)
-        rebuild_entity(db_record)
+        db_records = Database::CommentOrm.where(video_id: video_id)
+        db_records.map do |db_record|
+          rebuild_entity(db_record)
+        end
+      end
+
+      def self.create_many(entities)
+        entities.map do |entity|
+          create(entity)
+        end
       end
 
       # Create a db_record from entity
       def self.create(entity)
-        raise 'Comment already exists' if find(entity)
+        # raise 'Comment already exists' if find(entity)
 
         Database::CommentOrm.unrestrict_primary_key
-        db_project = Database::CommentOrm.create(entity.to_hash)
+        db_project = Database::CommentOrm.find_or_create(entity.to_hash)
         rebuild_entity(db_project)
       end
 
@@ -33,8 +41,12 @@ module GetComment
         return nil unless db_record
 
         Entity::Comment.new(
+          id: db_record.id,
           video_id: db_record.video_id,
-          title: db_record.title
+          author: db_record.author,
+          textDisplay: db_record.textDisplay,
+          likeCount: db_record.likeCount,
+          totalReplyCount: db_record.totalReplyCount
         )
       end
     end

@@ -10,6 +10,10 @@ module GetComment
                   class: :'GetComment::Database::VideoOrm'
 
       plugin :timestamps, update_on_create: true
+
+      def self.find_or_create(comment_info)
+        first(id: comment_info[:id]) || create(comment_info)
+      end
     end
   end
 end

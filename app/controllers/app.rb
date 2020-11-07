@@ -32,18 +32,27 @@ module GetComment
         routing.on String do |video_id|
           # GET /comment/owner/comment
           routing.get do
-            # yt_video is an entity: {id => nil, video_id => video_id, title => title}
+            # yt_video is an entity: {video_id => video_id, title => title}
             yt_video = Youtube::VideoMapper.new(App.config.YT_TOKEN).extract(video_id)
             puts "==DEBUG== yt_video entity: #{yt_video.inspect}"
 
-            # Add video into database, return the one if already exists
+            # DB=> Add video into database
             Repository::For.entity(yt_video).create(yt_video)
 
-            # yt_comments is a a list of entities
+            # DB=> Get list of video entities from DB
+            # db_videos = Repository::For.klass(Entity::Comment).all
+
+            # Get a list of comment entities from API
             yt_comments = Youtube::CommentMapper.new(App.config.YT_TOKEN).extract(video_id)
             puts "==DEBUG== yt_comments[0] : #{yt_comments[0].inspect}"
 
-            # pass yt_comments to view
+            # DB=> Add comments into database
+            Repository::For.klass(Entity::Comment).create_many(yt_comments)
+
+            # DB=> Get list of comment entities from DB
+            # db_comments = Repository::For.klass(Entity::Comment).find_by_video_id(video_id)
+
+            # Transform the entities to hash and pass to view
             view 'comments', locals: { comments: yt_comments.map(&:to_hash) }
           end
         end
