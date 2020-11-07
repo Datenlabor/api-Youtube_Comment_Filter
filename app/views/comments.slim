@@ -1,8 +1,8 @@
 .container
-  - comments.data.values.each do |comment|
+  - comments.each do |comment|
     .row
       span.comment.attribute
-        = comment['text']
+        = comment[:textDisplay]
   /     span.comment.attribute text:
   /   .col-lg-11.col-md-10.col-sm-6
   /     span.comment.detail

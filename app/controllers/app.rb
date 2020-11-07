@@ -39,11 +39,12 @@ module GetComment
             # Add video into database, return the one if already exists
             Repository::For.entity(yt_video).create(yt_video)
 
-            # yt_comments is an entity: {id => nil, video_id => video_id, data => comments}
+            # yt_comments is a a list of entities
             yt_comments = Youtube::CommentMapper.new(App.config.YT_TOKEN).extract(video_id)
+            puts "==DEBUG== yt_comments[0] : #{yt_comments[0].inspect}"
 
             # pass yt_comments to view
-            view 'comments', locals: { comments: yt_comments }
+            view 'comments', locals: { comments: yt_comments.map(&:to_hash) }
           end
         end
       end

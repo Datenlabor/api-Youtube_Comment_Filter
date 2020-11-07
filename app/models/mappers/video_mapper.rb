@@ -19,7 +19,6 @@ module GetComment
 
         # Change to format {video_id => video_id, title => title}
         data = VideoDataProcess.new(@gateway, @video_id).processing(raw_data)
-        puts "==DEBUG== Video Data After Processing #{data}"
 
         # Build Entity
         EntityBuild.new(data).build_entity
