@@ -4,11 +4,10 @@ module GetComment
   module Youtube
     # Model for commnet
     class CommentMapper
-      def initialize(key, gateway_class = Youtube::Api)
-        @yt_key = key
+      def initialize(gateway_class = Youtube::Api)
         @video_id = 0
         @gateway_class = gateway_class
-        @gateway = @gateway_class.new(@yt_key)
+        @gateway = @gateway_class.new(App.config.YT_TOKEN)
       end
 
       def extract(video_id)
@@ -18,8 +17,8 @@ module GetComment
         raw_data = @gateway.get_comment(@video_id)
         # dataprocess = DataProcess.new(@yt_key, @video_id)
         data = DataProcess.new(@gateway, @video_id).processing(raw_data)
-        EntityBuild.new(data).build_entity
-        data
+        puts '==DEBUG== Data after processing'
+        EntityBuild.new(@video_id, data).build_entity
       end
 
       # def extract(url)
@@ -37,12 +36,13 @@ module GetComment
 
       # For Building the Entity class
       class EntityBuild
-        def initialize(data)
+        def initialize(video_id, data)
+          @video_id = video_id
           @data = data
         end
 
         def build_entity
-          DataMapper.new(@data).build_entity
+          DataMapper.new(@video_id, @data).build_entity
         end
       end
 
@@ -78,7 +78,7 @@ module GetComment
           end
         end
 
-        # For DataParsing
+        # For DataParsing, parsing the comments
         class DataParsing
           def initialize(data)
             @data_p = data
@@ -110,7 +110,8 @@ module GetComment
           end
         end
 
-        # For IterateItem
+        # For IterateItem, now used for going through the list of comments
+        # Generating {id => snippet} for each into @data_all
         class IterateItem
           def initialize(items)
             @items_all = items
@@ -155,24 +156,33 @@ module GetComment
           end
         end
 
+        # Process raw data of comment to hash
+        # {commentId => {text, author, likeCount, totalReplyCount, replies[]}}
         def processing(data)
+          # Extract the data from data['items'], which contains a list of hashes
           @items = GetDataItem.new(data).gets_items
+
+          # Get the hash of {id => parsed data}, but yet including the replies
           @data = IterateItem.new(@items).iterative
+
+          # Get the replies
           @data = GetYTReply.new(@data, @gateway).getting_yt_reply
+
           @data
         end
       end
+
       # Extracts entity specific elements from data structure
       class DataMapper
-        def initialize(data)
+        def initialize(video_id, data)
+          @video_id = video_id
           @data = data
         end
 
         def build_entity
           Entity::Comment.new(
             id: nil,
-            # yt_url: url,
-            # video_id: video_id,
+            video_id: @video_id,
             data: @data
           )
         end

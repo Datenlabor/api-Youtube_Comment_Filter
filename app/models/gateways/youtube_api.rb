@@ -25,6 +25,11 @@ module GetComment
         Request.new.get(yt_api_path(url)).parse
       end
 
+      def get_title(video_id, part = 'snippet')
+        url = "videos?key=#{@yt_key}&id=#{video_id}&part=#{part}"
+        Request.new.get(yt_api_path(url)).parse
+      end
+
       private
 
       def yt_api_path(path)

@@ -32,14 +32,21 @@ module GetComment
         routing.on String do |video_id|
           # GET /comment/owner/comment
           routing.get do
-            yt_comments = Youtube::CommentMapper.new(YT_TOKEN).extract(video_id)
+            # yt_video is an entity: {id => nil, video_id => video_id, title => title}
+            yt_video = Youtube::VideoMapper.new.extract(video_id)
+            puts "==DEBUG== yt_video entity: #{yt_video.inspect}"
 
+            # yt_comments is an entity: {id => nil, video_id => video_id, data => comments}
+            yt_comments = Youtube::CommentMapper.new.extract(video_id)
+
+            # pass yt_comments to view
             view 'comments', locals: { comments: yt_comments }
           end
         end
       end
     end
 
+    # Helper function for extracting video_id from YouTube url
     def youtube_id(youtube_url)
       regex = %r{(?:youtube(?:-nocookie)?\.com/(?:[^/\n\s]+/\S+/|(?:v|e(?:mbed)?)/|\S*?[?&]v=)|youtu\.be/)([a-zA-Z0-9_-]{11})}
       match = regex.match(youtube_url)
