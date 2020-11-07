@@ -5,7 +5,7 @@ require 'sequel'
 Sequel.migration do
   change do
     create_table(:comments) do
-      primary_key :id
+      primary_key :video_id
 
       String      :author, null: false
       String      :textDisplay, null: false

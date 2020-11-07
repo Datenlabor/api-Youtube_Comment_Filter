@@ -35,6 +35,8 @@ module GetComment
             # yt_video is an entity: {id => nil, video_id => video_id, title => title}
             yt_video = Youtube::VideoMapper.new.extract(video_id)
             puts "==DEBUG== yt_video entity: #{yt_video.inspect}"
+            Repository::For.entity(yt_video).create(yt_video)
+            puts '==DEBUG== yt_video created in db'
 
             # yt_comments is an entity: {id => nil, video_id => video_id, data => comments}
             yt_comments = Youtube::CommentMapper.new.extract(video_id)
