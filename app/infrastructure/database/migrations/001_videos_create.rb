@@ -5,8 +5,8 @@ require 'sequel'
 Sequel.migration do
   change do
     create_table(:videos) do
-      String  :video_id, :primary_key
-      String  :title, null: false
+      String :video_id, primary_key: true
+      String :title, null: false
 
       DateTime :created_at
       DateTime :updated_at

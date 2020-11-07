@@ -4,33 +4,38 @@ module GetComment
   module Repository
     # Repository for Comments
     class Comments
-      def self.find_id(id)
-        rebuild_entity Database::CommentOrm.first(id: id)
+      # Get all entities from database
+      def self.all
+        Database::CommentOrm.all.map { |db_project| rebuild_entity(db_project) }
       end
 
-      def self.find_username(username)
-        rebuild_entity Database::CommentOrm.first(username: username)
+      # Find the db_record that matches the entity
+      def self.find(entity)
+        find_by_video_id(entity.video_id)
       end
 
+      def self.find_by_video_id(video_id)
+        db_record = Database::CommentOrm.first(video_id: video_id)
+        rebuild_entity(db_record)
+      end
+
+      # Create a db_record from entity
+      def self.create(entity)
+        raise 'Comment already exists' if find(entity)
+
+        Database::CommentOrm.unrestrict_primary_key
+        db_project = Database::CommentOrm.create(entity.to_hash)
+        rebuild_entity(db_project)
+      end
+
+      # Get an entity from db_record
       def self.rebuild_entity(db_record)
         return nil unless db_record
 
         Entity::Comment.new(
-          id: db_record.id,
-          origin_id: db_record.origin_id,
-          username: db_record.username,
-          email: db_record.email
+          video_id: db_record.video_id,
+          title: db_record.title
         )
-      end
-
-      def self.rebuild_many(db_records)
-        db_records.map do |db_comment|
-          Comments.rebuild_entity(db_comment)
-        end
-      end
-
-      def self.db_find_or_create(entity)
-        Database::CommentOrm.find_or_create(entity.to_attr_hash)
       end
     end
   end

@@ -4,10 +4,10 @@ module GetComment
   module Youtube
     # Model for commnet
     class VideoMapper
-      def initialize(gateway_class = Youtube::Api)
+      def initialize(yt_token, gateway_class = Youtube::Api)
         @video_id = 0
         @gateway_class = gateway_class
-        @gateway = @gateway_class.new(App.config.YT_TOKEN)
+        @gateway = @gateway_class.new(yt_token)
       end
 
       def extract(video_id)
