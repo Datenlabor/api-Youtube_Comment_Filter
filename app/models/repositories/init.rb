@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'projects'
-require_relative 'members'
+require_relative 'videos'
+require_relative 'comments'
 require_relative 'for'

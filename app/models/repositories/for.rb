@@ -5,8 +5,8 @@ module GetComment
     # Finds the right repository for an entity object or class
     class For
       ENTITY_REPOSITORY = {
-        Entity::Project => Projects,
-        Entity::Member => Members
+        Entity::Video => Videos,
+        Entity::Comment => Comments
       }.freeze
 
       def self.klass(entity_klass)
