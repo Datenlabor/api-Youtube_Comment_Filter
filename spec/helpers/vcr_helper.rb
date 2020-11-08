@@ -5,7 +5,7 @@ require 'webmock'
 
 # Setting up VCR
 class VcrHelper
-  CASSETTES_FOLDER = '/spec/spec/fixtures/cassettes'.freeze
+  CASSETTES_FOLDER = 'spec/fixtures/cassettes'.freeze
   YOUTUBE_CASSETTE = 'youtube_api'.freeze
   YOUTUBE_TITLE_CASSETTE = 'youtube_title_api'.freeze
 

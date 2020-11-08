@@ -30,7 +30,7 @@ describe 'Integration Tests of Youtube API and Database' do
       _(rebuilt[0].author).must_equal(comments[0].author)
       _(rebuilt[0].textDisplay).must_equal(comments[0].textDisplay)
       _(rebuilt[0].likeCount).must_equal(comments[0].likeCount)
-      _(rebuilt[0].likeCount).must_equal(comments[0].likeCount)
+      _(rebuilt[0].totalReplyCount).must_equal(comments[0].totalReplyCount)
     end
 
     it 'Should be able to save titles from Youtube to database' do
