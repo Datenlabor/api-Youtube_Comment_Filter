@@ -7,7 +7,7 @@ module GetComment
   # Web App
   class App < Roda
     plugin :render, engine: 'slim', views: 'app/views'
-    plugin :assets, css: 'style.css', path: 'app/views/assets'
+    plugin :assets, css: 'style.css', js: 'table_row.js', path: 'app/views/assets'
     plugin :halt
 
     route do |routing|
@@ -15,7 +15,8 @@ module GetComment
 
       # GET /
       routing.root do
-        view 'home'
+        videos = Repository::For.klass(Entity::Video).all
+        view 'home', locals: { videos: videos }
       end
 
       routing.on 'comments' do
@@ -25,34 +26,20 @@ module GetComment
             yt_url = routing.params['youtube_url']
             routing.halt 400 unless yt_url.include? 'youtube.com'
             video_id = youtube_id(yt_url)
+            # Get comments from Youtube
+            yt_video = YouTube::CommentMapper.new(App.config.YT_TOKEN).extract(video_id)
+            # Add video to database
+            Repository::For.entity(yt_video).create(yt_video)
+            # Redirect users to comment page
             routing.redirect "comments/#{video_id}"
           end
         end
 
         routing.on String do |video_id|
-          # GET /comment/owner/comment
+          # GET /comment/{video_id}/
           routing.get do
-            # yt_video is an entity: {video_id => video_id, title => title}
-            yt_video = Youtube::VideoMapper.new(App.config.YT_TOKEN).extract(video_id)
-            puts "==DEBUG== yt_video entity: #{yt_video.inspect}"
-
-            # DB=> Add video into database
-            Repository::For.entity(yt_video).create(yt_video)
-
-            # DB=> Get list of video entities from DB
-            # db_videos = Repository::For.klass(Entity::Comment).all
-
-            # Get a list of comment entities from API
-            yt_comments = Youtube::CommentMapper.new(App.config.YT_TOKEN).extract(video_id)
-            puts "==DEBUG== yt_comments[0] : #{yt_comments[0].inspect}"
-
-            # DB=> Add comments into database
-            Repository::For.klass(Entity::Comment).create_many(yt_comments)
-
-            # DB=> Get list of comment entities from DB
-            # db_comments = Repository::For.klass(Entity::Comment).find_by_video_id(video_id)
-
-            # Transform the entities to hash and pass to view
+            # Get the comments from database instead of Youtube
+            yt_comments = Repository::For.klass(Entity::Comment).find_by_video_id(video_id)
             view 'comments', locals: { comments: yt_comments.map(&:to_hash) }
           end
         end
