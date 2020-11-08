@@ -27,9 +27,11 @@ module GetComment
             routing.halt 400 unless yt_url.include? 'youtube.com'
             video_id = youtube_id(yt_url)
             # Get comments from Youtube
-            yt_video = YouTube::CommentMapper.new(App.config.YT_TOKEN).extract(video_id)
+            yt_video = Youtube::VideoMapper.new(App.config.YT_TOKEN).extract(video_id)
+            yt_comments = Youtube::CommentMapper.new(App.config.YT_TOKEN).extract(video_id)
             # Add video to database
             Repository::For.entity(yt_video).create(yt_video)
+            Repository::For.klass(Entity::Comment).create_many(yt_comments)
             # Redirect users to comment page
             routing.redirect "comments/#{video_id}"
           end
