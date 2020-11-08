@@ -1,59 +1,61 @@
 # frozen_string_literal: true
 
 require_relative 'spec_helper'
+require_relative 'helpers/vcr_helper'
 
 describe 'Test Youtube API library' do
-  VCR.configure do |c|
-    c.cassette_library_dir = CASSETTES_FOLDER
-    c.hook_into :webmock
-
-    c.filter_sensitive_data('<YOUTUBE_TOKEN>') { YT_TOKEN }
-    c.filter_sensitive_data('<YOUTUBE_TOKEN_ESC>') { CGI.escape(YT_TOKEN) }
-  end
-
   before do
-    VCR.insert_cassette CASSETTE_FILE,
-                        record: :new_episodes,
-                        match_requests_on: %i[method uri headers]
+    VcrHelper.configure_vcr_for_youtube
   end
 
   after do
-    VCR.eject_cassette
+    VcrHelper.eject_vcr
   end
 
   describe 'Test Error API Token' do
     it 'Should raise exception on incorrect comment' do
       _(proc do
-          GetComment::Youtube::Api.new(YT_TOKEN).get_comment('ffff')
+          GetComment::Youtube::VideoMapper.new(YT_TOKEN).extract('ffff')
         end).must_raise GetComment::Youtube::Api::Response::BadRequest
     end
     it 'Should raise exception when given wrong token' do
       _(proc do
-          GetComment::Youtube::Api.new('WRONG_TOKEN').get_comment(VIDEO_ID)
+          GetComment::Youtube::VideoMapper.new('WRONG_TOKEN').extract(VIDEO_ID)
         end).must_raise GetComment::Youtube::Api::Response::BadRequest
     end
   end
-  describe 'Test the first comment' do
+
+  describe 'Test the title' do
+    before do
+      @n_video = GetComment::Youtube::VideoMapper.new(YT_TOKEN).extract(VIDEO_ID)
+      @title_keys = CORRECT_TITLE.keys
+    end
+    it 'Have same ID' do
+      _(@n_video.video_id).must_equal CORRECT_TITLE['video_id']
+    end
+  end
+
+
+  describe 'Test the fifth comment' do
     before do
       @video = GetComment::Youtube::CommentMapper.new(YT_TOKEN).extract(VIDEO_ID)
-      @keys = @video.keys
-      @c_keys = CORRECT[0].keys
+      @c_keys = CORRECT[5].keys
     end
 
     it 'Have same reply' do
-      _(@video[@keys[0]]['text']).must_equal CORRECT[0][@c_keys[0]]['text']
+      _(@video[5].textDisplay).must_equal CORRECT[5][@c_keys[0]]['text']
     end
 
     it 'Have same author' do
-      _(@video[@keys[0]]['author']).must_equal CORRECT[0][@c_keys[0]]['author']
+      _(@video[5].author).must_equal CORRECT[5][@c_keys[0]]['author']
     end
 
     it 'Have same like count' do
-      _(@video[@keys[0]]['likeCount']).must_equal CORRECT[0][@c_keys[0]]['likeCount']
+      _(@video[5].likeCount).must_equal CORRECT[5][@c_keys[0]]['likeCount']
     end
 
     it 'Have same total reply count' do
-      _(@video[@keys[0]]['totalReplyCount']).must_equal CORRECT[0][@c_keys[0]]['totalReplyCount']
+      _(@video[5].totalReplyCount).must_equal CORRECT[5][@c_keys[0]]['totalReplyCount']
     end
   end
 end
