@@ -87,6 +87,14 @@ module GetComment
             @data_p_top_snp['authorDisplayName']
           end
 
+          def parse_author_id
+            @data_p_top_snp['authorChannelId']['value']
+          end
+
+          def parse_author_img
+             @data_p_top_snp['authorProfileImageUrl']
+          end
+
           def parse_likecount
             @data_p_top_snp['likeCount']
           end
@@ -100,6 +108,8 @@ module GetComment
               'id' => parse_id,
               'textDisplay' => parse_textDisplay,
               'author' => parse_author,
+              'author_id' => parse_author_id,
+              'author_image' => parse_author_img,
               'likeCount' => parse_likecount,
               'totalReplyCount' => parse_totreply,
               'replies' => []

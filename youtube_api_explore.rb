@@ -8,6 +8,8 @@ require 'json'
 def parse_data(data)
   { 'text' => data['topLevelComment']['snippet']['textDisplay'],
     'author' => data['topLevelComment']['snippet']['authorDisplayName'],
+    'author_id' => data['topLevelComment']['snippet']['authorChannelId']['value'],
+    'author_img' => data['topLevelComment']['snippet']['authorProfileImageUrl'],
     'likeCount' => data['topLevelComment']['snippet']['likeCount'],
     'totalReplyCount' => data['totalReplyCount'],
     'replies' => [] }
@@ -30,7 +32,7 @@ end
 API_ROOT_URL = 'https://www.googleapis.com/youtube/v3/'
 TEST_VIDEO_ID = 'DA8nk83xumg'
 API_KEY = YAML.safe_load(File.read('config/secrets.yml'))['development']['YT_TOKEN']
-DEFAULT_OPTION = 'part=snippet&order=relevance&maxResults=100'
+DEFAULT_OPTION = 'part=snippet&order=time&maxResults=100'
 
 # 2. http request and get response
 request_comment_threads_url = "#{API_ROOT_URL}commentThreads?&key=#{API_KEY}&videoId=#{TEST_VIDEO_ID}&#{DEFAULT_OPTION}"
