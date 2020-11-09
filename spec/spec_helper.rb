@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Roda uses this to set and get our application's current environment.
+ENV['RACK_ENV'] = 'test'
+
 require 'simplecov'
 SimpleCov.start
 
@@ -7,15 +10,13 @@ require 'yaml'
 
 require 'minitest/autorun'
 require 'minitest/rg'
-require 'vcr'
-require 'webmock'
 
-require_relative '../lib/youtube_api'
+require_relative '../init'
 
-CONFIG = YAML.safe_load(File.read('../config/secrets.yml'))
-CORRECT = YAML.safe_load(File.read('./fixtures/results.yml'))
+CORRECT = YAML.safe_load(File.read('spec/fixtures/results.yml'))
+CORRECT_TITLE = YAML.safe_load(File.read('spec/fixtures/video_title.yml'))
 VIDEO_ID = 'DA8nk83xumg'
-YT_TOKEN = CONFIG['YT_KEY']
+YT_TOKEN = GetComment::App.config.YT_TOKEN
 
-CASSETTES_FOLDER = 'spec/fixtures/cassettes'
-CASSETTE_FILE = 'youtube_api'
+#CASSETTES_FOLDER = 'spec/spec/fixtures/cassettes'
+#CASSETTE_FILE = 'youtube_api'

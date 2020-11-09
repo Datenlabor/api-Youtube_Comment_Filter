@@ -2,6 +2,11 @@
   "RSpec": {
     "coverage": {
     },
-    "timestamp": 1603638128
+    "timestamp": 1604767452
+  },
+  "Minitest": {
+    "coverage": {
+    },
+    "timestamp": 1604735058
   }
 }
