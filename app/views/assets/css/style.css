@@ -1,6 +1,7 @@
-h1 {
-	font-weight: bold;
+a:hover{
+	text-decoration: none;
 }
+
 
 .top-buffer {
 	margin-top: 20px;
@@ -10,8 +11,19 @@ h1 {
 	font-size: 1.2em;
 }
 
+/* .be-comment-content {
+    margin-left: 80px;
+} */
+
 .comment.attribute {
 	font-weight: bold;
+	font-size: 13px;
+    line-height: 18px;
+    /* color: #7a8192; */
+    display: block;
+    background: rgba(59, 52, 52, 0.2);
+    border: 1px solid #edeff2;
+    padding: 15px 20px 20px 20px;
 }
 
 .comment.detail {
@@ -20,9 +32,6 @@ h1 {
 
 .comment.owner {
 	font-weight: bold;
-}
-
-.comment.name {
 }
 
 .vcenter {

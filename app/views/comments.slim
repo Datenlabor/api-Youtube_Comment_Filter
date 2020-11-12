@@ -1,6 +1,5 @@
 .container
   - comments.each do |comment|
-    .row
-      span.comment.attribute
+    .container-fluit *{:class => ["be-comment-content"]} 
+      p.comment.attribute
         = comment[:textDisplay]
-
