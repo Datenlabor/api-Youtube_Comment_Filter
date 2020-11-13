@@ -15,8 +15,14 @@ module GetComment
 
       # GET /
       routing.root do
+        # videos = Repository::For.klass(Entity::Video).all
+        view 'home'
+        # view 'home', locals: { videos: videos }
+      end
+
+      routing.on 'history' do
         videos = Repository::For.klass(Entity::Video).all
-        view 'home', locals: { videos: videos }
+        view 'history', locals: { videos: videos }
       end
 
       routing.on 'comments' do

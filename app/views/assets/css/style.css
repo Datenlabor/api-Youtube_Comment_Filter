@@ -3,19 +3,28 @@ html, body {
     margin: 0;
 }
 
-header {
+.home-page {
     background-image: url("https://cdn.searchenginejournal.com/wp-content/uploads/2019/01/Top-9-Benefits-of-Social-Media-for-Your-Business.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
-#background {
+#home-background {
     background-color: rgba(255, 255, 255, 0.8);
 } 
+
+/* #comment-background {
+    background-color: gray;
+} */
+
 a:hover {
     text-decoration: none;
 }
 
+.title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+}
 .title-1 {
     font-family: 'Oswald', sans-serif;
     font-size: 80px;

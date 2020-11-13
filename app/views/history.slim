@@ -1,0 +1,16 @@
+nav.navbar.navbar-toggleable-md.navbar-dark.bg-dark.fixed-top
+  a.text-light.title href="/" YouTube Comment Filter
+header.h-100
+  .h-100.d-flex.flex-column.justify-content-center id="comment-background"
+    .container
+      - if videos.any?
+          table class="table table-hover" id="videos_table"
+            thead
+              tr
+                th Video Title
+            tbody
+              - videos.each.with_index do |video, index|
+                tr class="table-row video_row" data-href="comments/#{video.video_id}" id="video[#{index}].row"
+                  td id='td_video_title'
+                    span class="video_title" id="video[#{index}].title"
+                      = video.title
