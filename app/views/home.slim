@@ -1,29 +1,38 @@
-.container
-  form role="form" action="/comments" method='POST' id='show-comments-form'
-    .row.vertical-align.query-bar
-      .col-md-2.col-sm-3
-        .text-right YouTube URL:
-      .col-md-8.col-sm-6
-        input { 
-          type='text' name='youtube_url'
-          id='youtube_url_input' class="form-control"
-          placeholder="e.g. https://www.youtube.com/watch?v=deVaUvywGMw&ab_channel=TaeKeyboards"
-        }
-      .col-md-2.col-sm-3
-        button { 
-          type='submit' id='repo-form-submit' class='submit' 
-          value='submit' class="btn btn-success" 
-        } Get Comments
-    .row
-      .col-md-12.blank-row
-    - if videos.any?
-          table class="table table-hover" id="videos_table"
-            thead
-              tr
-                th Video Title
-            tbody
-              - videos.each.with_index do |video, index|
-                tr class="table-row video_row" data-href="comments/#{video.video_id}" id="video[#{index}].row"
-                  td id='td_video_title'
-                    span class="video_title" id="video[#{index}].title"
-                      = video.title
+header.h-100
+  .h-100.d-flex.flex-column.justify-content-center id="background"
+    .container
+      / .row.align-items-center
+      h1.text-center.title-1.text-danger Youtube
+      h2.text-center.title-2.text-danger Comment Filter
+      form role="form" action="/comments" method='POST' id='show-comments-form'
+        .row.justify-content-center
+          .col-md-8.col-sm-6
+            input.form-control { 
+              type='text' name='youtube_url'
+              id='youtube_url_input'
+              placeholder="Enter YouTube URL"
+            }
+        .row.justify-content-center.mt-3
+          .col-md-2.col-sm-3
+            button.w-100 { 
+              type='submit' id='repo-form-submit' class='submit' 
+              value='submit' class="btn btn-success" 
+            } Get Comments
+          .col-md-2.col-sm-3
+            button.w-100 { 
+              type='submit' id='repo-form-submit' class='submit' 
+              value='submit' class="btn btn-primary" 
+            } History
+        / .row
+        /   .col-md-12.blank-row
+        / - if videos.any?
+        /       table class="table table-hover" id="videos_table"
+        /         thead
+        /           tr
+        /             th Video Title
+        /         tbody
+        /           - videos.each.with_index do |video, index|
+        /             tr class="table-row video_row" data-href="comments/#{video.video_id}" id="video[#{index}].row"
+        /               td id='td_video_title'
+        /                 span class="video_title" id="video[#{index}].title"
+        /                   = video.title

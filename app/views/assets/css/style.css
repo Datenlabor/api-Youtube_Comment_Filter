@@ -1,73 +1,36 @@
-a:hover{
-	text-decoration: none;
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
-
-.top-buffer {
-	margin-top: 20px;
+header {
+    background-image: url("https://cdn.searchenginejournal.com/wp-content/uploads/2019/01/Top-9-Benefits-of-Social-Media-for-Your-Business.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+#background {
+    background-color: rgba(255, 255, 255, 0.8);
+} 
+a:hover {
+    text-decoration: none;
 }
 
-.posting.body {
-	font-size: 1.2em;
+.title-1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 80px;
 }
 
-/* .be-comment-content {
-    margin-left: 80px;
-} */
+.title-2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 40px;
+}
 
 .comment.attribute {
 	font-weight: bold;
 	font-size: 13px;
     line-height: 18px;
-    /* color: #7a8192; */
     display: block;
-    background: rgba(59, 52, 52, 0.2);
-    border: 1px solid #edeff2;
+    background: rgba(161, 159, 159, 0.2);
     padding: 15px 20px 20px 20px;
-}
-
-.comment.detail {
-	color: grey;
-}
-
-.comment.owner {
-	font-weight: bold;
-}
-
-.vcenter {
-	display: inline-block;
-	vertical-align: middle;
-	float: none;
-}
-
-.vertical-align {
-	display: flex;
-	flex-direction: row;
-}
-
-.vertical-align > [class^='col-'],
-.vertical-align > [class*=' col-'] {
-	display: flex;
-	align-items: center;
-	justify-content: center; /* Optional, to align inner items 
-                              horizontally inside the column */
-}
-
-.top-buffer {
-	margin-top: 20px;
-}
-
-.blank-row {
-	height: 30px;
-}
-
-.query-bar {
-	background-color: #eeeeee;
-	padding: 5px 5px 5px 5px;
-}
-
-footer {
-	padding: 0.5in;
-	font-size: 11px;
-	color: rgb(100, 100, 100);
 }
