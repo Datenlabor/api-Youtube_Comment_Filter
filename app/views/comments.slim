@@ -1,12 +1,16 @@
-.container-fluit.pt-2.pl-3 id='html_body'
-  section
-    .row style="vertical-align: middle;"
-      .col-12
-        h2
-          a.text-danger.text-monospace href="/" YouTube Comment Filter
+nav.navbar.navbar-toggleable-md.navbar-dark.bg-dark.fixed-top
+  a.text-light.title href="/" YouTube Comment Filter
 
-.container
-  - comments.each do |comment|
-    .container-fluit *{:class => ["be-comment-content"]} 
-      p.comment.attribute
-        = comment[:textDisplay]
+/ .container-fluit.pt-2.pl-3 id='html_body'
+/   section
+/     .row style="vertical-align: middle;"
+/       .col-12
+/         h2
+/           a.text-danger.title-2 href="/" YouTube Comment Filter
+header.h-100
+  .h-100.d-flex.flex-column.justify-content-center id="comment-background"
+    .container
+      - comments.each do |comment|
+        .container-fluit.be-comment-content
+          p.comment.attribute
+            = comment[:textDisplay]

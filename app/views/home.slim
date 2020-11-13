@@ -1,9 +1,9 @@
-header.h-100
-  .h-100.d-flex.flex-column.justify-content-center id="background"
-    .container
+header.h-100.home-page
+  .h-100.d-flex.flex-column.justify-content-center id="home-background"
+    .container.mb-5
       / .row.align-items-center
       h1.text-center.title-1.text-danger Youtube
-      h2.text-center.title-2.text-danger Comment Filter
+      h2.text-center.title-2.text-danger.mb-3 Comment Filter
       form role="form" action="/comments" method='POST' id='show-comments-form'
         .row.justify-content-center
           .col-md-8.col-sm-6
@@ -12,19 +12,18 @@ header.h-100
               id='youtube_url_input'
               placeholder="Enter YouTube URL"
             }
-        .row.justify-content-center.mt-3
+        .row.justify-content-center.mt-3.mb-5
           .col-md-2.col-sm-3
             button.w-100 { 
               type='submit' id='repo-form-submit' class='submit' 
               value='submit' class="btn btn-success" 
-            } Get Comments
+            } GET
           .col-md-2.col-sm-3
-            button.w-100 { 
-              type='submit' id='repo-form-submit' class='submit' 
-              value='submit' class="btn btn-primary" 
-            } History
-        / .row
-        /   .col-md-12.blank-row
+            a href='/history'
+              button.w-100 { 
+                type='button' id='repo-form-submit' class='submit' 
+                value='submit' class="btn btn-primary" 
+              } History
         / - if videos.any?
         /       table class="table table-hover" id="videos_table"
         /         thead
