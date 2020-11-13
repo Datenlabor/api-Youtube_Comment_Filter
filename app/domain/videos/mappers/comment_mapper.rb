@@ -92,7 +92,7 @@ module GetComment
           end
 
           def parse_author_img
-             @data_p_top_snp['authorProfileImageUrl']
+            @data_p_top_snp['authorProfileImageUrl']
           end
 
           def parse_likecount
@@ -105,7 +105,7 @@ module GetComment
 
           def parsing
             {
-              'id' => parse_id,
+              'comment_id' => parse_id,
               'textDisplay' => parse_textDisplay,
               'author' => parse_author,
               'author_id' => parse_author_id,
@@ -118,7 +118,7 @@ module GetComment
         end
 
         # For IterateItem, now used for going through the list of comments
-        # Generating a list of {id => id, video_id => ...} into @data_all
+        # Generating a list of {comment_id => comment_id, video_id => ...} into @data_all
         class IterateItem
           def initialize(items)
             @items_all = items
@@ -129,7 +129,6 @@ module GetComment
             @items_all.each do |hash|
               snippet = GetDataSnippet.new(hash).gets_snippet
               @data_all.append(DataParsing.new(snippet).parsing)
-              # @data_all.store(id, DataParsing.new(snippet).parsing)
             end
             @data_all
           end
@@ -139,19 +138,18 @@ module GetComment
         class GetYTReply
           def initialize(data, gateway)
             @data_ = data
-            # @yt_key_ = key
             @gateway = gateway
           end
 
-          def call_yt_api(id)
-            @gateway.get_reply(id)
+          def call_yt_api(comment_id)
+            @gateway.get_reply(comment_id)
           end
 
-          def write_in_reply(id, result)
+          def write_in_reply(comment_id, result)
             reply = GetDataItem.new(result).gets_items
             reply.each do |hash|
               snippet = hash['snippet']
-              @data_[id]['replies'].append(snippet['textDisplay'])
+              @data_[comment_id]['replies'].append(snippet['textDisplay'])
             end
           end
 
@@ -186,9 +184,13 @@ module GetComment
 
         def build_entity
           Entity::Comment.new(
-            id: @data['id'],
+            comment_db_id: nil,
+            comment_id: @data['comment_id'],
+            video_db_id: nil,
             video_id: @data['video_id'],
             author: @data['author'],
+            author_id: @data['author_id'],
+            author_image: @data['author_image'],
             textDisplay: @data['textDisplay'],
             likeCount: @data['likeCount'],
             totalReplyCount: @data['totalReplyCount']

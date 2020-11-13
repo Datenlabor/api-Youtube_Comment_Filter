@@ -35,7 +35,6 @@ describe 'Test Youtube API library' do
     end
   end
 
-
   describe 'Test the fifth comment' do
     before do
       @video = GetComment::Youtube::CommentMapper.new(YT_TOKEN).extract(VIDEO_ID)

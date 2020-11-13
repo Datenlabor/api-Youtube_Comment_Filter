@@ -29,9 +29,11 @@ module GetComment
             # Get comments from Youtube
             yt_video = Youtube::VideoMapper.new(App.config.YT_TOKEN).extract(video_id)
             yt_comments = Youtube::CommentMapper.new(App.config.YT_TOKEN).extract(video_id)
-            # Add video to database
-            Repository::For.entity(yt_video).create(yt_video)
-            Repository::For.klass(Entity::Comment).create_many(yt_comments)
+            # Add video to database and get the entity with db_id
+            video = Repository::For.entity(yt_video).create(yt_video)
+
+            # Add comments to database with the video_db_id they associate
+            Repository::For.klass(Entity::Comment).create_many_of_one_video(yt_comments, video.video_db_id)
             # Redirect users to comment page
             routing.redirect "comments/#{video_id}"
           end
@@ -42,7 +44,7 @@ module GetComment
           routing.get do
             # Get the comments from database instead of Youtube
             yt_comments = Repository::For.klass(Entity::Comment).find_by_video_id(video_id)
-            view 'comments', locals: { comments: yt_comments.map(&:to_hash) }
+            view 'comments', locals: { comments: yt_comments }
           end
         end
       end

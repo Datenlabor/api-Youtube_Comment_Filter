@@ -42,6 +42,7 @@ module GetComment
 
           def build_entity
             Entity::Video.new(
+              video_db_id: nil,
               video_id: video_id,
               title: title
             )

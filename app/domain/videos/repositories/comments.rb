@@ -21,18 +21,20 @@ module GetComment
         end
       end
 
-      def self.create_many(entities)
+      def self.create_many_of_one_video(entities, video_db_id)
         entities.map do |entity|
-          create(entity)
+          entity_hash = entity.to_hash
+          entity_hash['video_db_id'] = video_db_id
+          create(entity_hash)
         end
       end
 
-      # Create a db_record from entity
-      def self.create(entity)
+      # Create a db_record from entity_hash
+      def self.create(entity_hash)
         # raise 'Comment already exists' if find(entity)
 
         Database::CommentOrm.unrestrict_primary_key
-        db_project = Database::CommentOrm.find_or_create(entity.to_hash)
+        db_project = Database::CommentOrm.find_or_create(entity_hash)
         rebuild_entity(db_project)
       end
 
@@ -41,9 +43,13 @@ module GetComment
         return nil unless db_record
 
         Entity::Comment.new(
-          id: db_record.id,
+          comment_db_id: db_record.comment_db_id,
+          comment_id: db_record.comment_id,
+          video_db_id: db_record.video_db_id,
           video_id: db_record.video_id,
           author: db_record.author,
+          author_id: db_record.author_id,
+          author_image: db_record.author_image,
           textDisplay: db_record.textDisplay,
           likeCount: db_record.likeCount,
           totalReplyCount: db_record.totalReplyCount

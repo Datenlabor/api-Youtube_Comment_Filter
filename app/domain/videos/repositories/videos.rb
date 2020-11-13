@@ -25,6 +25,7 @@ module GetComment
 
         Database::VideoOrm.unrestrict_primary_key
         db_project = Database::VideoOrm.find_or_create(entity.to_hash)
+
         rebuild_entity(db_project)
       end
 
@@ -33,6 +34,7 @@ module GetComment
         return nil unless db_record
 
         Entity::Video.new(
+          video_db_id: db_record.video_db_id,
           video_id: db_record.video_id,
           title: db_record.title
         )

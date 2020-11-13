@@ -16,4 +16,3 @@ class DatabaseHelper
     GetComment::App.DB.run('PRAGMA foreign_keys = ON')
   end
 end
-

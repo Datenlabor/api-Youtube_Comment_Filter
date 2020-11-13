@@ -55,14 +55,13 @@ output = File.open('./spec/fixtures/results.yml', 'w')
 output << YAML.dump(comments)
 output.close
 
-
 #----------------------------------------------------------------------------------------
-####Below is for fetching video information!!!#####
+# ###Below is for fetching video information!!!#####
 request_video_threads_url = "#{API_ROOT_URL}videos?key=#{API_KEY}&id=#{TEST_VIDEO_ID}&part=snippet"
 video_threads_rawdata = HTTP.get(request_video_threads_url).parse
 video_title =  video_threads_rawdata['items'][0]['snippet']['title']
-video_hash = {'video_id' => TEST_VIDEO_ID, 
-              'title' => video_title}
+video_hash = { 'video_id' => TEST_VIDEO_ID,
+               'title' => video_title }
 output = File.open('./spec/fixtures/video_title.yml', 'w')
 output << YAML.dump(video_hash)
 output.close

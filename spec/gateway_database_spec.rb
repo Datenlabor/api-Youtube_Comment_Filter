@@ -42,5 +42,3 @@ describe 'Integration Tests of Youtube API and Database' do
     end
   end
 end
-   
-

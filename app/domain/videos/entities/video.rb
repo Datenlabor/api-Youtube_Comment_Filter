@@ -5,6 +5,7 @@ module GetComment
     # Domain entity for team members
     class Video < Dry::Struct
       include Dry.Types
+      attribute :video_db_id, Strict::Integer.optional
       attribute :video_id, Strict::String
       attribute :title, Strict::String
     end

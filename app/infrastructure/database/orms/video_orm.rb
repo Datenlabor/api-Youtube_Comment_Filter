@@ -8,7 +8,7 @@ module GetComment
     class VideoOrm < Sequel::Model(:videos)
       one_to_many :video_comments,
                   class: :'GetComment::Database::CommentOrm',
-                  key: :video_id
+                  key: :video_db_id
 
       plugin :timestamps, update_on_create: true
 

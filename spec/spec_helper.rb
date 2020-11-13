@@ -18,5 +18,5 @@ CORRECT_TITLE = YAML.safe_load(File.read('spec/fixtures/video_title.yml'))
 VIDEO_ID = 'DA8nk83xumg'
 YT_TOKEN = GetComment::App.config.YT_TOKEN
 
-#CASSETTES_FOLDER = 'spec/spec/fixtures/cassettes'
-#CASSETTE_FILE = 'youtube_api'
+# CASSETTES_FOLDER = 'spec/spec/fixtures/cassettes'
+# CASSETTE_FILE = 'youtube_api'
