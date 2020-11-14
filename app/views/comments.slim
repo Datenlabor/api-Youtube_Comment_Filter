@@ -9,8 +9,25 @@ nav.navbar.navbar-toggleable-md.navbar-dark.bg-dark.fixed-top
 /           a.text-danger.title-2 href="/" YouTube Comment Filter
 header.h-100
   .h-100.d-flex.flex-column.justify-content-center id="comment-background"
-    .container
+    .container.justify-content-center
+      .row.justify-content-center 
+        .col-md-8.col-sm-6 id="YouTubeVideoPlayer" data-obj='#{video_id}'
       - comments.each do |comment|
-        .container-fluit.be-comment-content
-          p.comment.attribute
+        .media.mt-4.pl-5
+          img.align-self-start.mr-3 src=comment.author_image
+          .media-body
+            h5.mt-0
+            = comment.author
+            p
             = comment.textDisplay
+        / .container-fluit.be-comment-content
+        /   p.comment.attribute.mb-2
+        /     = comment.textDisplay
+      
+/ <div class="media">
+/   <img class="mr-3" src="..." alt="Generic placeholder image">
+/   <div class="media-body">
+/     <h5 class="mt-0">Media heading</h5>
+/     Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+/   </div>
+/ </div>

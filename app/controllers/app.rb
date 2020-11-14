@@ -50,7 +50,7 @@ module GetComment
           routing.get do
             # Get the comments from database instead of Youtube
             yt_comments = Repository::For.klass(Entity::Comment).find_by_video_id(video_id)
-            view 'comments', locals: { comments: yt_comments }
+            view 'comments', locals: { comments: yt_comments, video_id: video_id }
           end
         end
       end
