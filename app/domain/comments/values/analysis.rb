@@ -11,7 +11,7 @@ module GetComment
       # https://stackoverflow.com/questions/690151/getting-output-of-system-calls-in-ruby/690174#690174
       def polarity
         @comment = DataProcessing.new(@comment).remove_html_tags
-        output = p `python3 app/infrastructure/lib/ml_algo.py #{@comment}`
+        output = `python3 app/infrastructure/lib/ml_algo.py #{@comment}`
         output.gsub('\n', '').to_f
       end
 

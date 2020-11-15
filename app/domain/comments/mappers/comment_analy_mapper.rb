@@ -10,7 +10,7 @@ module GetComment
 
       def build_entity
         Entity::Comment.new(
-          comment: @comment
+          comment: @comment,
           polarity: polarity_value
         )
       end
