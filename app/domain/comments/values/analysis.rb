@@ -3,7 +3,7 @@
 module GetComment
   module Value
     # Define a Analysis class to analyze polarity
-    class Analysis < SimpleDelegator
+    class Analysis
       def initialize(comment)
         @comment = comment
       end
