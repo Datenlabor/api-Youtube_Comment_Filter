@@ -24,7 +24,7 @@ module GetComment
         # fail 'Video already exists' if find(entity)
 
         Database::VideoOrm.unrestrict_primary_key
-        db_project = Database::VideoOrm.find_or_create(entity.to_hash)
+        db_project = Database::VideoOrm.find_or_create(entity.to_attr_hash)
 
         rebuild_entity(db_project)
       end

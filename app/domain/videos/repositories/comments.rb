@@ -23,7 +23,7 @@ module GetComment
 
       def self.create_many_of_one_video(entities, video_db_id)
         entities.map do |entity|
-          entity_hash = entity.to_hash
+          entity_hash = entity.to_attr_hash
           entity_hash['video_db_id'] = video_db_id
           create(entity_hash)
         end
