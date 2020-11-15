@@ -3,11 +3,9 @@
 module GetComment
   module Mapper
     class Comment
-      def initialize
+      def initialize; end
 
-      end
-
-      def for_comment(comment)
+      def for_comment(_comment)
         Mapper::CommentAnaly.new(
           video_id
         ).build_entity

@@ -2,7 +2,7 @@
 
 module GetComment
   module Mapper
-    #The class is for comment analysis mapper
+    # The class is for comment analysis mapper
     class CommentAnalyze
       def initialize(comment)
         @comment = comment
@@ -16,7 +16,7 @@ module GetComment
       end
 
       def polarity_value
-        Entity::Polarity.new(        
+        Entity::Polarity.new(
           polarity: get_polarity(@comment)
         )
       end
