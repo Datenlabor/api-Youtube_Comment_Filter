@@ -11,7 +11,7 @@ require 'yaml'
 require 'minitest/autorun'
 require 'minitest/rg'
 
-require_relative '../init'
+require_relative '../../init'
 
 CORRECT = YAML.safe_load(File.read('spec/fixtures/results.yml'))
 CORRECT_TITLE = YAML.safe_load(File.read('spec/fixtures/video_title.yml'))
@@ -20,3 +20,7 @@ YT_TOKEN = GetComment::App.config.YT_TOKEN
 
 # CASSETTES_FOLDER = 'spec/spec/fixtures/cassettes'
 # CASSETTE_FILE = 'youtube_api'
+
+def homepage
+  GetComment::App.config.APP_HOST
+end
