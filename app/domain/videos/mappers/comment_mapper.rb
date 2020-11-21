@@ -1,5 +1,7 @@
 # frozen_string_literal: false
 
+require 'enumerator'
+
 module GetComment
   module Youtube
     # Model for commnet
@@ -20,16 +22,16 @@ module GetComment
         comments = DataProcess.new(@gateway).processing(raw_data)
 
         # Sentiment Analysis
-        comments = comments.map do |comment|
+        comments = comments.map.with_index do |comment, index|
           polarity = Value::Analysis.new(comment['textDisplay']).polarity
           comment.store('polarity', polarity)
+          puts "Finish analyzing comment #{index + 1} at #{Time.new.inspect}"
           comment
         end
 
         # Return a list of Comment entities
         comments.map do |comment|
           comment.store('video_id', @video_id)
-          puts "==DEBUG== comment before build entity: #{comment}"
           EntityBuild.new(comment).build_entity
         end
       end
