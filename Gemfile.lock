@@ -161,7 +161,7 @@ DEPENDENCIES
   http (~> 4.0)
   minitest (~> 5.0)
   minitest-rg (~> 5.0)
-  pg
+  pg (~> 1.2)
   puma (~> 3.11)
   rake
   reek
