@@ -6,8 +6,9 @@ require 'slim'
 module GetComment
   # Web App
   class App < Roda
-    plugin :render, engine: 'slim', views: 'app/views'
-    plugin :assets, css: 'style.css', js: 'table_row.js', path: 'app/views/assets'
+    plugin :render, engine: 'slim', views: 'app/presentation/views_html'
+    plugin :assets, css: 'style.css', js: 'main.js',
+                    path: 'app/presentation/assets'
     plugin :halt
 
     route do |routing|
@@ -41,18 +42,27 @@ module GetComment
             yt_url = routing.params['youtube_url']
             routing.halt 400 unless yt_url.include? 'youtube.com'
             video_id = youtube_id(yt_url)
+            # Get comments from database
+            yt_comments = Repository::For.klass(Entity::Comment)
+                                         .find_by_video_id(video_id)
 
-            # Get video from Youtube
-            yt_video = Youtube::VideoMapper.new(App.config.YT_TOKEN).extract(video_id)
+            unless yt_comments
+              # Get video from Youtube
+              yt_video = Youtube::VideoMapper.new(App.config.YT_TOKEN)
+                                             .extract(video_id)
 
-            # Get comment from Youtube, extract the wanted fields and do sentiment analysis
-            yt_comments = Youtube::CommentMapper.new(App.config.YT_TOKEN).extract(video_id)
+              # Get comment from Youtube, extract the wanted fields and do sentiment analysis
+              yt_comments = Youtube::CommentMapper.new(App.config.YT_TOKEN)
+                                                  .extract(video_id)
 
-            # Add video to database and get the entity with db_id
-            video = Repository::For.entity(yt_video).create(yt_video)
+              # Add video to database and get the entity with db_id
+              video = Repository::For.entity(yt_video).create(yt_video)
 
-            # Add comments to database with the video_db_id they associate
-            Repository::For.klass(Entity::Comment).create_many_of_one_video(yt_comments, video.video_db_id)
+              # Add comments to database with the video_db_id they associate
+              Repository::For.klass(Entity::Comment)
+                             .create_many_of_one_video(yt_comments,
+                                                       video.video_db_id)
+            end
 
             # Add search result to session cookie
             session[:watching].insert(0, video_id).uniq!
@@ -66,8 +76,12 @@ module GetComment
           # GET /comment/{video_id}/
           routing.get do
             # Get the comments from database instead of Youtube
-            yt_comments = Repository::For.klass(Entity::Comment).find_by_video_id(video_id)
-            view 'comments', locals: { comments: yt_comments, video_id: video_id }
+            yt_comments = Repository::For.klass(Entity::Comment)
+                                         .find_by_video_id(video_id)
+
+            all_comments = Views::AllComments.new(yt_comments, video_id)
+            view 'comments', locals: { comments: all_comments }
+            # view 'comments', locals: { comments: yt_comments, video_id: video_id }
           end
         end
       end

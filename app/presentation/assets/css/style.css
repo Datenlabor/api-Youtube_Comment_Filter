@@ -16,14 +16,70 @@ html, body {
 .history-group{
     column-count: 5;
 }
+.input-field{
+    position: relative;
+    height: 50px;
+}
 
+svg {
+    width: 30px;
+    height: 30px;
+}
+
+input:focus[type=text] {
+    box-shadow: none;
+    outline: 0;
+}
+button:focus {outline:0;}
+
+.search-icon {
+    width: 70px;
+    fill: #ccc;
+    background: transparent;
+    position: absolute;
+    left: 88%;
+    outline:none;
+}
+button:hover {
+    fill: #5c5c5c;
+}
+.search-bar {
+    border-radius: 34px;
+}
 a:hover {
     text-decoration: none;
+    /* color: #FF0266; */
 }
+
+.default-page {
+    background-color: #121212;
+}
+
+
+
+.history-img {
+    height: 30px;
+    width: 30px;
+}
+
+.nav-top {
+  height:60px;
+  background-color: #272727;
+}
+
+.content-part {
+    margin-top: 100px;
+}
+
+.comment-part {
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
 
 .title {
     font-family: 'Oswald', sans-serif;
     font-size: 30px;
+    /* color: #CF6679; */
 }
 .title-1 {
     font-family: 'Oswald', sans-serif;
@@ -41,5 +97,4 @@ a:hover {
     line-height: 18px;
     display: block;
     background: rgba(161, 159, 159, 0.2);
-    /* padding: 15px 20px 20px 20px; */
 }

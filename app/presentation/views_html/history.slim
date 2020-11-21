@@ -1,0 +1,13 @@
+header.h-100.default-page
+  .d-flex.flex-column.justify-content-center.default-page
+    nav.navbar.navbar-light.fixed-top.nav-top
+      a.title.text-light href="/" YouTube Comment Filter 
+    .container.content-part.ml-5.mb-5
+      .container
+        .card-deck
+          - if videos.any?
+            - videos.each.with_index do |video, index|
+              .card.video-card data-href="comments/#{video.video_id}" id="video[#{index}].row"
+                img.card-img-top src="http://img.youtube.com/vi/#{video.video_id}/maxresdefault.jpg"
+                .card-body
+                  h5.card-title id="video[#{index}].title" = video.title

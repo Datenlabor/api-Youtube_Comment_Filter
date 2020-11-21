@@ -1,0 +1,15 @@
+header.h-100.default-page
+  .d-flex.flex-column.justify-content-center.default-page
+    nav.navbar.navbar-light.fixed-top.nav-top
+      a.title.text-light href="/" YouTube Comment Filter 
+    .container.content-part.ml-5.mb-5
+      .row.w-100
+        .col-md-8.col-sm-6 id="YouTubeVideoPlayer" data-obj='#{comments.video_id}'
+      - comments.each do |comment|
+        .media.mt-4.pl-3.text-light.comment-part 
+          img.align-self-start.mr-3.rounded-circle src=comment.author_image
+          .media-body
+            h5.mt-1.mb-3.font-weight-bold
+              = comment.author
+            p
+              = comment.text

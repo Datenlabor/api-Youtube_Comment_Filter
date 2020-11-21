@@ -8,8 +8,8 @@ function onYouTubeIframeAPIReady() {
     var player;
     player = new YT.Player('YouTubeVideoPlayer', {
         videoId: $('#YouTubeVideoPlayer').data('obj'), // YouTube 影片ID
-        width: 560, 
-        height: 316, 
+        width: 850, 
+        height: 400, 
         playerVars: {
             autoplay: 1, // 在讀取時自動播放影片
             controls: 1, // 在播放器顯示暫停／播放按鈕
