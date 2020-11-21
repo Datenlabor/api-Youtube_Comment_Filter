@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+module CodePraise
+  module Entity
+    # Entity for one comment
+    class Comment
+      attr_reader :comment
+
+<<<<<<< HEAD
+      def initialize(comment)
+=======
+      def initialize(comment:)
+>>>>>>> presentation
+        @comment = comment
+      end
+    end
+  end
+end
