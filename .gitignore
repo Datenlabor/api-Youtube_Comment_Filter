@@ -6,4 +6,6 @@ coverage/.resultset.json
 
 .DS_Store
 
+*.orig
+
 *.db

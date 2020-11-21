@@ -22,7 +22,7 @@ module GetComment
 
     configure :production do
       # Set DATABASE_URL environment variable on production platform
-      ENV['DATABASE_URL'] = "postgres://cknzqgnfemetnw:d7c07c64d424a807e5b2852ca573888d9a52fcb463a35567f87600d114cd246c@ec2-34-200-106-49.compute-1.amazonaws.com:5432/d72iigjoaft4m8"
+      ENV['DATABASE_URL'] = 'postgres://cknzqgnfemetnw:d7c07c64d424a807e5b2852ca573888d9a52fcb463a35567f87600d114cd246c@ec2-34-200-106-49.compute-1.amazonaws.com:5432/d72iigjoaft4m8'
     end
 
     configure do
