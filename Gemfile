@@ -25,10 +25,9 @@ group :development, :test do
   gem 'sqlite3', '~> 1.4'
 end
 
-#group :production do
+# group :production do
 #  gem 'pg', '~> 1.2'
-#end
-
+# end
 
 # Testing
 group :test do

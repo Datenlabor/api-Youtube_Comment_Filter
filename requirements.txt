@@ -1,0 +1,3 @@
+# This file is tell heroku our python dependencies
+
+snownlp==0.12.3

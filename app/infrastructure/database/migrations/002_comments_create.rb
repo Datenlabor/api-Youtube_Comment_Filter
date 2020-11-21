@@ -18,6 +18,7 @@ Sequel.migration do
 
       Integer :likeCount, null: false
       Integer :totalReplyCount, null: false
+      Float   :polarity
 
       DateTime :created_at
       DateTime :updated_at

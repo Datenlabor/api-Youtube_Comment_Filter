@@ -52,7 +52,8 @@ module GetComment
           author_image: db_record.author_image,
           textDisplay: db_record.textDisplay,
           likeCount: db_record.likeCount,
-          totalReplyCount: db_record.totalReplyCount
+          totalReplyCount: db_record.totalReplyCount,
+          polarity: db_record.polarity
         )
       end
     end

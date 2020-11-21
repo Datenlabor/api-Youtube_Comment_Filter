@@ -19,9 +19,17 @@ module GetComment
         # Get a list of comments
         comments = DataProcess.new(@gateway).processing(raw_data)
 
+        # Sentiment Analysis
+        comments = comments.map do |comment|
+          polarity = Value::Analysis.new(comment['textDisplay']).polarity
+          comment.store('polarity', polarity)
+          comment
+        end
+
         # Return a list of Comment entities
         comments.map do |comment|
           comment.store('video_id', @video_id)
+          puts "==DEBUG== comment before build entity: #{comment}"
           EntityBuild.new(comment).build_entity
         end
       end
@@ -193,7 +201,8 @@ module GetComment
             author_image: @data['author_image'],
             textDisplay: @data['textDisplay'],
             likeCount: @data['likeCount'],
-            totalReplyCount: @data['totalReplyCount']
+            totalReplyCount: @data['totalReplyCount'],
+            polarity: @data['polarity']
           )
         end
       end

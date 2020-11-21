@@ -15,6 +15,7 @@ module GetComment
       attribute :textDisplay, Strict::String
       attribute :likeCount, Strict::Integer
       attribute :totalReplyCount, Strict::Integer
+      attribute :polarity, Strict::Float.optional
     end
   end
 end
