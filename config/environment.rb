@@ -2,6 +2,7 @@
 
 require 'roda'
 require 'econfig'
+require 'delegate' # This line is needed for Flash due to a bug in Rack < 2.3.0
 
 module GetComment
   # Configuration for the App
@@ -13,6 +14,9 @@ module GetComment
     extend Econfig::Shortcut
     Econfig.env = environment.to_s
     Econfig.root = '.'
+
+    # Set up sessions
+    use Rack::Session::Cookie, secret: config.SESSION_SECRET
 
     # Used to operate on certain environments
     configure :development, :test do

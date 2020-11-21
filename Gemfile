@@ -6,6 +6,7 @@ ruby File.read('.ruby-version').strip
 # Web Application
 gem 'econfig', '~> 2.1'
 gem 'puma', '~> 3.11'
+gem 'rack', '~> 2' # 2.3 will fix delegateclass bug
 gem 'roda', '~> 3.8'
 gem 'slim', '~> 3.0'
 
@@ -59,4 +60,4 @@ group :development, :test do
 end
 
 # Utilities
-gem 'rake'
+gem 'rake', '~> 13.0'

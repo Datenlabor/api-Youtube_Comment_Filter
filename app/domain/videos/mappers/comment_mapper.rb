@@ -22,7 +22,7 @@ module GetComment
         comments = DataProcess.new(@gateway).processing(raw_data)
         puts "==DEBUG== #{Time.new.strftime('%H:%M:%S')} || Finish data processing"
 
-        # Sentiment Analysis
+        # Sentiment Analysis on each comment
         comments = comments.map.with_index do |comment, index|
           polarity = Value::Analysis.new(comment['textDisplay']).polarity
           comment.store('polarity', polarity)

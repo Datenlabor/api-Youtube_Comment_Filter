@@ -15,13 +15,22 @@ module GetComment
 
       # GET /
       routing.root do
+        # Get viewer's previously seen videos from session
+        session[:watching] ||= []
+
         # videos = Repository::For.klass(Entity::Video).all
         view 'home'
         # view 'home', locals: { videos: videos }
       end
 
       routing.on 'history' do
-        videos = Repository::For.klass(Entity::Video).all
+        # Get videos from sessions
+        puts "==DEBUG== Data in session is: #{session[:watching]}"
+        videos = session[:watching].map do |video_id|
+          Repository::For.klass(Entity::Video).find_by_video_id(video_id)
+        end
+
+        # videos = Repository::For.klass(Entity::Video).all
         view 'history', locals: { videos: videos }
       end
 
@@ -33,8 +42,10 @@ module GetComment
             routing.halt 400 unless yt_url.include? 'youtube.com'
             video_id = youtube_id(yt_url)
 
-            # Get comments from Youtube
+            # Get video from Youtube
             yt_video = Youtube::VideoMapper.new(App.config.YT_TOKEN).extract(video_id)
+
+            # Get comment from Youtube, extract the wanted fields and do sentiment analysis
             yt_comments = Youtube::CommentMapper.new(App.config.YT_TOKEN).extract(video_id)
 
             # Add video to database and get the entity with db_id
@@ -42,6 +53,10 @@ module GetComment
 
             # Add comments to database with the video_db_id they associate
             Repository::For.klass(Entity::Comment).create_many_of_one_video(yt_comments, video.video_db_id)
+
+            # Add search result to session cookie
+            session[:watching].insert(0, video_id).uniq!
+
             # Redirect users to comment page
             routing.redirect "comments/#{video_id}"
           end

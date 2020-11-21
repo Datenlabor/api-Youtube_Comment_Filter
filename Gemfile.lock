@@ -163,7 +163,8 @@ DEPENDENCIES
   minitest-rg (~> 5.0)
   pg (~> 1.2)
   puma (~> 3.11)
-  rake
+  rack (~> 2)
+  rake (~> 13.0)
   reek
   rerun (~> 0.13)
   roda (~> 3.8)
