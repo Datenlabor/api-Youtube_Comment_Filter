@@ -15,9 +15,10 @@ module GetComment
       attribute :textDisplay, Strict::String
       attribute :likeCount, Strict::Integer
       attribute :totalReplyCount, Strict::Integer
+      attribute :polarity, Strict::Float.optional
 
       def to_attr_hash
-        # exclude comment_db_id and video_db_id
+        # exclude video_db_id
         to_hash.reject { |key, _| %i(comment_db_id video_db_id).include? key }
       end
     end

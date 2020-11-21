@@ -9,11 +9,7 @@ module GetComment
     class Polarity
       attr_reader :polarity
 
-<<<<<<< HEAD
       def initialize(polarity)
-=======
-      def initialize(polarity:)
->>>>>>> presentation
         @polarity = polarity
       end
     end

@@ -32,9 +32,11 @@ module GetComment
             yt_url = routing.params['youtube_url']
             routing.halt 400 unless yt_url.include? 'youtube.com'
             video_id = youtube_id(yt_url)
+
             # Get comments from Youtube
             yt_video = Youtube::VideoMapper.new(App.config.YT_TOKEN).extract(video_id)
             yt_comments = Youtube::CommentMapper.new(App.config.YT_TOKEN).extract(video_id)
+
             # Add video to database and get the entity with db_id
             video = Repository::For.entity(yt_video).create(yt_video)
 
