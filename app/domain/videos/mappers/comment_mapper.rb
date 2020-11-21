@@ -1,7 +1,5 @@
 # frozen_string_literal: false
 
-require 'enumerator'
-
 module GetComment
   module Youtube
     # Model for commnet
@@ -16,16 +14,19 @@ module GetComment
         # CommentMapper.extract_video_id(url)
         # We will get video_id directly from the controller of MVC
         @video_id = video_id
+        puts "==DEBUG== #{Time.new.strftime('%H:%M:%S')} || Start getting datas from API"
         raw_data = @gateway.get_comment(@video_id)
+        puts "==DEBUG== #{Time.new.strftime('%H:%M:%S')} || Finish getting datas from API"
 
         # Get a list of comments
         comments = DataProcess.new(@gateway).processing(raw_data)
+        puts "==DEBUG== #{Time.new.strftime('%H:%M:%S')} || Finish data processing"
 
         # Sentiment Analysis
         comments = comments.map.with_index do |comment, index|
           polarity = Value::Analysis.new(comment['textDisplay']).polarity
           comment.store('polarity', polarity)
-          puts "Finish analyzing comment #{index + 1} at #{Time.new.inspect}"
+          puts "==DEBUG== #{Time.new.strftime('%H:%M:%S')} || Finish analyzing comment #{index + 1}"
           comment
         end
 
