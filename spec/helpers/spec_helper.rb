@@ -15,7 +15,7 @@ require_relative '../../init'
 
 CORRECT = YAML.safe_load(File.read('spec/fixtures/results.yml'))
 CORRECT_TITLE = YAML.safe_load(File.read('spec/fixtures/video_title.yml'))
-VIDEO_ID = 'DA8nk83xumg'
+VIDEO_ID = 'P7UFeENc9r8'
 YT_TOKEN = GetComment::App.config.YT_TOKEN
 
 # CASSETTES_FOLDER = 'spec/spec/fixtures/cassettes'
