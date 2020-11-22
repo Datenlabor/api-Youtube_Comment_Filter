@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'video'
+
 module Views
   # View videos in database
   class AllVideos
