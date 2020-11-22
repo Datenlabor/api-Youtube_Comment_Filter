@@ -6,8 +6,8 @@ header.h-100.default-page
       .container
         .card-deck
           - if videos.any?
-            - videos.each.with_index do |video, index|
-              .card.video-card data-href="comments/#{video.video_id}" id="video[#{index}].row"
-                img.card-img-top src="http://img.youtube.com/vi/#{video.video_id}/maxresdefault.jpg"
+            - videos.each do |video|
+              .card.video-card data-href="comments/#{video.id}" id="#{video.index}.card"
+                img.card-img-top id="#{video.index}.img" src=video.img
                 .card-body
-                  h5.card-title id="video[#{index}].title" = video.title
+                  h5.card-title id="#{video.index}.title" = video.title

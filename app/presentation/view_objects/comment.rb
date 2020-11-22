@@ -3,8 +3,10 @@
 module Views
   # Information of one comment
   class Comment
-    def initialize(yt_comment)
+    attr_reader :index
+    def initialize(yt_comment, index = nil)
       @comment = yt_comment
+      @index = index
     end
 
     def author_image
@@ -17,6 +19,10 @@ module Views
 
     def text
       @comment.textDisplay
+    end
+
+    def emotion?
+      @comment.polarity < 0.5 ? false : true
     end
   end
 end

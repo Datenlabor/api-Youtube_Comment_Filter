@@ -31,8 +31,9 @@ module GetComment
           Repository::For.klass(Entity::Video).find_by_video_id(video_id)
         end
 
-        # videos = Repository::For.klass(Entity::Video).all
-        view 'history', locals: { videos: videos }
+        video_list = Views::AllVideos.new(videos)
+
+        view 'history', locals: { videos: video_list }
       end
 
       routing.on 'comments' do
@@ -43,10 +44,8 @@ module GetComment
             routing.halt 400 unless yt_url.include? 'youtube.com'
             video_id = youtube_id(yt_url)
             # Get comments from database
-            yt_comments = Repository::For.klass(Entity::Comment)
-                                         .find_by_video_id(video_id)
-
-            unless yt_comments
+            video = Repository::For.klass(Entity::Video).find_by_video_id(video_id)
+            unless video
               # Get video from Youtube
               yt_video = Youtube::VideoMapper.new(App.config.YT_TOKEN)
                                              .extract(video_id)
@@ -78,8 +77,8 @@ module GetComment
             # Get the comments from database instead of Youtube
             yt_comments = Repository::For.klass(Entity::Comment)
                                          .find_by_video_id(video_id)
-
             all_comments = Views::AllComments.new(yt_comments, video_id)
+            all_comments.classification
             view 'comments', locals: { comments: all_comments }
             # view 'comments', locals: { comments: yt_comments, video_id: video_id }
           end

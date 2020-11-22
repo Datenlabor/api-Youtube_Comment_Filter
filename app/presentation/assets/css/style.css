@@ -40,22 +40,20 @@ button:focus {outline:0;}
     left: 88%;
     outline:none;
 }
-button:hover {
+button.search-icon:hover {
     fill: #5c5c5c;
 }
+
 .search-bar {
     border-radius: 34px;
 }
 a:hover {
     text-decoration: none;
-    /* color: #FF0266; */
 }
 
 .default-page {
     background-color: #121212;
 }
-
-
 
 .history-img {
     height: 30px;
@@ -79,7 +77,6 @@ a:hover {
 .title {
     font-family: 'Oswald', sans-serif;
     font-size: 30px;
-    /* color: #CF6679; */
 }
 .title-1 {
     font-family: 'Oswald', sans-serif;
@@ -97,4 +94,26 @@ a:hover {
     line-height: 18px;
     display: block;
     background: rgba(161, 159, 159, 0.2);
+}
+
+.emotion {
+    /* fill: white; */
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+.happy-button {
+    background: green;
+    margin-left: 530px;
+}
+.sad-button {
+  background: red;
+}
+
+p {
+  font-family: 'Noto Sans TC', sans-serif;  
+}
+
+.card-body {
+    font-family: 'Noto Sans TC', sans-serif;   
 }
