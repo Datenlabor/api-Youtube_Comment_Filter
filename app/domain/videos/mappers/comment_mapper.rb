@@ -23,6 +23,9 @@ module GetComment
         puts "==DEBUG== #{Time.new.strftime('%H:%M:%S')} || Finish data processing"
 
         # Sentiment Analysis on each comment
+        #Here we take the whole comments to python in order to speedup the processing time.
+        #polarity_list = Value::Analysis.new(comments).polarity
+        
         comments = comments.map.with_index do |comment, index|
           polarity = Value::Analysis.new(comment['textDisplay']).polarity
           comment.store('polarity', polarity)

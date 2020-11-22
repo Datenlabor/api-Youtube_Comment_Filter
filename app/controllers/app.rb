@@ -2,13 +2,19 @@
 
 require 'roda'
 require 'slim'
+require 'slim/include'
 
 module GetComment
   # Web App
   class App < Roda
-    plugin :render, engine: 'slim', views: 'app/views'
-    plugin :assets, css: 'style.css', js: 'table_row.js', path: 'app/views/assets'
+    plugin :render, engine: 'slim', views: 'app/presentation/views_html'
+    plugin :assets, css: 'style.css', js: 'main.js',
+                    path: 'app/presentation/assets'
     plugin :halt
+    plugin :flash
+    plugin :all_verbs # allows DELETE and other HTTP verbs beyond GET/POST
+
+    use Rack::MethodOverride # for other HTTP verbs (with plugin all_verbs)
 
     route do |routing|
       routing.assets # load CSS
@@ -30,8 +36,11 @@ module GetComment
           Repository::For.klass(Entity::Video).find_by_video_id(video_id)
         end
 
-        # videos = Repository::For.klass(Entity::Video).all
-        view 'history', locals: { videos: videos }
+        flash.now[:notice] = 'Let\'s Go Search!' if videos.none?
+
+        video_list = Views::AllVideos.new(videos)
+
+        view 'history', locals: { videos: video_list }
       end
 
       routing.on 'comments' do
@@ -39,20 +48,47 @@ module GetComment
           # GET /comment/
           routing.post do
             yt_url = routing.params['youtube_url']
-            routing.halt 400 unless yt_url.include? 'youtube.com'
+            unless yt_url.include? 'youtube.com'
+              flash[:error] = 'Invalid URL'
+              response.status = 400
+              routing.redirect '/'
+            end
+            # routing.halt 400 unless yt_url.include? 'youtube.com'
             video_id = youtube_id(yt_url)
+            # Get comments from database
+            video = Repository::For.klass(Entity::Video).find_by_video_id(video_id)
+            unless video
+              # Get video from Youtube
+              begin
+                yt_video = Youtube::VideoMapper.new(App.config.YT_TOKEN)
+                                               .extract(video_id)
+              rescue StandardError
+                flash[:error] = 'Could not find that video'
+                routing.redirect '/'
+              end
 
-            # Get video from Youtube
-            yt_video = Youtube::VideoMapper.new(App.config.YT_TOKEN).extract(video_id)
+              # Get comment from Youtube, extract the wanted fields and do sentiment analysis
+              yt_comments = Youtube::CommentMapper.new(App.config.YT_TOKEN)
+                                                  .extract(video_id)
 
-            # Get comment from Youtube, extract the wanted fields and do sentiment analysis
-            yt_comments = Youtube::CommentMapper.new(App.config.YT_TOKEN).extract(video_id)
+              # Add video to database and get the entity with db_id
+              begin
+                video = Repository::For.entity(yt_video).create(yt_video)
+              rescue StandardError
+                flash[:error] = 'Having trouble accessing the database'
+                routing.redirect '/'
+              end
 
-            # Add video to database and get the entity with db_id
-            video = Repository::For.entity(yt_video).create(yt_video)
-
-            # Add comments to database with the video_db_id they associate
-            Repository::For.klass(Entity::Comment).create_many_of_one_video(yt_comments, video.video_db_id)
+              # Add comments to database with the video_db_id they associate
+              begin
+                Repository::For.klass(Entity::Comment)
+                               .create_many_of_one_video(yt_comments,
+                                                         video.video_db_id)
+              rescue StandardError
+                flash[:error] = 'Having trouble accessing the database'
+                routing.redirect '/'
+              end
+            end
 
             # Add search result to session cookie
             session[:watching].insert(0, video_id).uniq!
@@ -66,8 +102,22 @@ module GetComment
           # GET /comment/{video_id}/
           routing.get do
             # Get the comments from database instead of Youtube
-            yt_comments = Repository::For.klass(Entity::Comment).find_by_video_id(video_id)
-            view 'comments', locals: { comments: yt_comments, video_id: video_id }
+            begin
+              video = Repository::For.klass(Entity::Video).find_by_video_id(video_id)
+              if video.nil?
+                flash[:error] = 'Video not found'
+                routing.redirect '/'
+              end
+            rescue StandardError
+              flash[:error] = 'Having trouble accessing the database'
+              routing.redirect '/'
+            end
+            yt_comments = Repository::For.klass(Entity::Comment)
+                                         .find_by_video_id(video_id)
+            all_comments = Views::AllComments.new(yt_comments, video_id)
+            all_comments.classification
+            view 'comments', locals: { comments: all_comments }
+            # view 'comments', locals: { comments: yt_comments, video_id: video_id }
           end
         end
       end
