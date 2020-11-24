@@ -3,6 +3,7 @@ coverage/*
 coverage/.resultset.json
 
 .bundle/
+temp/*
 
 .DS_Store
 

@@ -1,0 +1,1 @@
+This is for the git to recognize this folder exists, so that the File.open won't report error
