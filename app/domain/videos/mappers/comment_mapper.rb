@@ -23,12 +23,13 @@ module GetComment
         puts "==DEBUG== #{Time.new.strftime('%H:%M:%S')} || Finish data processing"
 
         # Sentiment Analysis on each comment
-        #Here we take the whole comments to python in order to speedup the processing time.
-        #polarity_list = Value::Analysis.new(comments).polarity
+        # Here we take the whole comments to python in order to speedup the processing time.
+        onlytext = ExtractOnlyText.new(comments).extract_text
+        polarity_list = Value::Analysis.new(onlytext).polarity
         
         comments = comments.map.with_index do |comment, index|
-          polarity = Value::Analysis.new(comment['textDisplay']).polarity
-          comment.store('polarity', polarity)
+          # polarity = Value::Analysis.new(comment['textDisplay']).polarity
+          comment.store('polarity', polarity_list[index])
           puts "==DEBUG== #{Time.new.strftime('%H:%M:%S')} || Finish analyzing comment #{index + 1}"
           comment
         end
@@ -48,6 +49,19 @@ module GetComment
 
         def build_entity
           DataMapper.new(@data).build_entity
+        end
+      end
+
+      # For extract text from hashs
+      class ExtractOnlyText
+        def initialize(comment)
+          @comments = comment
+        end
+
+        def extract_text
+          @comments.map do |hash|
+            hash['textDisplay']
+          end
         end
       end
 
