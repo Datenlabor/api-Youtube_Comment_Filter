@@ -30,6 +30,7 @@ module GetComment
         end
 
         def writetxt
+          puts '==DEBUG== Starts writing file'
           out_file = File.new(@filename, 'w')
           out_file.puts(@comment)
           out_file.close
@@ -48,6 +49,7 @@ module GetComment
         end
 
         def readtxt
+          puts '==DEBUG== Starts reading file'
           polarity_list = []
           @output_f.each_line do |line|
             polarity_list.append(line.delete("\n").to_f)
