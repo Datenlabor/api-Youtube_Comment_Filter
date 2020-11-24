@@ -16,7 +16,7 @@ module GetComment
         # output.gsub('\n', '').to_f
         DataProcessing.new(@comment, @filename).writetxt
         output_f = `python3 app/infrastructure/lib/ml_algo.py #{@filename}`
-        output_f.gsub!("\n", '')
+        output_f.delete!("\n")
         result = GettingResult.new(output_f).readtxt
         DeletectionFile.new(@filename, output_f).deletection
         result
@@ -50,7 +50,7 @@ module GetComment
         def readtxt
           polarity_list = []
           @output_f.each_line do |line|
-            polarity_list.append(line.gsub("\n", '').to_f)
+            polarity_list.append(line.delete("\n").to_f)
           end
           polarity_list
         end
