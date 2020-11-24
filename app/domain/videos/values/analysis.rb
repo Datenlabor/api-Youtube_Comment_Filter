@@ -34,6 +34,7 @@ module GetComment
           out_file = File.new(@filename, 'w')
           out_file.puts(@comment)
           out_file.close
+          puts '==DEBUG== Finish writing file'
         end
 
         def remove_html_tags
@@ -54,6 +55,7 @@ module GetComment
           @output_f.each_line do |line|
             polarity_list.append(line.delete("\n").to_f)
           end
+          puts '==DEBUG== Finish reading file'
           polarity_list
         end
       end
