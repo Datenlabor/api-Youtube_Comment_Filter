@@ -30,10 +30,6 @@ module GetComment
         # Get videos from sessions
         puts "==DEBUG== Data in session is: #{session[:watching]}"
 
-        # videos = session[:watching].map do |video_id|
-        #   Repository::For.klass(Entity::Video).find_by_video_id(video_id)
-        # end
-
         result = Service::ListVideos.new.call(session[:watching])
         if result.failure?
           flash[:error] = result.failure
@@ -60,12 +56,6 @@ module GetComment
             end
 
             video = video_made.value!
-            puts video.video_id
-            # comment_made = Service::AddComment.new.call(video: video)
-            # if comment_made.failure?
-            #   flash[:error] = comment_made.failure
-            #   routing.redirect '/'
-            # end
             session[:watching].insert(0, video.video_id).uniq!
             routing.redirect "comments/#{video.video_id}"
           end
@@ -74,30 +64,12 @@ module GetComment
         routing.on String do |video_id|
           # GET /comment/{video_id}/
           routing.get do
-            # Get the comments from database instead of Youtube
-            # video = GetVideo.new(video_id)
-            # comment_made = Service::AddComment.new.call(video_id)
-            # begin
-            # video = Repository::For.klass(Entity::Video).find_by_video_id(video_id)
-            #   if video.nil?
-            #     flash[:error] = 'Video not found'
-            #     routing.redirect '/'
-            #   end
-            # rescue StandardError
-            #   flash[:error] = 'Having trouble accessing the database'
-            #   routing.redirect '/'
-            # end
+            # Load comments
             yt_comments = Repository::For.klass(Entity::Comment)
                                          .find_by_video_id(video_id)
-            # if comment_made.failure?
-            #   flash[:error] = comment_made.failure
-            #   routing.redirect '/'
-            # end
-            # yt_comments = comment_made.value!
             all_comments = Views::AllComments.new(yt_comments, video_id)
             all_comments.classification
             view 'comments', locals: { comments: all_comments }
-            # view 'comments', locals: { comments: yt_comments, video_id: video_id }
           end
         end
       end

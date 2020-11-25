@@ -26,7 +26,6 @@ module GetComment
       def find_video(input)
         if (video = video_in_database(input))
           input[:local_video] = video
-          input[:local_comment] = comment_in_database(input)
         else
           input[:remote_video] = video_from_youtube(input)
           input[:remote_comment] = comment_from_youtube(input)
@@ -37,13 +36,12 @@ module GetComment
       end
 
       def store_video(input)
-        if (new_video = input[:remote_video])
-          video = Repository::For.entity(new_video).create(new_video)
-          Repository::For.klass(Entity::Comment)
-                         .create_many_of_one_video(new_comments, video.video_db_id)
-        else
-          video = input[:local_video]
-        end
+        video =
+          if input[:remote_video]
+            store_video_comment(input)
+          else
+            input[:local_video]
+          end
         Success(video)
       rescue StandardError => error
         puts error.backtrace.join("\n")
@@ -75,8 +73,11 @@ module GetComment
         raise 'Could not find comments on Youtube'
       end
 
-      def comment_in_database(input)
-        Repository::For.klass(Entity::Comment).find_by_video_id(input[:video_id])
+      def store_video_comment(input)
+        video = Repository::For.entity(input[:remote_video]).create(input[:remote_video])
+        Repository::For.klass(Entity::Comment)
+                       .create_many_of_one_video(input[:remote_comment], video.video_db_id)
+        video
       end
     end
   end
