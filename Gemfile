@@ -10,6 +10,11 @@ gem 'rack', '~> 2' # 2.3 will fix delegateclass bug
 gem 'roda', '~> 3.8'
 gem 'slim', '~> 3.0'
 
+# Controllers and services
+gem 'dry-monads'
+gem 'dry-transaction'
+gem 'dry-validation'
+
 # Validation
 gem 'dry-struct', '~> 1.3'
 gem 'dry-types', '~> 1.4'
