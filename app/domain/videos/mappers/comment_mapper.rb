@@ -26,7 +26,7 @@ module GetComment
         # Here we take the whole comments to python in order to speedup the processing time.
         onlytext = ExtractOnlyText.new(comments).extract_text
         polarity_list = Value::Analysis.new(onlytext).polarity
-        
+
         comments = comments.map.with_index do |comment, index|
           # polarity = Value::Analysis.new(comment['textDisplay']).polarity
           comment.store('polarity', polarity_list[index])

@@ -1,4 +1,5 @@
 from snownlp import SnowNLP
+from textblob import TextBlob
 import sys
 import re
 import datetime
@@ -8,9 +9,13 @@ TAG_RE = re.compile(r'<[^>]+>')
 def remove_tags(text):
     return TAG_RE.sub('', text)
 
-def polarity(text):
+def polarity_chinese(text):
     text = SnowNLP(text)
     return text.sentiments
+
+def polarity_en(text):
+    blob = TextBlob(text)
+    return (blob.sentiment[0] + 1)/2
 
 
 if __name__ == "__main__":
@@ -26,7 +31,15 @@ if __name__ == "__main__":
     line = f.readline()
     while line:
         cleantext = remove_tags(line)
-        analy_List.append(polarity(cleantext))
+        language = TextBlob(line).detect_language()
+        
+        if language == 'zh-CN' or language == 'zh-TW':
+            result = polarity_chinese(cleantext)
+        else:
+            result = polarity_en(cleantext)
+
+        analy_List.append(result)
+
         line = f.readline()
     f.close()
     

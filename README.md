@@ -21,9 +21,10 @@ In our product, we try to solve the problem by using Machine Learning algorithm.
 
 ## Requirement
 
-In order to run the snownlp for comment analysis, please install the following package:
+In order to run the snownlp/textblob for comment analysis, please install the following package:
 
 -   pip3 install snownlp
+-   pip3 install textblob
 
 ## Resource
 
