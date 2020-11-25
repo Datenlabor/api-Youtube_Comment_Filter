@@ -74,12 +74,5 @@ module GetComment
         end
       end
     end
-
-    # Helper function for extracting video_id from YouTube url
-    def youtube_id(youtube_url)
-      regex = %r{(?:youtube(?:-nocookie)?\.com/(?:[^/\n\s]+/\S+/|(?:v|e(?:mbed)?)/|\S*?[?&]v=)|youtu\.be/)([a-zA-Z0-9_-]{11})}
-      match = regex.match(youtube_url)
-      match[1] if match
-    end
   end
 end
