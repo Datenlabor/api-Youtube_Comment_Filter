@@ -32,9 +32,7 @@ module GetComment
       routing.on 'history' do
         # Get videos from sessions
         puts "==DEBUG== Data in session is: #{session[:watching]}"
-        videos = session[:watching].map do |video_id|
-          Repository::For.klass(Entity::Video).find_by_video_id(video_id)
-        end
+        videos = Repository::For.klass(Entity::Video).find_videos(session[:watching])
 
         flash.now[:notice] = 'Let\'s Go Search!' if videos.none?
 

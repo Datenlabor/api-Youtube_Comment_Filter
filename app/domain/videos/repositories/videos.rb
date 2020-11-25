@@ -19,6 +19,12 @@ module GetComment
         rebuild_entity(db_record)
       end
 
+      def self.find_videos(video_id_list)
+        videos = video_id_list.map do |video_id|
+          find_by_video_id(video_id)
+        end
+      end
+
       # Create a db_record from entity; if already exists, then return the one in db
       def self.create(entity)
         # fail 'Video already exists' if find(entity)

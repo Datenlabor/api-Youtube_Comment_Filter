@@ -30,7 +30,6 @@ module GetComment
         comments = comments.map.with_index do |comment, index|
           # polarity = Value::Analysis.new(comment['textDisplay']).polarity
           comment.store('polarity', polarity_list[index])
-          puts "==DEBUG== #{Time.new.strftime('%H:%M:%S')} || Finish analyzing comment #{index + 1}"
           comment
         end
 

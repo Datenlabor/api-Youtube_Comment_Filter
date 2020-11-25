@@ -3,7 +3,9 @@ coverage/*
 coverage/.resultset.json
 
 .bundle/
-temp/*
+
+temp/
+!temp/.gitkeep
 
 .DS_Store
 
