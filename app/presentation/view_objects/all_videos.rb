@@ -9,10 +9,8 @@ module Views
       @videos = videos.map.with_index { |video, i| Video.new(video, i) }
     end
 
-    def each
-      @videos.each do |video|
-        yield video
-      end
+    def each(&block)
+      @videos.each(&block)
     end
 
     def any?

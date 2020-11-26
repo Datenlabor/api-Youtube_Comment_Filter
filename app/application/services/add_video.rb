@@ -31,8 +31,8 @@ module GetComment
           input[:remote_comment] = comment_from_youtube(input)
         end
         Success(input)
-      rescue StandardError => error
-        Failure(error.to_s)
+      rescue StandardError => e
+        Failure(e.to_s)
       end
 
       def store_video(input)
@@ -43,8 +43,8 @@ module GetComment
             input[:local_video]
           end
         Success(video)
-      rescue StandardError => error
-        puts error.backtrace.join("\n")
+      rescue StandardError => e
+        puts e.backtrace.join("\n")
         Failure('Having trouble accessing the database')
       end
 

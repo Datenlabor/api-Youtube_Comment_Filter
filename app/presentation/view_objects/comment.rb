@@ -4,6 +4,7 @@ module Views
   # Information of one comment
   class Comment
     attr_reader :index
+
     def initialize(yt_comment, index = nil)
       @comment = yt_comment
       @index = index
@@ -22,7 +23,7 @@ module Views
     end
 
     def emotion?
-      @comment.polarity < 0.5 ? false : true
+      @comment.polarity >= 0.5
     end
   end
 end

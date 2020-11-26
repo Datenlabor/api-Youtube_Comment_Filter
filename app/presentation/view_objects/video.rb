@@ -4,6 +4,7 @@ module Views
   # Information of one video
   class Video
     attr_reader :index
+
     def initialize(video, index = nil)
       @video = video
       @index = index

@@ -7,9 +7,7 @@ module GetComment
         @video_id = video_id
       end
 
-      def video_object
-        
-      end
+      def video_object; end
     end
   end
 end

@@ -6,7 +6,7 @@ module GetComment
   module Forms
     # Check the URL
     class NewVideo < Dry::Validation::Contract
-      URL_REGEX = %r{(http[s]?)\:\/\/(www.)?youtube\.com\/watch\?v=*}.freeze
+      URL_REGEX = %r{(https?)://(www.)?youtube\.com/watch\?v=*}.freeze
 
       params do
         required(:youtube_url).filled(:string)
