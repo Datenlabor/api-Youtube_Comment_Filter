@@ -10,7 +10,7 @@ class HomePage
   div(:success_message, id: 'flash_bar_success')
 
   h1(:h1_heading, class: 'text-center')
-  h2(:h2_heading, class: %w(text-center title-2 text-danger))
+  h2(:h2_heading, class: %w[text-center title-2 text-danger])
   text_field(:url_input, id: 'youtube_url_input')
   button(:url_submit_button, id: 'repo-form-submit')
   button(:history_button, id: 'show_history_button')

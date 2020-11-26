@@ -30,7 +30,6 @@ describe 'Homepage Acceptance Tests' do
         _(page.h2_heading).must_equal 'Comment Filter'
         _(page.url_input_element.present?).must_equal true
         _(page.url_submit_button_element.present?).must_equal true
-        puts "==DEBUG== history_button_element.present?: #{page.history_button_element.present?}"
         _(page.history_button_element.present?).must_equal true
       end
     end

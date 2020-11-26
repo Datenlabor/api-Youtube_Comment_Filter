@@ -9,6 +9,6 @@ header.h-100.default-page
           - if videos.any?
             - videos.each do |video|
               .card.video-card data-href="comments/#{video.id}" id="#{video.index}.card"
-                img.card-img-top id="#{video.index}.img" src=video.img
+                img.card-img-top id="video_#{video.index}.img" src=video.img
                 .card-body
-                  h5.card-title id="#{video.index}.title" = video.title
+                  h5.card-title id="video_#{video.index}.title" = video.title
