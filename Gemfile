@@ -3,6 +3,10 @@
 source 'https://rubygems.org'
 ruby File.read('.ruby-version').strip
 
+# PRESENTATION LAYER
+gem 'multi_json'
+gem 'roar'
+
 # Web Application
 gem 'econfig', '~> 2.1'
 gem 'puma', '~> 3.11'
