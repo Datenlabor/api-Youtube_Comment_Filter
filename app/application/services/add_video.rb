@@ -7,7 +7,6 @@ module GetComment
     # Add video in database
     class AddVideo
       include Dry::Transaction
-      step :parse_url
       step :find_video
       step :store_video
 
@@ -15,17 +14,6 @@ module GetComment
 
       DB_ERR_MSG = 'Having trouble accessing the database'.freeze
       YT_NOT_FOUND = 'Could not find that video on YouTube'.freeze
-
-      # Helper function for extracting video_id from YouTube url
-      def parse_url(input)
-        if input.success?
-          video_id = youtube_id(input[:youtube_url])
-          Success(video_id: video_id)
-        else
-          # Failure(Response::ApiResult)
-          Failure("URL #{input.errors.messages.first}")
-        end
-      end
 
       def find_video(input)
         if (video = video_in_database(input))
@@ -36,8 +24,7 @@ module GetComment
         end
         Success(input)
       rescue StandardError => e
-        Failure(Response::ApiResult.new(status :not_found, message: e.to_s))
-        # Failure(e.to_s)
+        Failure(Response::ApiResult.new(status: :not_found, message: e.to_s))
       end
 
       def store_video(input)
@@ -50,18 +37,10 @@ module GetComment
         Success(video)
       rescue StandardError => e
         puts e.backtrace.join("\n")
-        Failure(Response::ApiResult.new(status :internal_error, message: DB_ERR_MSG))
-        # Failure('Having trouble accessing the database')
+        Failure(Response::ApiResult.new(status: :internal_error, message: DB_ERR_MSG))
       end
 
       # following are support methods that other services could use
-
-      def youtube_id(youtube_url)
-        regex = %r{(?:youtube(?:-nocookie)?\.com/(?:[^/\n\s]+/\S+/|(?:v|e(?:mbed)?)/|\S*?[?&]v=)|youtu\.be/)([a-zA-Z0-9_-]{11})}
-        match = regex.match(youtube_url)
-        match[1] if match
-      end
-
       def video_from_youtube(input)
         Youtube::VideoMapper.new(App.config.YT_TOKEN)
                             .extract(input[:video_id])
