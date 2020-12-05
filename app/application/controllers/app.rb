@@ -7,9 +7,6 @@ require 'slim/include'
 module GetComment
   # Web App
   class App < Roda
-    plugin :render, engine: 'slim', views: 'app/presentation/views_html'
-    plugin :assets, css: 'style.css', js: 'main.js',
-                    path: 'app/presentation/assets'
     plugin :halt
     plugin :flash
     plugin :all_verbs # allows DELETE and other HTTP verbs beyond GET/POST
@@ -17,59 +14,66 @@ module GetComment
     use Rack::MethodOverride # for other HTTP verbs (with plugin all_verbs)
 
     route do |routing|
-      routing.assets # load CSS
+      response['Content-Type'] = 'application/json'
 
       # GET /
       routing.root do
-        # Get viewer's previously seen videos from session
-        session[:watching] ||= []
-        view 'home'
+        message = "YouTube Comment Filter API v1 at /api/v1/ in #{App.environment} mode"
+
+        result_response = Representer::HttpResponse.new(
+          Response::ApiResult.new(status: :ok, message: message)
+        )
+
+        response.status = result_response.http_status_code
+        result_response.to_json
       end
 
-      routing.on 'history' do
-        # Get videos from sessions
-        puts "==DEBUG== Data in session is: #{session[:watching]}"
-
-        result = Service::ListVideos.new.call(session[:watching])
-        if result.failure?
-          flash[:error] = result.failure
-          video_list = []
-        else
-          videos = result.value!
-          flash.now[:notice] = 'Let\'s Go Search!' if videos.none?
-          video_list = Views::AllVideos.new(videos)
-        end
-
-        view 'history', locals: { videos: video_list }
-      end
-
-      routing.on 'comments' do
-        routing.is do
-          # GET /comment/
-          routing.post do
-            url_request = Forms::NewVideo.new.call(routing.params)
-            video_made = Service::AddVideo.new.call(url_request)
-
-            if video_made.failure?
-              flash[:error] = video_made.failure
-              routing.redirect '/'
+      routing.on 'api/v1' do
+        routing.on 'history' do
+          routing.get do
+            list_req = Request::EncodedVideoList.new(routing.params)
+            result = Service::ListVideos.new.call(list_request: list_req)
+            if result.failure?
+              failed = Representer::HttpResponse.new(result.failure)
+              routing.halt failed.http_status_code, failed.to_json
             end
-
-            video = video_made.value!
-            session[:watching].insert(0, video.video_id).uniq!
-            routing.redirect "comments/#{video.video_id}"
+            http_response = Representer::HttpResponse.new(result.value!)
+            response.status = http_response.http_status_code
+            Representer::VideosList.new(result.value!.message).to_json
           end
         end
 
-        routing.on String do |video_id|
-          # GET /comment/{video_id}/
-          routing.get do
-            # Load comments
-            yt_comments = Repository::For.klass(Entity::Comment)
-                                         .find_by_video_id(video_id)
-            all_comments = Views::AllComments.new(yt_comments, video_id)
-            all_comments.classification
-            view 'comments', locals: { comments: all_comments }
+        routing.on 'comments' do
+          routing.on String do |video_id|
+            # GET /comments/{video_id}
+            routing.get do
+              path_request = Request::VideoPath.new(video_id, request)
+              result = Service::Comment.new.call(requested: path_request)
+
+              if result.failure?
+                failed = Representer::HttpResponse.new(result.failure)
+                routing.halt failed.http_status_code, failed.to_json
+              end
+
+              http_response = Representer::HttpResponse.new(result.value!)
+              response.status = http_response.http_status_code
+
+              Representer::CommentsList.new(
+                result.value!.message
+              ).to_json
+            end
+            # GET /comment/
+            routing.post do
+              result = Service::AddVideo.new.call(video_id: video_id)
+              if result.failure?
+                failed = Representer::HttpResponse.new(result.failure)
+                routing.halt failed.http_status_code, failed.to_json
+              end
+
+              http_response = Representer::HttpResponse.new(result.value!)
+              response.status = http_response.http_status_code
+              Representer::Video.new(result.value!.message).to_json
+            end
           end
         end
       end
