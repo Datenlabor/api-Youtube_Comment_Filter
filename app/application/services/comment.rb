@@ -15,9 +15,11 @@ module GetComment
       DB_ERR = 'Having trouble accessing the database'.freeze
 
       def retrieve_remote_comment(input)
-        Repository::For.klass(Entity::Comment).find_by_video_id(input[:requested].video_id)
-                       .then { |comments| Response::CommentList.new(comments) }
-                       .then { |list| Success(Response::ApiResult.new(:ok, list)) }
+        if Repository::For.klass(Entity::Video).find_by_video_id(input[:requested].video_id)
+          Repository::For.klass(Entity::Comment).find_by_video_id(input[:requested].video_id)
+                         .then { |comments| Response::CommentList.new(comments) }
+                         .then { |list| Success(Response::ApiResult.new(:ok, list)) }
+        end
       rescue StandardError
         Failure(Response::ApiResult.new(:internal_error, DB_ERR))
       end

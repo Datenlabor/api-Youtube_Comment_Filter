@@ -20,7 +20,7 @@ module GetComment
       end
 
       def self.find_videos(video_id_list)
-        videos = video_id_list.map do |video_id|
+        video_id_list.map do |video_id|
           find_by_video_id(video_id)
         end
       end
