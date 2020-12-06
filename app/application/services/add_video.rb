@@ -24,7 +24,7 @@ module GetComment
         end
         Success(input)
       rescue StandardError => e
-        Failure(Response::ApiResult.new(status: :not_found, message: e.to_s))
+        Failure(Response::ApiResult.new(:not_found, e.to_s))
       end
 
       def store_video(input)
@@ -37,7 +37,7 @@ module GetComment
         Success(video)
       rescue StandardError => e
         puts e.backtrace.join("\n")
-        Failure(Response::ApiResult.new(status: :internal_error, message: DB_ERR_MSG))
+        Failure(Response::ApiResult.new(:internal_error, DB_ERR_MSG))
       end
 
       # following are support methods that other services could use

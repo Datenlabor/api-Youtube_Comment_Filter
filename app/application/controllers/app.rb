@@ -21,7 +21,7 @@ module GetComment
         message = "YouTube Comment Filter API v1 at /api/v1/ in #{App.environment} mode"
 
         result_response = Representer::HttpResponse.new(
-          Response::ApiResult.new(status: :ok, message: message)
+          Response::ApiResult.new(:ok, message)
         )
 
         response.status = result_response.http_status_code
@@ -29,20 +29,6 @@ module GetComment
       end
 
       routing.on 'api/v1' do
-        routing.on 'history' do
-          routing.get do
-            list_req = Request::EncodedVideoList.new(routing.params)
-            result = Service::ListVideos.new.call(list_request: list_req)
-            if result.failure?
-              failed = Representer::HttpResponse.new(result.failure)
-              routing.halt failed.http_status_code, failed.to_json
-            end
-            http_response = Representer::HttpResponse.new(result.value!)
-            response.status = http_response.http_status_code
-            Representer::VideosList.new(result.value!.message).to_json
-          end
-        end
-
         routing.on 'comments' do
           routing.on String do |video_id|
             # GET /comments/{video_id}
@@ -56,13 +42,20 @@ module GetComment
               end
 
               http_response = Representer::HttpResponse.new(result.value!)
+              puts '----------'
+              puts result.value!
+              puts '----------'
+
+              puts '----------'
+              puts http_response.http_status_code
+              puts '----------'
               response.status = http_response.http_status_code
 
               Representer::CommentsList.new(
                 result.value!.message
               ).to_json
             end
-            # GET /comment/
+            # POST /comments/
             routing.post do
               result = Service::AddVideo.new.call(video_id: video_id)
               if result.failure?
@@ -74,6 +67,19 @@ module GetComment
               response.status = http_response.http_status_code
               Representer::Video.new(result.value!.message).to_json
             end
+          end
+        end
+        routing.on 'history' do
+          routing.get do
+            list_req = Request::EncodedVideoList.new(routing.params)
+            result = Service::ListVideos.new.call(list_request: list_req)
+            if result.failure?
+              failed = Representer::HttpResponse.new(result.failure)
+              routing.halt failed.http_status_code, failed.to_json
+            end
+            http_response = Representer::HttpResponse.new(result.value!)
+            response.status = http_response.http_status_code
+            Representer::VideosList.new(result.value!.message).to_json
           end
         end
       end
