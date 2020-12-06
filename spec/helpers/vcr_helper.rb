@@ -16,7 +16,7 @@ class VcrHelper
     end
   end
 
-  def self.configure_vcr_for_youtube
+  def self.configure_vcr_for_youtube(recording: :new_episodes)
     VCR.configure do |c|
       c.filter_sensitive_data('<YOUTUBE_TOKEN>') { YT_TOKEN }
       c.filter_sensitive_data('<YOUTUBE_TOKEN_ESC>') { CGI.escape(YT_TOKEN) }
