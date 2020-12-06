@@ -16,20 +16,20 @@ module GetComment
       DB_ERR = 'Could not access database'.freeze
 
       def validate_list(input)
-        list_request = input[:list_request]
+        list_request = input[:list_request].call
         if list_request.success?
           Success(input.merge(list: list_request.value!))
         else
-          Faliure(list_request.failure)
+          Failure(list_request.failure)
         end
       end
 
       def retrieve_video(input)
         Repository::For.klass(Entity::Video).find_videos(input[:list])
                        .then { |videos| Response::VideosList.new(videos) }
-                       .then { |list| Success(Response::ApiResult.new(status: :ok, message: list)) }
+                       .then { |list| Success(Response::ApiResult.new(:ok, list)) }
       rescue StandardError
-        Faliure(Response::ApiResult.new(status: :internal_error, message: DB_ERR))
+        Failure(Response::ApiResult.new(:internal_error, DB_ERR))
       end
     end
   end

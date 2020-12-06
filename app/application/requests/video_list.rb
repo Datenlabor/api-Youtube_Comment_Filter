@@ -20,8 +20,8 @@ module GetComment
       rescue StandardError
         Failure(
           Response::ApiResult.new(
-            status: :bad_request,
-            message: 'Video list not found'
+            :bad_request,
+            'Video list not found'
           )
         )
       end
