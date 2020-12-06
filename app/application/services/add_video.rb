@@ -34,7 +34,7 @@ module GetComment
           else
             input[:local_video]
           end
-        Success(video)
+        Success(Response::ApiResult.new(:created, video))
       rescue StandardError => e
         puts e.backtrace.join("\n")
         Failure(Response::ApiResult.new(:internal_error, DB_ERR_MSG))

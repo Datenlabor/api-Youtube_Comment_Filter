@@ -16,7 +16,7 @@ module GetComment
 
       def retrieve_remote_comment(input)
         Repository::For.klass(Entity::Comment).find_by_video_id(input[:requested].video_id)
-                       .then { |comment| Success(Response::ApiResult.new(:ok, comment)) }
+                       .then { |comment| Success(Response::ApiResult.new(:ok,comment)) }
         # if input[:comment]
         #   Success(input)
         # else
