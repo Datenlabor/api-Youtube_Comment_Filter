@@ -17,7 +17,7 @@ module GetComment
       def retrieve_remote_comment(input)
         Repository::For.klass(Entity::Comment).find_by_video_id(input[:requested].video_id)
                        .then { |comments| Response::CommentList.new(comments) }
-                       .then { |list| Success(Response::ApiResult.new(:ok,list)) }
+                       .then { |list| Success(Response::ApiResult.new(:ok, list)) }
       rescue StandardError
         Failure(Response::ApiResult.new(:internal_error, DB_ERR))
       end

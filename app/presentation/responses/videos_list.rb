@@ -2,7 +2,7 @@
 
 module GetComment
   module Response
-    # List of projects
+    # List of videos
     VideosList = Struct.new(:videos)
   end
 end
