@@ -8,20 +8,27 @@ module GetComment
     class Comment
       include Dry::Transaction
 
+      step :retrieve_remote_video
       step :retrieve_remote_comment
 
       private
 
       DB_ERR = 'Having trouble accessing the database'.freeze
 
-      def retrieve_remote_comment(input)
-        if Repository::For.klass(Entity::Video).find_by_video_id(input[:requested].video_id)
-          Repository::For.klass(Entity::Comment).find_by_video_id(input[:requested].video_id)
-                         .then { |comments| Response::CommentList.new(comments) }
-                         .then { |list| Success(Response::ApiResult.new(:ok, list)) }
+      def retrieve_remote_video(input)
+        unless Repository::For.klass(Entity::Video).find_by_video_id(input[:requested].video_id).nil?
+          Success(input)
+        else
+          Failure(Response::ApiResult.new(status: :internal_error, message: DB_ERR))
         end
+      end
+
+      def retrieve_remote_comment(input)
+        Repository::For.klass(Entity::Comment).find_by_video_id(input[:requested].video_id)
+                      .then { |comments| Response::CommentList.new(comments) }
+                      .then { |list| Success(Response::ApiResult.new(status: :ok, message: list)) }
       rescue StandardError
-        Failure(Response::ApiResult.new(:internal_error, DB_ERR))
+        Failure(Response::ApiResult.new(status: :internal_error, message: DB_ERR))
       end
     end
   end

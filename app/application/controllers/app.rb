@@ -21,7 +21,7 @@ module GetComment
         message = "YouTube Comment Filter API v1 at /api/v1/ in #{App.environment} mode"
 
         result_response = Representer::HttpResponse.new(
-          Response::ApiResult.new(:ok, message)
+          Response::ApiResult.new(status: :ok, message: message)
         )
 
         response.status = result_response.http_status_code

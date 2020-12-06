@@ -27,9 +27,9 @@ module GetComment
       def retrieve_video(input)
         Repository::For.klass(Entity::Video).find_videos([input[:list]])
                        .then { |videos| Response::VideosList.new(videos) }
-                       .then { |list| Success(Response::ApiResult.new(:ok, list)) }
+                       .then { |list| Success(Response::ApiResult.new(status: :ok, message: list)) }
       rescue StandardError
-        Failure(Response::ApiResult.new(:internal_error, DB_ERR))
+        Failure(Response::ApiResult.new(status: :internal_error, message: DB_ERR))
       end
     end
   end
