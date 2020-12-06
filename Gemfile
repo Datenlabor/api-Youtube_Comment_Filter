@@ -36,9 +36,9 @@ group :development, :test do
   gem 'sqlite3', '~> 1.4'
 end
 
-group :production do
-  gem 'pg', '~> 1.2'
-end
+#group :production do
+#  gem 'pg', '~> 1.2'
+#end
 
 # Testing
 group :test do
@@ -70,5 +70,6 @@ group :development, :test do
   gem 'rubocop'
 end
 
-# Utilities
+# UTILITIES
+gem 'rack-test' # can also be used to diagnose production
 gem 'rake', '~> 13.0'

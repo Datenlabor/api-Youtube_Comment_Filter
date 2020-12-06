@@ -127,12 +127,13 @@ GEM
     parser (2.7.2.0)
       ast (~> 2.4.1)
     path_expander (1.1.0)
-    pg (1.2.3)
     powerpack (0.1.2)
     psych (3.2.0)
     public_suffix (4.0.6)
     puma (3.12.6)
     rack (2.2.3)
+    rack-test (1.1.0)
+      rack (>= 1.0, < 3)
     rainbow (2.2.2)
       rake
     rake (13.0.1)
@@ -221,9 +222,9 @@ DEPENDENCIES
   minitest-rg (~> 5.0)
   multi_json
   page-object (~> 2.2)
-  pg (~> 1.2)
   puma (~> 3.11)
   rack (~> 2)
+  rack-test
   rake (~> 13.0)
   reek
   rerun (~> 0.13)

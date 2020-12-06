@@ -1,0 +1,9 @@
+console
+db:drop
+db:migrate
+db:wipe
+quality:all
+rerack
+respec
+spec
+vcr:wipe
