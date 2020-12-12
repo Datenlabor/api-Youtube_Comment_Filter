@@ -3,7 +3,7 @@ from textblob import TextBlob
 import sys
 import re
 import datetime
-
+from googletrans import Translator
 
 TAG_RE = re.compile(r'<[^>]+>')
 def remove_tags(text):
@@ -29,18 +29,28 @@ if __name__ == "__main__":
     #Read file and polarity analyze
     f = open(filename)
     line = f.readline()
+    # Using googletrans package
+    translator = Translator()
     while line:
         cleantext = remove_tags(line)
-        language = TextBlob(line).detect_language()
-        
+
+        language = translator.detect(line).lang
+ 
         if language == 'zh-CN' or language == 'zh-TW':
-            result = polarity_chinese(cleantext)
+            try:
+                result = polarity_chinese(cleantext)
+            except:
+                result = 0.5
         else:
-            result = polarity_en(cleantext)
+            try:
+                result = polarity_en(cleantext)
+            except:
+                result = 0.5
 
         analy_List.append(result)
 
         line = f.readline()
+
     f.close()
     
     f = open(outfile,"w")
