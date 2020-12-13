@@ -3,13 +3,9 @@ development:
     DB_FILENAME: app/infrastructure/database/local/dev.db
     API_HOST: http://localhost:9000
 
-    SESSION_SECRET: '123'
-
 test:
     DB_FILENAME: app/infrastructure/database/local/test.db
     API_HOST: http://localhost:9000
-
-    SESSION_SECRET: '123'
 
 app_test:
     # Infrastructure
@@ -18,10 +14,6 @@ app_test:
     # Application
     API_HOST: http://localhost:9000
 
-    SESSION_SECRET: '123'
-
-app_test:
-    # Application
-    API_HOST: https://datenlabor-youtube-filter.herokuapp.com/
-
-    SESSION_SECRET: '123'
+production:
+    API_HOST: https://api-youtube-comment-filter.herokuapp.com/
+    # Infrastructure
