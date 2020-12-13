@@ -32,6 +32,7 @@ module GetComment
 
     configure :production do
       # Set DATABASE_URL environment variable on production platform
+      ENV['DATABASE_URL'] = 'postgres://ixihumqfnohsct:41eece053aee170f7252fbc4bd4b9a3b1235dfb4d98af9f7e5b335729d13f975@ec2-34-202-65-210.compute-1.amazonaws.com:5432/d5cuj1e65i57or'
 
       use Rack::Cache,
           verbose: true,
