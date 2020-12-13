@@ -44,4 +44,8 @@ jobs:
         env: # define secrets in Github project -> settings -> secrets
           YT_TOKEN: ${{ secrets.YT_TOKEN }}
           SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
-        run: bundle exec rake spec
+        run:
+          pip3 install snownlp
+          pip3 install textblob
+          pip3 install googletrans==4.0.0-rc1 
+          bundle exec rake spec
