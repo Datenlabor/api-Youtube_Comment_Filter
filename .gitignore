@@ -2,6 +2,8 @@ config/secrets.yml
 coverage/*
 coverage/.resultset.json
 
+
+_cache/
 .bundle/
 
 temp/

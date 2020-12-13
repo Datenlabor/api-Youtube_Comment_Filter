@@ -10,6 +10,7 @@ module GetComment
     plugin :halt
     plugin :flash
     plugin :all_verbs # allows DELETE and other HTTP verbs beyond GET/POST
+    plugin :caching
 
     use Rack::MethodOverride # for other HTTP verbs (with plugin all_verbs)
 
@@ -48,6 +49,7 @@ module GetComment
           routing.on String do |video_id|
             # GET /comments/{video_id}
             routing.get do
+              response.cache_control public: true, max_age: 30
               path_request = Request::VideoPath.new(video_id, request)
               result = Service::Comment.new.call(requested: path_request)
 
