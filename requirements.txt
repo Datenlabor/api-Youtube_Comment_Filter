@@ -1,4 +1,4 @@
-# This file is tell heroku our python dependencies
+# This file is to tell heroku our python dependencies
 
 snownlp==0.12.3
 textblob==0.15.3
