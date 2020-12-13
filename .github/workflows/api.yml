@@ -24,7 +24,7 @@ jobs:
       matrix:
         os: [ubuntu, macos]
     runs-on: ${{ matrix.os }}-latest  # Runs on latest builds of matrix OSes
-
+    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -39,13 +39,17 @@ jobs:
         env: # define secrets in Github project -> settings -> secrets
           SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
         run: RACK_ENV=test bundle exec rake db:migrate
-
+      - name: pip snownlp
+        run: pip3 install snownlp
+       
+      - name: pip textblob
+        run: pip3 install textblob
+        
+      - name: pip googletrans==4.0.0-rc1
+        run: pip3 install googletrans==4.0.0-rc1 
+        
       - name: Run all specs
         env: # define secrets in Github project -> settings -> secrets
           YT_TOKEN: ${{ secrets.YT_TOKEN }}
           SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
-        run:
-          pip3 install snownlp
-          pip3 install textblob
-          pip3 install googletrans==4.0.0-rc1 
-          bundle exec rake spec
+        run: bundle exec rake spec
