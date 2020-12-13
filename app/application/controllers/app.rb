@@ -30,6 +30,7 @@ module GetComment
 
       routing.on 'api/v1' do
         routing.on 'history' do
+          # GET /history?list={base64 json array of video_ids}
           routing.get do
             list_req = Request::EncodedVideoList.new(routing.params)
             result = Service::ListVideos.new.call(list_request: list_req)

@@ -12,8 +12,8 @@ module GetComment
 
       private
 
-      DB_ERR_MSG = 'Having trouble accessing the database'.freeze
-      YT_NOT_FOUND = 'Could not find that video on YouTube'.freeze
+      DB_ERR_MSG = 'Having trouble accessing the database'
+      YT_NOT_FOUND = 'Could not find that video on YouTube'
 
       def find_video(input)
         if (video = video_in_database(input))

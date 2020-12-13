@@ -13,7 +13,7 @@ module GetComment
 
       private
 
-      DB_ERR = 'Could not access database'.freeze
+      DB_ERR = 'Could not access database'
 
       def validate_list(input)
         list_request = input[:list_request].call

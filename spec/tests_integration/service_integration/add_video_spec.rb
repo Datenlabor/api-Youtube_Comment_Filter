@@ -37,13 +37,13 @@ describe 'AddVideo Service Integration Test' do
 
       _(rebuilt.video_id).must_equal(videos.video_id)
       _(rebuilt.title).must_equal(videos.title)
-
     end
 
     it 'HAPPY: should find and return existing project in database' do
       # GIVEN: a valid video id request for a video already in the database:
       db_project = GetComment::Service::AddVideo.new.call(
-        video_id: VIDEO_ID).value!.message
+        video_id: VIDEO_ID
+      ).value!.message
 
       # WHEN: the service is called with the request form object
       video_made = GetComment::Service::AddVideo.new.call(
@@ -60,7 +60,6 @@ describe 'AddVideo Service Integration Test' do
       # ..and provide a project entity with the right details
       _(rebuilt.video_id).must_equal(videos.video_id)
       _(rebuilt.title).must_equal(videos.title)
-
     end
 
     it 'SAD: should gracefully fail for non-existent video details' do

@@ -20,6 +20,8 @@ class VcrHelper
     VCR.configure do |c|
       c.filter_sensitive_data('<YOUTUBE_TOKEN>') { YT_TOKEN }
       c.filter_sensitive_data('<YOUTUBE_TOKEN_ESC>') { CGI.escape(YT_TOKEN) }
+      c.filter_sensitive_data('<REDIS_URL>') { REDISCLOUD_URL }
+      c.filter_sensitive_data('<REDIS_URL_ESC>') { CGI.escape(REDISCLOUD_URL) }
     end
 
     VCR.insert_cassette(

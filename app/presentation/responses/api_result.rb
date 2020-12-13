@@ -16,7 +16,7 @@ module GetComment
     # Response object for any operation result
     ApiResult = Struct.new(:status, :message) do
       def initialize(status:, message:)
-        fail(ArgumentError, 'Invalid status') unless CODES.include? status
+        raise(ArgumentError, 'Invalid status') unless CODES.include? status
 
         super(status, message)
       end

@@ -38,7 +38,8 @@ describe 'Test API routes' do
   describe 'Appraise a video comment' do
     it 'should be able to get a video comment' do
       GetComment::Service::AddVideo.new.call(
-        video_id: VIDEO_ID)
+        video_id: VIDEO_ID
+      )
 
       get "/api/v1/comments/#{VIDEO_ID}"
       _(last_response.status).must_equal 200
@@ -55,7 +56,8 @@ describe 'Test API routes' do
 
     it 'should be able to appraise a history' do
       GetComment::Service::AddProject.new.call(
-        video_id: VIDEO_ID)
+        video_id: VIDEO_ID
+      )
 
       get "/api/v1/projects/#{USERNAME}/#{PROJECT_NAME}/spec"
       _(last_response.status).must_equal 200
@@ -72,9 +74,10 @@ describe 'Test API routes' do
 
     it 'should be report error for an invalid videoid' do
       GetComment::Service::AddVideo.new.call(
-        video_id: VIDEO_ID)
+        video_id: VIDEO_ID
+      )
 
-      get "/api/v1/comments/I_LOVE_IU"
+      get '/api/v1/comments/I_LOVE_IU'
       _(last_response.status).must_equal 404
       _(JSON.parse(last_response.body)['status']).must_include 'not'
     end
@@ -108,10 +111,11 @@ describe 'Test API routes' do
 
   describe 'Get projects list' do
     it 'should successfully return project lists' do
-        GetComment::Service::AddVideo.new.call(
-        video_id: VIDEO_ID)
+      GetComment::Service::AddVideo.new.call(
+        video_id: VIDEO_ID
+      )
 
-      list = ["#{VIDEO_ID}"]
+      list = [VIDEO_ID.to_s]
       encoded_list = GetComment::Request::EncodedProjectList.to_encoded(list)
 
       get "/api/v1/comments?list=#{encoded_list}"
