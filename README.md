@@ -25,6 +25,7 @@ In order to run the snownlp/textblob for comment analysis, please install the fo
 
 -   pip3 install snownlp
 -   pip3 install textblob
+-   pip3 install googletrans==4.0.0-rc1
 
 ## Resource
 
