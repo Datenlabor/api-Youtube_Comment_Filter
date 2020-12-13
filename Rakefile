@@ -19,7 +19,7 @@ end
 
 desc 'Keep restarting web app upon changes'
 task :rerack do
-  sh "rerun -c rackup --ignore 'coverage/*'"
+  sh "rerun -c 'rackup -p 9090' --ignore 'coverage/*'"
 end
 
 namespace :db do
@@ -93,7 +93,7 @@ namespace :cache do
     desc 'Delete production cache'
     task production: :config do
       print 'Are you sure you wish to wipe the production cache? (y/n) '
-      if $stdin.gets.chomp.downcase == 'y'
+      if $stdin.gets.chomp.casecmp('y')
         puts 'Deleting production cache'
         wiped = CodePraise::Cache::Client.new(@api.config).wipe
         wiped.each_key { |key| puts "Wiped: #{key}" }
@@ -127,10 +127,10 @@ namespace :vcr do
 end
 
 namespace :quality do
-  CODE = 'app/'
+  CODE = 'app/'.freeze
 
   desc 'run all quality checks'
-  task all: %i[rubocop reek flog]
+  task all: %i(rubocop reek flog)
 
   task :rubocop do
     sh 'rubocop'

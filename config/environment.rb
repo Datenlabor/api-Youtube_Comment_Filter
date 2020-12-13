@@ -3,6 +3,8 @@
 require 'roda'
 require 'econfig'
 require 'delegate' # This line is needed for Flash due to a bug in Rack < 2.3.0
+require 'rack/cache'
+require 'redis-rack-cache'
 
 module GetComment
   # Configuration for the App

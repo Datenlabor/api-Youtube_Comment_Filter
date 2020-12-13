@@ -2,7 +2,7 @@
 
 require 'redis'
 
-module CodePraise
+module GetComment
   module Cache
     # Redis client utility
     class Client
