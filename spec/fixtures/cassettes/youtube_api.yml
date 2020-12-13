@@ -5252,4 +5252,113 @@ http_interactions:
           }
         }
   recorded_at: Sun, 06 Dec 2020 16:59:49 GMT
+- request:
+    method: get
+    uri: https://www.googleapis.com/youtube/v3/videos?id=DA8nk83xumg&key=<YOUTUBE_TOKEN>&part=snippet
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Connection:
+      - close
+      Host:
+      - www.googleapis.com
+      User-Agent:
+      - http.rb/4.4.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Sun, 13 Dec 2020 00:57:24 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: "{\n  \"kind\": \"youtube#videoListResponse\",\n  \"etag\": \"FAPwO8WIMQxlqwZMo0X5hX26ij8\",\n
+        \ \"items\": [\n    {\n      \"kind\": \"youtube#video\",\n      \"etag\":
+        \"8QN1hHZm6CRAQxt3SBjxs6_GlPk\",\n      \"id\": \"DA8nk83xumg\",\n      \"snippet\":
+        {\n        \"publishedAt\": \"2020-09-24T13:00:12Z\",\n        \"channelId\":
+        \"UCveuRV_jio_ivRlUhUla8sA\",\n        \"title\": \"張語噥 Sammy -【我們】《劇集 腦波小姐
+        片尾曲》Official MV\",\n        \"description\": \"\U0001F3A7 KKBOX ➡️ https://kkbox.fm/xa5e3m\\n\U0001F3A7
+        Spotify ➡️ https://spoti.fi/32WjNZ6\\n\U0001F3A7 All Platforms ➡️ https://www.soundscape.net/a/12164\\n\\n張語噥
+        IG ➡️ https://www.instagram.com/sammymimi3/\\n張語噥 FB ➡️ https://www.facebook.com/loveyunung/\\n\\n耗資億萬的跨國製作，近四千顆動畫鏡頭打造出的奇幻世界\\n《腦波小姐》於9/12周六晚八點，中天綜合台播出，愛奇藝台灣站跟播\\n歐陽妮妮首挑大樑，影評一致讚譽\\n張書豪一人分飾多角，精彩可期\\n還有豆花妹、張捷、狄志杰、劉修甫、楊麗音、黃仲崑、陳孝萱、夏靖庭、湯志偉與韓瑜\\n一起演出這榮獲文化部長篇劇本首獎劇本\\n\\n【我們】是一首量身定做的片尾曲。兩個人從「你」、「我」變成「我們」，這樣的關係，到底是朋友、戀人還是仇人？！也許有一種關係是無法被歸類的，「我們」也許就是這樣獨一無二的關係。\\n張語噥以細膩中帶著暖度的嗓音，唱著這段撲朔迷離的「我們」，令人感到隱隱心疼，卻也回想起自己生命中，彷彿也曾有過這樣的一個人，無法被定義、被歸類的關係的「我們」。\\n\\n我們
+        Us \\n詞曲 Composers：許芸齊\\n製作人 Producer ：Victor Lau 劉偉德\\n編曲 Arranger：Elisa
+        Lin 林依霖/Victor Lau 劉偉德\\n吉他 Guitarist: Victor Lau 劉偉德\\n和聲 Backing Vocal :
+        張語噥\\n配唱製作人 Vocal Producer：Victor Lau 劉偉德\\n錄音/混音 Engineer/Mixer : Victor劉偉德
+        @ Downtown Music\\n\\n我常常會想  如果有一天你消失在我身旁\\n那這個世界  再怎麼運轉也轉不出完整的模樣\\n\\n我們的立場從不一樣
+        \ 總是鍋碗瓢盆什麼都能吵\\n就因為這樣我才不能想像  你不在的時候我有多孤單\\n \\n我們不像戀人  不是敵人  不做朋友  \\n是什麼
+        \ 只是曾經手勾過手\\n說好活到八十歲的時候  你要揹著我去環繞地球\\n我們不像戀人  不是敵人  不做朋友  \\n沒什麼  不能歸類獨一無二的感受\\n有彼此以後
+        \ 才找到出發的點  \\n去畫更多更遠更美的圓周\\n\\n我們的立場從不一樣  總是鍋碗瓢盆什麼都能吵\\n就因為這樣我才不能想像  你不在的時候我有多孤單\\n
+        \\n我們不像戀人  不是敵人  不做朋友  \\n是什麼  只是曾經手勾過手\\n說好活到八十歲的時候  你要揹著我去環繞地球\\n我們不像戀人
+        \ 不是敵人  不做朋友  \\n沒什麼  不能歸類獨一無二的感受\\n有彼此以後 才找到那塊遺失的 \\n深深烙印在角落\\n\\n【MV製作 Music
+        Video Credit List】\\n導演 Director：李洹宇 Sean Li  \\n攝影師 DOP：古曜華         \\n剪接
+        Editor : 李洹宇     \\n\\n【工作人員名單 Staff List】\\n上城娛樂股份有限公司 Uptown Entertainment
+        Co., Ltd.\\n團隊統籌 & 音樂總監 Team Supervisor & Music Supervisor：劉偉德 Victor Lau\\n藝人經紀
+        & 宣傳統籌 & 行政統籌 Artist Manager & Publicity Planning & Administrative Support：柯斈霖
+        Mollie Ke\\n宣傳執行 Publicity Execution：陳心瑀 Arielle Chen\\n妝髮 Make up & Hair:
+        平平 Naomi\\n\\n#張語噥  #我們 #腦波小姐\",\n        \"thumbnails\": {\n          \"default\":
+        {\n            \"url\": \"https://i.ytimg.com/vi/DA8nk83xumg/default.jpg\",\n
+        \           \"width\": 120,\n            \"height\": 90\n          },\n          \"medium\":
+        {\n            \"url\": \"https://i.ytimg.com/vi/DA8nk83xumg/mqdefault.jpg\",\n
+        \           \"width\": 320,\n            \"height\": 180\n          },\n          \"high\":
+        {\n            \"url\": \"https://i.ytimg.com/vi/DA8nk83xumg/hqdefault.jpg\",\n
+        \           \"width\": 480,\n            \"height\": 360\n          },\n          \"standard\":
+        {\n            \"url\": \"https://i.ytimg.com/vi/DA8nk83xumg/sddefault.jpg\",\n
+        \           \"width\": 640,\n            \"height\": 480\n          },\n          \"maxres\":
+        {\n            \"url\": \"https://i.ytimg.com/vi/DA8nk83xumg/maxresdefault.jpg\",\n
+        \           \"width\": 1280,\n            \"height\": 720\n          }\n        },\n
+        \       \"channelTitle\": \"張語噥\",\n        \"tags\": [\n          \"張語噥\",\n
+        \         \"Sammy\",\n          \"華語流行音樂\",\n          \"kkbox\",\n          \"MV\",\n
+        \         \"上城娛樂\",\n          \"狼人殺\",\n          \"新歌\",\n          \"超級偶像\",\n
+        \         \"sammy chang\",\n          \"Sammy 1.0\",\n          \"抒情歌\",\n
+        \         \"我們\",\n          \"腦波小姐\",\n          \"片尾曲\",\n          \"偶像劇\"\n
+        \       ],\n        \"categoryId\": \"10\",\n        \"liveBroadcastContent\":
+        \"none\",\n        \"defaultLanguage\": \"zh-TW\",\n        \"localized\":
+        {\n          \"title\": \"張語噥 Sammy -【我們】《劇集 腦波小姐 片尾曲》Official MV\",\n          \"description\":
+        \"\U0001F3A7 KKBOX ➡️ https://kkbox.fm/xa5e3m\\n\U0001F3A7 Spotify ➡️ https://spoti.fi/32WjNZ6\\n\U0001F3A7
+        All Platforms ➡️ https://www.soundscape.net/a/12164\\n\\n張語噥 IG ➡️ https://www.instagram.com/sammymimi3/\\n張語噥
+        FB ➡️ https://www.facebook.com/loveyunung/\\n\\n耗資億萬的跨國製作，近四千顆動畫鏡頭打造出的奇幻世界\\n《腦波小姐》於9/12周六晚八點，中天綜合台播出，愛奇藝台灣站跟播\\n歐陽妮妮首挑大樑，影評一致讚譽\\n張書豪一人分飾多角，精彩可期\\n還有豆花妹、張捷、狄志杰、劉修甫、楊麗音、黃仲崑、陳孝萱、夏靖庭、湯志偉與韓瑜\\n一起演出這榮獲文化部長篇劇本首獎劇本\\n\\n【我們】是一首量身定做的片尾曲。兩個人從「你」、「我」變成「我們」，這樣的關係，到底是朋友、戀人還是仇人？！也許有一種關係是無法被歸類的，「我們」也許就是這樣獨一無二的關係。\\n張語噥以細膩中帶著暖度的嗓音，唱著這段撲朔迷離的「我們」，令人感到隱隱心疼，卻也回想起自己生命中，彷彿也曾有過這樣的一個人，無法被定義、被歸類的關係的「我們」。\\n\\n我們
+        Us \\n詞曲 Composers：許芸齊\\n製作人 Producer ：Victor Lau 劉偉德\\n編曲 Arranger：Elisa
+        Lin 林依霖/Victor Lau 劉偉德\\n吉他 Guitarist: Victor Lau 劉偉德\\n和聲 Backing Vocal :
+        張語噥\\n配唱製作人 Vocal Producer：Victor Lau 劉偉德\\n錄音/混音 Engineer/Mixer : Victor劉偉德
+        @ Downtown Music\\n\\n我常常會想  如果有一天你消失在我身旁\\n那這個世界  再怎麼運轉也轉不出完整的模樣\\n\\n我們的立場從不一樣
+        \ 總是鍋碗瓢盆什麼都能吵\\n就因為這樣我才不能想像  你不在的時候我有多孤單\\n \\n我們不像戀人  不是敵人  不做朋友  \\n是什麼
+        \ 只是曾經手勾過手\\n說好活到八十歲的時候  你要揹著我去環繞地球\\n我們不像戀人  不是敵人  不做朋友  \\n沒什麼  不能歸類獨一無二的感受\\n有彼此以後
+        \ 才找到出發的點  \\n去畫更多更遠更美的圓周\\n\\n我們的立場從不一樣  總是鍋碗瓢盆什麼都能吵\\n就因為這樣我才不能想像  你不在的時候我有多孤單\\n
+        \\n我們不像戀人  不是敵人  不做朋友  \\n是什麼  只是曾經手勾過手\\n說好活到八十歲的時候  你要揹著我去環繞地球\\n我們不像戀人
+        \ 不是敵人  不做朋友  \\n沒什麼  不能歸類獨一無二的感受\\n有彼此以後 才找到那塊遺失的 \\n深深烙印在角落\\n\\n【MV製作 Music
+        Video Credit List】\\n導演 Director：李洹宇 Sean Li  \\n攝影師 DOP：古曜華         \\n剪接
+        Editor : 李洹宇     \\n\\n【工作人員名單 Staff List】\\n上城娛樂股份有限公司 Uptown Entertainment
+        Co., Ltd.\\n團隊統籌 & 音樂總監 Team Supervisor & Music Supervisor：劉偉德 Victor Lau\\n藝人經紀
+        & 宣傳統籌 & 行政統籌 Artist Manager & Publicity Planning & Administrative Support：柯斈霖
+        Mollie Ke\\n宣傳執行 Publicity Execution：陳心瑀 Arielle Chen\\n妝髮 Make up & Hair:
+        平平 Naomi\\n\\n#張語噥  #我們 #腦波小姐\"\n        },\n        \"defaultAudioLanguage\":
+        \"zh\"\n      }\n    }\n  ],\n  \"pageInfo\": {\n    \"totalResults\": 1,\n
+        \   \"resultsPerPage\": 1\n  }\n}\n"
+  recorded_at: Sun, 13 Dec 2020 00:57:22 GMT
 recorded_with: VCR 6.0.0

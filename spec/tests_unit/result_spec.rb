@@ -17,7 +17,7 @@ describe 'Unit test of Result value' do
 
   it 'should report error for invalid status' do
     _(proc do
-        GetComment::Response::ApiResult.new(status: :foobar, message: 'foo')
+      GetComment::Response::ApiResult.new(status: :foobar, message: 'foo')
     end).must_raise ArgumentError
   end
 end

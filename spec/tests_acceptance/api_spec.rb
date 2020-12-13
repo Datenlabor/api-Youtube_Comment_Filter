@@ -40,28 +40,29 @@ describe 'Test API routes' do
       GetComment::Service::AddVideo.new.call(video_id: VIDEO_ID)
 
       get "/api/v1/comments/#{VIDEO_ID}"
-      
+
       _(last_response.status).must_equal 200
 
       appraisal = JSON.parse last_response.body
 
       _(appraisal['comments'][0]['video_id']).must_equal VIDEO_ID
-      #_(appraisal['comments'].length()).must_be :<= 100
+      # _(appraisal['comments'].length()).must_be :<= 100
     end
 
     it 'should be report error for an invalid videoid' do
       GetComment::Service::AddVideo.new.call(
-        video_id: VIDEO_ID)
+        video_id: VIDEO_ID
+      )
 
-      get "/api/v1/comments/I_LOVE_IU"
+      get '/api/v1/comments/I_LOVE_IU'
       _(last_response.status).must_equal 500
-      
+
       _(JSON.parse(last_response.body)['message']).must_include 'trouble'
     end
   end
 
   describe 'Add video comments' do
-    #it 'should be able to add a video comment' do
+    # it 'should be able to add a video comment' do
     #  #post "/api/v1/comments/#{VIDEO_ID}"
 
     #  _(last_response.status).must_equal 201
@@ -74,7 +75,7 @@ describe 'Test API routes' do
     #    GetComment::Representer::OpenStructWithLinks.new
     #  ).from_json last_response.body
     #  _(proj.links['self'].href).must_include 'http'
-    #end
+    # end
 
     it 'should report error for invalid videoid' do
       post '/api/v1/comments/I_LOVE_IU'
