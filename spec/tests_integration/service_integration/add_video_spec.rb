@@ -21,10 +21,10 @@ describe 'AddVideo Service Integration Test' do
       DatabaseHelper.wipe_database
     end
 
-    it 'HAPPY: should be able to find and save remote project to database' do
+    it 'HAPPY: should be able to find and save remote one videoid to database' do
       # GIVEN: a valid url request for an existing remote project:
-      project = GetComment::Youtube::VideoMapper
-                .new(YT_TOKEN).extract(VIDEO_ID)
+      video = GetComment::Youtube::VideoMapper
+              .new(YT_TOKEN).extract(VIDEO_ID)
 
       # WHEN: the service is called with the request form object
       video_made = GetComment::Service::AddVideo.new.call(video_id: VIDEO_ID)
@@ -35,8 +35,8 @@ describe 'AddVideo Service Integration Test' do
       # ..and provide a video entity with the right details
       rebuilt = video_made.value!.message
 
-      _(rebuilt.video_id).must_equal(videos.video_id)
-      _(rebuilt.title).must_equal(videos.title)
+      _(rebuilt.video_id).must_equal(video.video_id)
+      _(rebuilt.title).must_equal(video.title)
     end
 
     it 'HAPPY: should find and return existing project in database' do
@@ -46,24 +46,22 @@ describe 'AddVideo Service Integration Test' do
       ).value!.message
 
       # WHEN: the service is called with the request form object
-      video_made = GetComment::Service::AddVideo.new.call(
-        video_id: VIDEO_ID
-      )
+      video_made = GetComment::Service::AddVideo.new.call(video_id: VIDEO_ID)
 
       # THEN: the result should report success..
       _(video_made.success?).must_equal true
 
-      # ..and find the same project that was already in the database
+      # ..and find the same video that was already in the database
       rebuilt = video_made.value!.message
-      _(rebuilt.id).must_equal(db_project.id)
+      _(rebuilt.video_id).must_equal(db_project.video_id)
 
-      # ..and provide a project entity with the right details
-      _(rebuilt.video_id).must_equal(videos.video_id)
-      _(rebuilt.title).must_equal(videos.title)
+      # ..and provide a video entity with the right details
+      _(rebuilt.video_id).must_equal(db_project.video_id)
+      _(rebuilt.title).must_equal(db_project.title)
     end
 
     it 'SAD: should gracefully fail for non-existent video details' do
-      # WHEN: the service is called with non-existent project details
+      # WHEN: the service is called with non-existent video details
       video_made = GetComment::Service::AddVideo.new.call(
         video_id: 'I_LOVE_IU'
       )
