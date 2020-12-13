@@ -16,4 +16,3 @@ app_test:
 
 production:
     API_HOST: https://api-youtube-comment-filter.herokuapp.com
-    # Infrastructure
