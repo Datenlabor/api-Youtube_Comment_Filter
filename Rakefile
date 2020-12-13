@@ -62,7 +62,7 @@ namespace :cache do
   task :config do
     require_relative 'config/environment' # load config info
     require_relative 'app/infrastructure/cache/init' # load cache client
-    @api = CodePraise::Api
+    @api = GetComment::Api
   end
 
   desc 'Directory listing of local dev cache'
@@ -77,7 +77,7 @@ namespace :cache do
     desc 'Lists production cache'
     task production: :config do
       puts 'Finding production cache'
-      keys = CodePraise::Cache::Client.new(@api.config).keys
+      keys = GetComment::Cache::Client.new(@api.config).keys
       puts 'No keys found' if keys.none?
       keys.each { |key| puts "Key: #{key}" }
     end
@@ -95,7 +95,7 @@ namespace :cache do
       print 'Are you sure you wish to wipe the production cache? (y/n) '
       if $stdin.gets.chomp.casecmp('y')
         puts 'Deleting production cache'
-        wiped = CodePraise::Cache::Client.new(@api.config).wipe
+        wiped = GetComment::Cache::Client.new(@api.config).wipe
         wiped.each_key { |key| puts "Wiped: #{key}" }
       end
     end
