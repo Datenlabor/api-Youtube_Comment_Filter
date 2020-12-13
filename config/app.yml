@@ -15,5 +15,5 @@ app_test:
     API_HOST: http://localhost:9000
 
 production:
-    API_HOST: https://api-youtube-comment-filter.herokuapp.com/
+    API_HOST: https://api-youtube-comment-filter.herokuapp.com
     # Infrastructure
