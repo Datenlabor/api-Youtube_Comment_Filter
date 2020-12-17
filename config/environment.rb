@@ -36,8 +36,8 @@ module GetComment
 
       use Rack::Cache,
           verbose: true,
-          metastore: config.REDISCLOUD_URL + '/0/metastore',
-          entitystore: config.REDISCLOUD_URL + '/0/entitystore'
+          metastore: "#{config.REDISCLOUD_URL}/0/metastore",
+          entitystore: "#{config.REDISCLOUD_URL}/0/entitystore"
     end
 
     configure do

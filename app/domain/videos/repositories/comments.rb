@@ -21,6 +21,13 @@ module GetComment
         end
       end
 
+      def self.find_one_by_video_db_id(video_db_id)
+        puts "==DEBUG== video_db_id #{video_db_id}"
+        comment = Database::CommentOrm.first(video_db_id: video_db_id)
+        puts "==DEBUG== comment found #{comment}"
+        comment
+      end
+
       def self.create_many_of_one_video(entities, video_db_id)
         entities.map do |entity|
           entity_hash = entity.to_attr_hash

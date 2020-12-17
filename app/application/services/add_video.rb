@@ -9,35 +9,53 @@ module GetComment
       include Dry::Transaction
       step :find_video
       step :store_video
+      step :find_comment
 
       private
 
-      DB_ERR_MSG = 'Having trouble accessing the database'
-      YT_NOT_FOUND = 'Could not find that video on YouTube'
+      DB_ERR_MSG = 'Having trouble accessing the database'.freeze
+      YT_NOT_FOUND = 'Could not find that video on YouTube'.freeze
+      PROCESSING_MSG = 'Waiting for worker to finish the task'.freeze
+      GETCOMMENT_ERR = 'Could not get or analyze comment'.freeze
 
       def find_video(input)
         if (video = video_in_database(input))
           input[:local_video] = video
         else
           input[:remote_video] = video_from_youtube(input)
-          input[:remote_comment] = comment_from_youtube(input)
         end
         Success(input)
       rescue StandardError => e
         Failure(Response::ApiResult.new(status: :not_found, message: e.to_s))
       end
 
+      # 目前這樣做是希望DB出問題時能顯示對應error message
       def store_video(input)
-        video =
+        input[:video] =
           if input[:remote_video]
-            store_video_comment(input)
+            Repository::For.entity(input[:remote_video]).create(input[:remote_video])
           else
             input[:local_video]
           end
-        Success(Response::ApiResult.new(status: :created, message: video))
+        Success(input)
       rescue StandardError => e
         puts e.backtrace.join("\n")
         Failure(Response::ApiResult.new(status: :internal_error, message: DB_ERR_MSG))
+      end
+
+      # TODO: 若comment已在DB，return response: video ; 問題：若video無comment會卡住
+      def find_comment(input)
+        # Return video if comment is found in db
+        return Success(Response::ApiResult.new(status: :created, message: input[:video])) if comment_in_database(input)
+
+        Messaging::Queue
+          .new(App.config.GET_COMMENT_QUEUE_URL, App.config)
+          .send(Representer::Video.new(input[:video]).to_json)
+
+        Failure(Response::ApiResult.new(status: :processing, message: PROCESSING_MSG))
+      rescue StandardError => e
+        print_error(e)
+        Failure(Response::ApiResult.new(status: :internal_error, message: GETCOMMENT_ERR))
       end
 
       # following are support methods that other services could use
@@ -52,17 +70,28 @@ module GetComment
         Repository::For.klass(Entity::Video).find_by_video_id(input[:video_id])
       end
 
-      def comment_from_youtube(input)
-        Youtube::CommentMapper.new(App.config.YT_TOKEN).extract(input[:video_id])
-      rescue StandardError
-        raise YT_NOT_FOUND
+      def comment_in_database(input)
+        # if no comment found, then null is returned
+        Repository::For.klass(Entity::Comment).find_one_by_video_db_id(input[:video].video_db_id)
       end
 
-      def store_video_comment(input)
-        video = Repository::For.entity(input[:remote_video]).create(input[:remote_video])
-        Repository::For.klass(Entity::Comment)
-                       .create_many_of_one_video(input[:remote_comment], video.video_db_id)
-        video
+      # def comment_from_youtube(input)
+      #   Youtube::CommentMapper.new(App.config.YT_TOKEN).extract(input[:video_id])
+      # rescue StandardError
+      #   raise YT_NOT_FOUND
+      # end
+
+      # def store_video_comment(input)
+      #   video = Repository::For.entity(input[:remote_video]).create(input[:remote_video])
+      #   Repository::For.klass(Entity::Comment)
+      #                  .create_many_of_one_video(input[:remote_comment], video.video_db_id)
+      #   video
+      # end
+
+      # Helper methods for steps
+
+      def print_error(error)
+        puts [error.inspect, error.backtrace].flatten.join("\n")
       end
     end
   end
