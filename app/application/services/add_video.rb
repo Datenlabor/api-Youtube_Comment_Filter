@@ -75,19 +75,6 @@ module GetComment
         Repository::For.klass(Entity::Comment).find_one_by_video_db_id(input[:video].video_db_id)
       end
 
-      # def comment_from_youtube(input)
-      #   Youtube::CommentMapper.new(App.config.YT_TOKEN).extract(input[:video_id])
-      # rescue StandardError
-      #   raise YT_NOT_FOUND
-      # end
-
-      # def store_video_comment(input)
-      #   video = Repository::For.entity(input[:remote_video]).create(input[:remote_video])
-      #   Repository::For.klass(Entity::Comment)
-      #                  .create_many_of_one_video(input[:remote_comment], video.video_db_id)
-      #   video
-      # end
-
       # Helper methods for steps
 
       def print_error(error)
