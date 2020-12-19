@@ -1,4 +1,2 @@
-# TODO set production queue
-
 queues:
-    - https://sqs.us-east-1.amazonaws.com/503315808870/soa-codepraise-clone-test
+    - https://sqs.us-east-1.amazonaws.com/986135216302/Comment_Filter_Prod_Queue.fifo
