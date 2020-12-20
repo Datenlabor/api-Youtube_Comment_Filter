@@ -35,13 +35,15 @@ module GetComment
             routing.get do
               list_req = Request::EncodedVideoList.new(routing.params)
               result = Service::ListVideos.new.call(list_request: list_req)
-              if result.failure?
-                failed = Representer::HttpResponse.new(result.failure)
-                routing.halt failed.http_status_code, failed.to_json
-              end
-              http_response = Representer::HttpResponse.new(result.value!)
-              response.status = http_response.http_status_code
-              Representer::VideosList.new(result.value!.message).to_json
+
+              Representer::For.new(result).status_and_body(response)
+              # if result.failure?
+              #   failed = Representer::HttpResponse.new(result.failure)
+              #   routing.halt failed.http_status_code, failed.to_json
+              # end
+              # http_response = Representer::HttpResponse.new(result.value!)
+              # response.status = http_response.http_status_code
+              # Representer::VideosList.new(result.value!.message).to_json
             end
           end
         end
@@ -53,29 +55,33 @@ module GetComment
               path_request = Request::VideoPath.new(video_id, request)
               result = Service::Comment.new.call(requested: path_request)
 
-              if result.failure?
-                failed = Representer::HttpResponse.new(result.failure)
-                routing.halt failed.http_status_code, failed.to_json
-              end
+              Representer::For.new(result).status_and_body(response)
 
-              http_response = Representer::HttpResponse.new(result.value!)
-              response.status = http_response.http_status_code
+              # if result.failure?
+              #   failed = Representer::HttpResponse.new(result.failure)
+              #   routing.halt failed.http_status_code, failed.to_json
+              # end
 
-              Representer::CommentsList.new(
-                result.value!.message
-              ).to_json
+              # http_response = Representer::HttpResponse.new(result.value!)
+              # response.status = http_response.http_status_code
+
+              # Representer::CommentsList.new(
+              #   result.value!.message
+              # ).to_json
             end
             # POST /comments/
             routing.post do
               result = Service::AddVideo.new.call(video_id: video_id)
-              if result.failure?
-                failed = Representer::HttpResponse.new(result.failure)
-                routing.halt failed.http_status_code, failed.to_json
-              end
 
-              http_response = Representer::HttpResponse.new(result.value!)
-              response.status = http_response.http_status_code
-              Representer::Video.new(result.value!.message).to_json
+              Representer::For.new(result).status_and_body(response)
+              # if result.failure?
+              #   failed = Representer::HttpResponse.new(result.failure)
+              #   routing.halt failed.http_status_code, failed.to_json
+              # end
+
+              # http_response = Representer::HttpResponse.new(result.value!)
+              # response.status = http_response.http_status_code
+              # Representer::Video.new(result.value!.message).to_json
             end
           end
         end
