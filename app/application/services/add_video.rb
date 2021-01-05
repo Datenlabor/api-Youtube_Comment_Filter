@@ -52,7 +52,9 @@ module GetComment
           .new(App.config.GET_COMMENT_QUEUE_URL, App.config)
           .send(find_comment_request_json(input))
 
-        Failure(Response::ApiResult.new(status: :processing, message: PROCESSING_MSG))
+        Failure(Response::ApiResult.new(
+                  status: :processing,
+                  message: { request_id: input[:request_id] }))
       rescue StandardError => e
         print_error(e)
         Failure(Response::ApiResult.new(status: :internal_error, message: GETCOMMENT_ERR))

@@ -5,10 +5,8 @@ require_relative '../app/presentation/representers/init'
 require_relative 'job_reporter'
 require_relative 'find_comment_monitor'
 
-
 require 'econfig'
 require 'shoryuken'
-
 
 module FindComment
   # Shoryuken worker class to get and analyze video comments
