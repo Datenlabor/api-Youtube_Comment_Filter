@@ -13,7 +13,7 @@ module GetComment
 
       private
 
-      DB_ERR = 'Having trouble accessing the database'
+      DB_ERR = 'Having trouble accessing the database'.freeze
 
       def retrieve_remote_video(input)
         if Repository::For.klass(Entity::Video).find_by_video_id(input[:requested].video_id).nil?

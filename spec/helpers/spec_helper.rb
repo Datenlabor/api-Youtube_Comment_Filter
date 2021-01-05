@@ -15,11 +15,11 @@ require_relative '../../init'
 
 CORRECT = YAML.safe_load(File.read('spec/fixtures/results.yml'))
 CORRECT_TITLE = YAML.safe_load(File.read('spec/fixtures/video_title.yml'))
-VIDEO_ID = 'DA8nk83xumg'
+VIDEO_ID = 'DA8nk83xumg'.freeze
 YT_TOKEN = GetComment::App.config.YT_TOKEN
 
-CASSETTES_FOLDER = 'spec/spec/fixtures/cassettes'
-CASSETTE_FILE = 'youtube_api'
+CASSETTES_FOLDER = 'spec/spec/fixtures/cassettes'.freeze
+CASSETTE_FILE = 'youtube_api'.freeze
 
 def homepage
   GetComment::App.config.APP_HOST

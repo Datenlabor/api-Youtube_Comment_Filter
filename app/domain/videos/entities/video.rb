@@ -11,7 +11,7 @@ module GetComment
 
       def to_attr_hash
         # exclude video_db_id
-        to_hash.reject { |key, _| %i[video_db_id].include? key }
+        to_hash.reject { |key, _| %i(video_db_id).include? key }
       end
     end
   end

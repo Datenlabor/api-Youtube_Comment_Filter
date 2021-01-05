@@ -1,18 +1,18 @@
 ---
 development:
     DB_FILENAME: app/infrastructure/database/local/dev.db
-    API_HOST: http://localhost:9000
+    API_HOST: http://localhost:9090
 
 test:
     DB_FILENAME: app/infrastructure/database/local/test.db
-    API_HOST: http://localhost:9000
+    API_HOST: http://localhost:9090
 
 app_test:
     # Infrastructure
     DB_FILENAME: app/infrastructure/database/local/test.db
 
     # Application
-    API_HOST: http://localhost:9000
+    API_HOST: http://localhost:9090
 
 production:
     API_HOST: https://api-youtube-comment-filter.herokuapp.com

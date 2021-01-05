@@ -50,7 +50,7 @@ module GetComment
 
         Messaging::Queue
           .new(App.config.GET_COMMENT_QUEUE_URL, App.config)
-          .send(Representer::Video.new(input[:video]).to_json)
+          .send(find_comment_request_json(input))
 
         Failure(Response::ApiResult.new(status: :processing, message: PROCESSING_MSG))
       rescue StandardError => e
@@ -79,6 +79,11 @@ module GetComment
 
       def print_error(error)
         puts [error.inspect, error.backtrace].flatten.join("\n")
+      end
+
+      def find_comment_request_json(input)
+        find_comment_request = OpenStruct.new(video: input[:video], id: input[:request_id])
+        Representer::FindCommentRequest.new(find_comment_request).then(&:to_json)
       end
     end
   end

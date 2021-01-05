@@ -71,7 +71,9 @@ module GetComment
             end
             # POST /comments/
             routing.post do
-              result = Service::AddVideo.new.call(video_id: video_id)
+              request_id = [request.env, request.path, Time.now.to_f].hash
+
+              result = Service::AddVideo.new.call(video_id: video_id, request_id: request_id)
 
               # Representer::For.new(result).status_and_body(response)
               if result.failure?
