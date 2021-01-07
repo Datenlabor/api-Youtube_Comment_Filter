@@ -17,9 +17,9 @@ describe 'Integration Tests of Youtube API and Database' do
   end
 
   describe 'Retrieve and store project' do
-    before do
-      DatabaseHelper.wipe_database
-    end
+    #before do
+    #  DatabaseHelper.wipe_database
+    #end
 
     it 'Should be able to save data and comments from Youtube to database' do
       yt_video = GetComment::Youtube::VideoMapper.new(YT_TOKEN).extract(VIDEO_ID)
@@ -27,8 +27,7 @@ describe 'Integration Tests of Youtube API and Database' do
 
       rebuilt_video = GetComment::Repository::For.entity(yt_video).create(yt_video)
       rebuilt = GetComment::Repository::For.klass(GetComment::Entity::Comment).create_many_of_one_video(comments, rebuilt_video.video_id)
-
-      _(rebuilt[0].id).must_equal(comments[0].id)
+      _(rebuilt[0].comment_id).must_equal(comments[0].comment_id)
       _(rebuilt[0].author).must_equal(comments[0].author)
       _(rebuilt[0].textDisplay).must_equal(comments[0].textDisplay)
       _(rebuilt[0].likeCount).must_equal(comments[0].likeCount)

@@ -2,6 +2,97 @@
 http_interactions:
 - request:
     method: get
+    uri: https://www.googleapis.com/youtube/v3/videos?id=ffff%08&key=<YOUTUBE_TOKEN>&part=snippet
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Connection:
+      - close
+      Host:
+      - www.googleapis.com
+      User-Agent:
+      - http.rb/4.4.1
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Length:
+      - '54'
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Thu, 07 Jan 2021 08:56:40 GMT
+    body:
+      encoding: UTF-8
+      string: "<html><title>Error 400 (Bad Request)!!1</title></html>"
+  recorded_at: Thu, 07 Jan 2021 08:56:39 GMT
+- request:
+    method: get
+    uri: https://www.googleapis.com/youtube/v3/videos?id=DA8nk83xumg&key=WRONG_TOKEN&part=snippet
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Connection:
+      - close
+      Host:
+      - www.googleapis.com
+      User-Agent:
+      - http.rb/4.4.1
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Thu, 07 Jan 2021 08:56:40 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "code": 400,
+            "message": "API key not valid. Please pass a valid API key.",
+            "errors": [
+              {
+                "message": "API key not valid. Please pass a valid API key.",
+                "domain": "global",
+                "reason": "badRequest"
+              }
+            ],
+            "status": "INVALID_ARGUMENT"
+          }
+        }
+  recorded_at: Thu, 07 Jan 2021 08:56:39 GMT
+- request:
+    method: get
     uri: https://www.googleapis.com/youtube/v3/videos?id=DA8nk83xumg&key=<YOUTUBE_TOKEN>&part=snippet
     body:
       encoding: UTF-8
@@ -25,7 +116,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Sun, 13 Dec 2020 01:57:45 GMT
+      - Thu, 07 Jan 2021 08:56:40 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -47,9 +138,9 @@ http_interactions:
       - close
     body:
       encoding: UTF-8
-      string: "{\n  \"kind\": \"youtube#videoListResponse\",\n  \"etag\": \"FAPwO8WIMQxlqwZMo0X5hX26ij8\",\n
+      string: "{\n  \"kind\": \"youtube#videoListResponse\",\n  \"etag\": \"hwfDy1e25CRx6iNq1kU3xe3r4_k\",\n
         \ \"items\": [\n    {\n      \"kind\": \"youtube#video\",\n      \"etag\":
-        \"8QN1hHZm6CRAQxt3SBjxs6_GlPk\",\n      \"id\": \"DA8nk83xumg\",\n      \"snippet\":
+        \"Uwx69zGvgPAQ8YRpIRWXXcVgO0g\",\n      \"id\": \"DA8nk83xumg\",\n      \"snippet\":
         {\n        \"publishedAt\": \"2020-09-24T13:00:12Z\",\n        \"channelId\":
         \"UCveuRV_jio_ivRlUhUla8sA\",\n        \"title\": \"張語噥 Sammy -【我們】《劇集 腦波小姐
         片尾曲》Official MV\",\n        \"description\": \"\U0001F3A7 KKBOX ➡️ https://kkbox.fm/xa5e3m\\n\U0001F3A7
@@ -108,7 +199,65 @@ http_interactions:
         平平 Naomi\\n\\n#張語噥  #我們 #腦波小姐\"\n        },\n        \"defaultAudioLanguage\":
         \"zh\"\n      }\n    }\n  ],\n  \"pageInfo\": {\n    \"totalResults\": 1,\n
         \   \"resultsPerPage\": 1\n  }\n}\n"
-  recorded_at: Sun, 13 Dec 2020 01:57:43 GMT
+  recorded_at: Thu, 07 Jan 2021 08:56:39 GMT
+- request:
+    method: get
+    uri: https://www.googleapis.com/youtube/v3/videos?id=I_LOVE_IU&key=<YOUTUBE_TOKEN>&part=snippet
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Connection:
+      - close
+      Host:
+      - www.googleapis.com
+      User-Agent:
+      - http.rb/4.4.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Thu, 07 Jan 2021 08:56:40 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#videoListResponse",
+          "etag": "N3cH4-8Qyt6di3nGkvNQ0-9oBYc",
+          "items": [],
+          "pageInfo": {
+            "totalResults": 0,
+            "resultsPerPage": 0
+          }
+        }
+  recorded_at: Thu, 07 Jan 2021 08:56:39 GMT
 - request:
     method: get
     uri: https://www.googleapis.com/youtube/v3/commentThreads?key=<YOUTUBE_TOKEN>&maxResults=100&order=time&part=snippet&videoId=DA8nk83xumg
@@ -134,7 +283,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Sun, 13 Dec 2020 01:57:45 GMT
+      - Thu, 07 Jan 2021 08:56:40 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -157,12 +306,91 @@ http_interactions:
     body:
       encoding: UTF-8
       string: "{\n  \"kind\": \"youtube#commentThreadListResponse\",\n  \"etag\":
-        \"PywujkS4RyjX80-0CXTEWRpinys\",\n  \"nextPageToken\": \"QURTSl9pMFhOOXRNdFdCR0F4VGdNRWxEbXlNM3pTYXVqOHNPVFVpTXpUZGk0blZfbUgzVzQyMWJhbnNMY3BhMWoxZElpOXpXcDBMc01TWQ==\",\n
+        \"R05sS4U4Dzisf9W6Wx179810wMA\",\n  \"nextPageToken\": \"QURTSl9pMEx3VFhjUG5sUWhVN2FTWmFKYnJEV2I1WVVUNUFZajh6NURDT3JDNWp4RVVUV2d3emY3SjVNODctOEZFWXBSZkVNdlFTX1FDZw==\",\n
         \ \"pageInfo\": {\n    \"totalResults\": 100,\n    \"resultsPerPage\": 100\n
         \ },\n  \"items\": [\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"DNw19V-24MUI4fpEDRkRGCkHwQI\",\n      \"id\": \"UgytvIhjrudH_yrsu_94AaABAg\",\n
+        \     \"etag\": \"TGcPokzsCKyyZtcS7wwMFib9VIw\",\n      \"id\": \"Ugy9pMSpqv0G2xQZTuJ4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"LFkwJDJ-gFXcipowYOB6eDvDeKg\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"EnhV-fMKmsaJpKYikgwsyOUl3qM\",\n
+        \         \"id\": \"Ugy9pMSpqv0G2xQZTuJ4AaABAg\",\n          \"snippet\":
+        {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
+        \"對於“腦波”，沒有什麼看～\\u003cbr /\\u003e倒是覺得這首歌曲，真地是很、非常不錯～\\u003cbr /\\u003e希望大家，可以、能夠多多的心、眼，寬廣些，並且支持、支援無須在國號中國、中華的政治、教育下，並且實質地、實際地，擁有自己，出彩、亮眼的台灣文化～\\u003cbr
+        /\\u003e包括可以、能夠實在、真實的多元融合、自由平等，於古國們、國際各族各地的並非既然國號的政治、教育，其所謂而已的台灣文化～\\u003cbr
+        /\\u003e因為可以、能夠正視、無避，並且描述、敘述出來原本、真正的國號明、清之明國、清國（包括它們的官話（清國，是並行兩種語文）、各族各地語文們，以及早就已經不是原本、真正漢族、漢人的所謂漢族、漢人），以及原本、真正的尚未被國號中國化、中華化之福州泉州漳州潮州、所謂客家，還有不只是那種政治及其教育，所謂原住民等等而已的高山族各族、平埔族各族、台灣群島本來就是一直都是西太平洋群島之一，甚至是原本、真正之整體、全部史實的葡萄牙、西班牙、荷蘭、日本、美國、英國、俄羅斯露希亞（RUSSIA）等等的台灣國家、台灣文化，真地才是出彩、亮眼、永恆、絕對，並且不會繼續被特定國號的政治教育、制度文化，所貶損汙蔑、所勢必消滅，而逐漸地，實質、實際衰弱、消失～\\u003cbr
+        /\\u003e含還在被偽盡和平和諧、平等平衡、實質實際的漠視各族、各地，自己發展出來之如何、怎麼描述、敘述時空事物的所謂專業人士、人員，貶損汙蔑的台語、台灣話（可以、能夠把任何一個的語文，講、說成為所謂髒話、只剩下隻字片語而已的模樣，並且還得意洋洋、還志得意滿，然後，自以為尊，於特定語文的人們，不是低級下流、偽盡實在真實等等的爛咖、臭咖，是什麼？包括對於俄文、泰文、越南文、土耳其文等等）～\",\n
+        \           \"textOriginal\": \"對於“腦波”，沒有什麼看～\\n倒是覺得這首歌曲，真地是很、非常不錯～\\n希望大家，可以、能夠多多的心、眼，寬廣些，並且支持、支援無須在國號中國、中華的政治、教育下，並且實質地、實際地，擁有自己，出彩、亮眼的台灣文化～\\n包括可以、能夠實在、真實的多元融合、自由平等，於古國們、國際各族各地的並非既然國號的政治、教育，其所謂而已的台灣文化～\\n因為可以、能夠正視、無避，並且描述、敘述出來原本、真正的國號明、清之明國、清國（包括它們的官話（清國，是並行兩種語文）、各族各地語文們，以及早就已經不是原本、真正漢族、漢人的所謂漢族、漢人），以及原本、真正的尚未被國號中國化、中華化之福州泉州漳州潮州、所謂客家，還有不只是那種政治及其教育，所謂原住民等等而已的高山族各族、平埔族各族、台灣群島本來就是一直都是西太平洋群島之一，甚至是原本、真正之整體、全部史實的葡萄牙、西班牙、荷蘭、日本、美國、英國、俄羅斯露希亞（RUSSIA）等等的台灣國家、台灣文化，真地才是出彩、亮眼、永恆、絕對，並且不會繼續被特定國號的政治教育、制度文化，所貶損汙蔑、所勢必消滅，而逐漸地，實質、實際衰弱、消失～\\n含還在被偽盡和平和諧、平等平衡、實質實際的漠視各族、各地，自己發展出來之如何、怎麼描述、敘述時空事物的所謂專業人士、人員，貶損汙蔑的台語、台灣話（可以、能夠把任何一個的語文，講、說成為所謂髒話、只剩下隻字片語而已的模樣，並且還得意洋洋、還志得意滿，然後，自以為尊，於特定語文的人們，不是低級下流、偽盡實在真實等等的爛咖、臭咖，是什麼？包括對於俄文、泰文、越南文、土耳其文等等）～\",\n
+        \           \"authorDisplayName\": \"徐瑋\",\n            \"authorProfileImageUrl\":
+        \"https://yt3.ggpht.com/ytc/AAUvwniI9rCdDt5mfyIpYSaW_E1o87VHZUoJiAvrlWMH=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UC9Wksyax4SW4h6z157tE_6Q\",\n
+        \           \"authorChannelId\": {\n              \"value\": \"UC9Wksyax4SW4h6z157tE_6Q\"\n
+        \           },\n            \"canRate\": true,\n            \"viewerRating\":
+        \"none\",\n            \"likeCount\": 1,\n            \"publishedAt\": \"2020-12-31T08:11:10Z\",\n
+        \           \"updatedAt\": \"2020-12-31T08:11:10Z\"\n          }\n        },\n
+        \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
+        true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
+        \     \"etag\": \"bnJWHk_UTQAlSzSzA1yf3sQaabQ\",\n      \"id\": \"UgyHUS2DwXkkbweho9h4AaABAg\",\n
+        \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"3YP4QyfVyk1dt6dSDlFgvzFi8rc\",\n
+        \         \"id\": \"UgyHUS2DwXkkbweho9h4AaABAg\",\n          \"snippet\":
+        {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
+        \"我絕對不會說粉圓米這首是我的鈴聲...\",\n            \"textOriginal\": \"我絕對不會說粉圓米這首是我的鈴聲...\",\n
+        \           \"authorDisplayName\": \"蛋堡家余文樂\",\n            \"authorProfileImageUrl\":
+        \"https://yt3.ggpht.com/ytc/AAUvwngCZTOWwnuDvhA_e1CX7D7ncVZYLMFc1AJKOnkyrg=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UC9IpkOznz0W7X0BhF7LtzLg\",\n
+        \           \"authorChannelId\": {\n              \"value\": \"UC9IpkOznz0W7X0BhF7LtzLg\"\n
+        \           },\n            \"canRate\": true,\n            \"viewerRating\":
+        \"none\",\n            \"likeCount\": 0,\n            \"publishedAt\": \"2020-12-31T00:47:31Z\",\n
+        \           \"updatedAt\": \"2020-12-31T00:47:47Z\"\n          }\n        },\n
+        \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
+        true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
+        \     \"etag\": \"u1_a6tYRmBeEseabLMldnLxrxk8\",\n      \"id\": \"UgzC08nb1smPBfC5vyJ4AaABAg\",\n
+        \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"WvxTVWBTPnxKU6v9MQZrc7YMhWQ\",\n
+        \         \"id\": \"UgzC08nb1smPBfC5vyJ4AaABAg\",\n          \"snippet\":
+        {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
+        \"在內中舞會第一次聽到這首歌之後就愛上了\",\n            \"textOriginal\": \"在內中舞會第一次聽到這首歌之後就愛上了\",\n
+        \           \"authorDisplayName\": \"L PJ\",\n            \"authorProfileImageUrl\":
+        \"https://yt3.ggpht.com/ytc/AAUvwngeYhefbStVUGQDlpocMPy6297cZIEVG24VgyjJNQ=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCbpWWSmshnW9MIYfngmLn6w\",\n
+        \           \"authorChannelId\": {\n              \"value\": \"UCbpWWSmshnW9MIYfngmLn6w\"\n
+        \           },\n            \"canRate\": true,\n            \"viewerRating\":
+        \"none\",\n            \"likeCount\": 0,\n            \"publishedAt\": \"2020-12-18T15:20:51Z\",\n
+        \           \"updatedAt\": \"2020-12-18T15:20:51Z\"\n          }\n        },\n
+        \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
+        true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
+        \     \"etag\": \"vhlsWj7pnuBvL48laidWGaX347c\",\n      \"id\": \"Ugz3iqLsB_tPcd4RjIN4AaABAg\",\n
+        \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"rwjpeshs1vQDW0AK_RSDtovhCMY\",\n
+        \         \"id\": \"Ugz3iqLsB_tPcd4RjIN4AaABAg\",\n          \"snippet\":
+        {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
+        \"这不就是室友么\U0001F602\",\n            \"textOriginal\": \"这不就是室友么\U0001F602\",\n
+        \           \"authorDisplayName\": \"Alison Gao\",\n            \"authorProfileImageUrl\":
+        \"https://yt3.ggpht.com/ytc/AAUvwnjfNtJljUJcc0aI0TNLaZYAlAZH0Qp8l_bSjg=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCops81OpKOATsxPwd7ZI-Tw\",\n
+        \           \"authorChannelId\": {\n              \"value\": \"UCops81OpKOATsxPwd7ZI-Tw\"\n
+        \           },\n            \"canRate\": true,\n            \"viewerRating\":
+        \"none\",\n            \"likeCount\": 0,\n            \"publishedAt\": \"2020-12-16T23:47:27Z\",\n
+        \           \"updatedAt\": \"2020-12-16T23:47:27Z\"\n          }\n        },\n
+        \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
+        true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
+        \     \"etag\": \"6O4UN4iQsoeyNlbsobqIIxpomKM\",\n      \"id\": \"Ugy-Ac2i-Au1Rq9lHbp4AaABAg\",\n
+        \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"a1NcYJSYFCnoUvhHzJyvwZBWLmM\",\n
+        \         \"id\": \"Ugy-Ac2i-Au1Rq9lHbp4AaABAg\",\n          \"snippet\":
+        {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
+        \"你有天使般的語音 \U0001F496\",\n            \"textOriginal\": \"你有天使般的語音 \U0001F496\",\n
+        \           \"authorDisplayName\": \"Henutmire\",\n            \"authorProfileImageUrl\":
+        \"https://yt3.ggpht.com/ytc/AAUvwnjLaJcGFs90FLTNnXQbK99xKiaVsmFDNDfmxo7ZDtc=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCkc2k3PZO0IjIU_5l7rIuFw\",\n
+        \           \"authorChannelId\": {\n              \"value\": \"UCkc2k3PZO0IjIU_5l7rIuFw\"\n
+        \           },\n            \"canRate\": true,\n            \"viewerRating\":
+        \"none\",\n            \"likeCount\": 1,\n            \"publishedAt\": \"2020-12-15T19:51:30Z\",\n
+        \           \"updatedAt\": \"2020-12-15T19:51:30Z\"\n          }\n        },\n
+        \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
+        true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
+        \     \"etag\": \"L7qSPr3SchZ81xartl8oabHBQg4\",\n      \"id\": \"UgytvIhjrudH_yrsu_94AaABAg\",\n
+        \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"beJfjZNMxyKMzGdpe3rvTUAXyUY\",\n
         \         \"id\": \"UgytvIhjrudH_yrsu_94AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"在2020年12月，这里有人吗，让我看看你的手吗？\\u003cbr /\\u003e\U0001F447\U0001F447\U0001F447\",\n
@@ -172,7 +400,7 @@ http_interactions:
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCIPxxCw_UB4CaceO9ZBq_bQ\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCIPxxCw_UB4CaceO9ZBq_bQ\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 3,\n            \"publishedAt\": \"2020-12-08T02:58:20Z\",\n
+        \"none\",\n            \"likeCount\": 4,\n            \"publishedAt\": \"2020-12-08T02:58:20Z\",\n
         \           \"updatedAt\": \"2020-12-08T02:58:20Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
@@ -223,14 +451,14 @@ http_interactions:
         \           \"updatedAt\": \"2020-11-29T17:16:21Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"T9lyGVE8NSfO-xuhsJiK8OuOaJQ\",\n      \"id\": \"UgxWgbzMgV209D2D6ZB4AaABAg\",\n
+        \     \"etag\": \"z2bfCI1GlMWp2uoSiTfMRmSmZr0\",\n      \"id\": \"UgxWgbzMgV209D2D6ZB4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"-s1-_f6kXAFTk6xxntHQJadya6o\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"8yz8WqJlxnPpshwzwNHXF1jBmEE\",\n
         \         \"id\": \"UgxWgbzMgV209D2D6ZB4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"超好聽～～支持美美的語噥！！！\",\n            \"textOriginal\": \"超好聽～～支持美美的語噥！！！\",\n
-        \           \"authorDisplayName\": \"yes uk\",\n            \"authorProfileImageUrl\":
-        \"https://yt3.ggpht.com/ytc/AAUvwnjf1PNsS-Vo_KmH-Cj49xu0LYd9dxPeGBAhdpgucg=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \           \"authorDisplayName\": \"cherry blossoms8811\",\n            \"authorProfileImageUrl\":
+        \"https://yt3.ggpht.com/ytc/AAUvwnhQyOLNI_70fpIscuyPKy0KlWpC33itJfWMxRvk-g=s48-c-k-c0xffffffff-no-rj-mo\",\n
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UC54gsPhivSIFrszf8YhzpDw\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UC54gsPhivSIFrszf8YhzpDw\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
@@ -253,14 +481,14 @@ http_interactions:
         \           \"updatedAt\": \"2020-11-14T09:36:32Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"y0Kmoozwj7Ly2IlRM0mtSkNN6Lk\",\n      \"id\": \"UgwjRvZIbBVJWAmbDQd4AaABAg\",\n
+        \     \"etag\": \"Jf0xRMIaG42vSGeTcAvgBTi6g5U\",\n      \"id\": \"UgwjRvZIbBVJWAmbDQd4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"N9rysm7l7DoWnYm3mWcCLVpbk9o\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"ZwFNBA2H1AcoJUrspuCL7K2-hMs\",\n
         \         \"id\": \"UgwjRvZIbBVJWAmbDQd4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"從超偶到RC語音從RC語音到現在電視上看到妳，妳的努力我們都看的到，做自己喜歡的事堅持自己的路，妳很棒，從妳的歌聽的出來妳超越當初的那個自己唱歌情感也越來越濃烈我們很喜歡謝謝妳一直用歌聲陪伴在我們身邊，祝福你一切順利\",\n
         \           \"textOriginal\": \"從超偶到RC語音從RC語音到現在電視上看到妳，妳的努力我們都看的到，做自己喜歡的事堅持自己的路，妳很棒，從妳的歌聽的出來妳超越當初的那個自己唱歌情感也越來越濃烈我們很喜歡謝謝妳一直用歌聲陪伴在我們身邊，祝福你一切順利\",\n
-        \           \"authorDisplayName\": \"林龍進\",\n            \"authorProfileImageUrl\":
+        \           \"authorDisplayName\": \"林藤御\",\n            \"authorProfileImageUrl\":
         \"https://yt3.ggpht.com/ytc/AAUvwnjyS_Dl0ZwOrYlPoFW3agtfz8e9OsmWFGLjCEBS=s48-c-k-c0xffffffff-no-rj-mo\",\n
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCuRChvcxDLIgEXMzHPT9jFA\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCuRChvcxDLIgEXMzHPT9jFA\"\n
@@ -298,9 +526,9 @@ http_interactions:
         \           \"updatedAt\": \"2020-11-10T06:27:36Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"KT1y2_pR9zxHIr7K6ozFK1FeAgo\",\n      \"id\": \"UgxACiYm3LyB4KOJUMt4AaABAg\",\n
+        \     \"etag\": \"BZ8Mvw8AJKvHKmpNLDuA-Z8w5lM\",\n      \"id\": \"UgxACiYm3LyB4KOJUMt4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"buQ7N6DUTyOsVcpTl3kMd503isI\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"vfV81TpGpZHVu1wxyrb6qqNB1Ps\",\n
         \         \"id\": \"UgxACiYm3LyB4KOJUMt4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"聲音好溫柔～！晚上聽更有Feel!\",\n            \"textOriginal\": \"聲音好溫柔～！晚上聽更有Feel!\",\n
@@ -309,7 +537,7 @@ http_interactions:
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCQuIaTv6Ik1yTlCOoTI5aLw\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCQuIaTv6Ik1yTlCOoTI5aLw\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 1,\n            \"publishedAt\": \"2020-11-08T22:47:26Z\",\n
+        \"none\",\n            \"likeCount\": 2,\n            \"publishedAt\": \"2020-11-08T22:47:26Z\",\n
         \           \"updatedAt\": \"2020-11-08T22:47:26Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
@@ -342,9 +570,9 @@ http_interactions:
         \           \"updatedAt\": \"2020-11-06T12:44:14Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"lbxWV8u3ybtFEqFhck7ZnwVe7ks\",\n      \"id\": \"Ugw6HzU5leLreF0klyh4AaABAg\",\n
+        \     \"etag\": \"tF0-RZkOHutIG39YGXVIBDmKMew\",\n      \"id\": \"Ugw6HzU5leLreF0klyh4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"cv8PWe99IbtNm8JAvSFbTxVZWPg\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"d9Tzgu_B2tnqzeO3pn_hxU2qHH4\",\n
         \         \"id\": \"Ugw6HzU5leLreF0klyh4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"意外聽到這首歌 好好聽\",\n            \"textOriginal\": \"意外聽到這首歌 好好聽\",\n            \"authorDisplayName\":
@@ -352,7 +580,7 @@ http_interactions:
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCO4Mj3PdPPt08ZVTWBp4phg\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCO4Mj3PdPPt08ZVTWBp4phg\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 1,\n            \"publishedAt\": \"2020-11-03T01:47:10Z\",\n
+        \"none\",\n            \"likeCount\": 2,\n            \"publishedAt\": \"2020-11-03T01:47:10Z\",\n
         \           \"updatedAt\": \"2020-11-03T01:47:10Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
@@ -431,9 +659,9 @@ http_interactions:
         \           \"updatedAt\": \"2020-10-27T12:43:28Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"AC3pko_JhXhlSaNJjCMe9e-yb7Q\",\n      \"id\": \"UgxZ9VVdAEGOUHvAWWd4AaABAg\",\n
+        \     \"etag\": \"eNvuq00AdV9j2Tt2b5KTgNKYmjU\",\n      \"id\": \"UgxZ9VVdAEGOUHvAWWd4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"UvwRcsV5arE03-aZl_AAIOdUsV4\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"3pvMxrNfFV5h6ofDuWftEvCMFQY\",\n
         \         \"id\": \"UgxZ9VVdAEGOUHvAWWd4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"脑波小姐其实蛮好看的。\\u003cbr /\\u003e因为《我们》才追的，欧阳妮妮演技本来是没什么期待，但她在这剧的表现我觉得还行，毕竟第一次当女主，已经很不错了。\",\n
@@ -443,7 +671,7 @@ http_interactions:
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCG4Kgm8FKUSDFuPsQdtjuxA\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCG4Kgm8FKUSDFuPsQdtjuxA\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 5,\n            \"publishedAt\": \"2020-10-26T05:07:57Z\",\n
+        \"none\",\n            \"likeCount\": 6,\n            \"publishedAt\": \"2020-10-26T05:07:57Z\",\n
         \           \"updatedAt\": \"2020-10-26T05:08:26Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
@@ -462,9 +690,9 @@ http_interactions:
         \           \"updatedAt\": \"2020-10-23T16:00:39Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"eXPlxKw3MVyiHkXbdAxX5cHgjYU\",\n      \"id\": \"UgygYgxf5t6wNd5HHuh4AaABAg\",\n
+        \     \"etag\": \"D-4NMYYM4Rl5e-zZsoqglayTOm4\",\n      \"id\": \"UgygYgxf5t6wNd5HHuh4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"2-ooPDLnvGe-1kVWzCe9rB7qMQc\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"QhmbeYvIIHdOKRNbd_TRCOd1m04\",\n
         \         \"id\": \"UgygYgxf5t6wNd5HHuh4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"這首歌好好聽, 帶一點淡淡的感傷, 希望有機會在ktv唱到這首歌.\",\n            \"textOriginal\": \"這首歌好好聽,
@@ -473,7 +701,7 @@ http_interactions:
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCdDeVSCphu0J6Dft6xs9Fnw\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCdDeVSCphu0J6Dft6xs9Fnw\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 5,\n            \"publishedAt\": \"2020-10-22T16:19:57Z\",\n
+        \"none\",\n            \"likeCount\": 6,\n            \"publishedAt\": \"2020-10-22T16:19:57Z\",\n
         \           \"updatedAt\": \"2020-10-22T16:19:57Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 2,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
@@ -491,9 +719,9 @@ http_interactions:
         \           \"updatedAt\": \"2020-10-20T16:24:03Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"nwcpmuUpsCuBJ5DOfu2ZprPup2U\",\n      \"id\": \"UgzFOj2TPnJvWBYK4oF4AaABAg\",\n
+        \     \"etag\": \"km-MTiMfIh3BboHEUzomQOI6RTw\",\n      \"id\": \"UgzFOj2TPnJvWBYK4oF4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"dmKGC3aAfbTYWGIVWdLu4KhGPAg\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"fpQ66LPQuxwXX4Vzfw6GI4ER24A\",\n
         \         \"id\": \"UgzFOj2TPnJvWBYK4oF4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"這首這麼好聽 點閱率怎麼這麼少⋯\\u003cbr /\\u003e可惜一首好歌\",\n            \"textOriginal\":
@@ -502,7 +730,7 @@ http_interactions:
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCaNSbcV0WLe8GIcclOjG6Bw\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCaNSbcV0WLe8GIcclOjG6Bw\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 11,\n            \"publishedAt\": \"2020-10-18T10:00:34Z\",\n
+        \"none\",\n            \"likeCount\": 12,\n            \"publishedAt\": \"2020-10-18T10:00:34Z\",\n
         \           \"updatedAt\": \"2020-10-18T10:00:34Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 1,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
@@ -535,9 +763,9 @@ http_interactions:
         \           \"updatedAt\": \"2020-10-13T11:54:52Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"7SeaRSl9L_hdyDZPQoRNWHHqYp4\",\n      \"id\": \"UgwwQPXII__60Q64qqd4AaABAg\",\n
+        \     \"etag\": \"tqbisqFfdWGL3jow-jjzV70P-bk\",\n      \"id\": \"UgwwQPXII__60Q64qqd4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"ArV0-Olq9JSIutjlu0TncLWZQsc\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"IQN3IiX_-eKRPv7zsaftVmv2Z3A\",\n
         \         \"id\": \"UgwwQPXII__60Q64qqd4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"边听着歌默默看着留言的人。点个赞让我知道\",\n            \"textOriginal\": \"边听着歌默默看着留言的人。点个赞让我知道\",\n
@@ -546,13 +774,13 @@ http_interactions:
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCTLWeE-E2XwO1vvC02ayl2A\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCTLWeE-E2XwO1vvC02ayl2A\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 6,\n            \"publishedAt\": \"2020-10-12T05:33:53Z\",\n
+        \"none\",\n            \"likeCount\": 8,\n            \"publishedAt\": \"2020-10-12T05:33:53Z\",\n
         \           \"updatedAt\": \"2020-10-12T05:33:53Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"KMo8Ow40NTkP6g1VeOcuW7aKJjM\",\n      \"id\": \"UgxhgzwLPlhNGqza79Z4AaABAg\",\n
+        \     \"etag\": \"7jwAKdHhswSsheLnCIVW0gntyJ0\",\n      \"id\": \"UgxhgzwLPlhNGqza79Z4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"oIBC6jKXUYmZRfhDaADrC-l36gw\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"VOjTX5lll-Qm0LjPpnFAnrRf4aM\",\n
         \         \"id\": \"UgxhgzwLPlhNGqza79Z4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"超好聽的！誰一邊聽音樂一邊看評論的舉手\U0001F64B\",\n            \"textOriginal\": \"超好聽的！誰一邊聽音樂一邊看評論的舉手\U0001F64B\",\n
@@ -561,7 +789,7 @@ http_interactions:
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCjW4dqFaBEHTfZj9GWF_P1g\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCjW4dqFaBEHTfZj9GWF_P1g\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 8,\n            \"publishedAt\": \"2020-10-11T05:44:16Z\",\n
+        \"none\",\n            \"likeCount\": 9,\n            \"publishedAt\": \"2020-10-11T05:44:16Z\",\n
         \           \"updatedAt\": \"2020-10-11T05:44:16Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
@@ -654,13 +882,13 @@ http_interactions:
         \           \"updatedAt\": \"2020-10-01T12:10:07Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"FBImnQJvvl6dumQKyATsxV8Slmw\",\n      \"id\": \"UgwyJzrNi4xnzGCsbed4AaABAg\",\n
+        \     \"etag\": \"eXW2flmIo5qzjRiT3EOSv-DYe8s\",\n      \"id\": \"UgwyJzrNi4xnzGCsbed4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"91ivFBQR7Wp5RXBZLe3gqYUvhRY\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"R3SpUeBLZBMA99L8pjSNLQN1ioQ\",\n
         \         \"id\": \"UgwyJzrNi4xnzGCsbed4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"會一直支持的\",\n            \"textOriginal\": \"會一直支持的\",\n            \"authorDisplayName\":
-        \"吳阿森\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwnj7i-j2n37tQzbut0vDWGgHlevodqyX4f3moFYLJrs=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \"吳阿森\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwngkkX9PvFjGjGPPbZwUvWW1nOFabCH4kYIzRglAf3M=s48-c-k-c0xffffffff-no-rj-mo\",\n
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCoMANXKrr1PbtyH8E0W2MOQ\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCoMANXKrr1PbtyH8E0W2MOQ\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
@@ -668,13 +896,13 @@ http_interactions:
         \           \"updatedAt\": \"2020-10-01T11:59:58Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"E8Gb2hYwPqNbbpTgtMIdAD3NK4M\",\n      \"id\": \"UgxwN-JAGwwyNAa_ZOR4AaABAg\",\n
+        \     \"etag\": \"F6vn8BNfeTjOoZ7rDJsYl7tHJSk\",\n      \"id\": \"UgxwN-JAGwwyNAa_ZOR4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"cT0r3RXsK0cEKh4rAlLNe_TGLh0\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"UcEWQvMutXoDOQg6mGgRYF8vmH8\",\n
         \         \"id\": \"UgxwN-JAGwwyNAa_ZOR4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"太好聽了，我好喜歡呦！\",\n            \"textOriginal\": \"太好聽了，我好喜歡呦！\",\n            \"authorDisplayName\":
-        \"吳阿森\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwnj7i-j2n37tQzbut0vDWGgHlevodqyX4f3moFYLJrs=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \"吳阿森\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwngkkX9PvFjGjGPPbZwUvWW1nOFabCH4kYIzRglAf3M=s48-c-k-c0xffffffff-no-rj-mo\",\n
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCoMANXKrr1PbtyH8E0W2MOQ\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCoMANXKrr1PbtyH8E0W2MOQ\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
@@ -696,13 +924,13 @@ http_interactions:
         \           \"updatedAt\": \"2020-10-01T06:05:48Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"Dy-1vUaSQ7DT0qXB31O3VybdMzM\",\n      \"id\": \"UgzyT0qrTjT09_-uXRh4AaABAg\",\n
+        \     \"etag\": \"jsJQv9lQMEP0V_fp16UVxWSg3l4\",\n      \"id\": \"UgzyT0qrTjT09_-uXRh4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"641yrTXzEVdKeRHT2P1hi5w9mM4\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"SXrCJPOC8AroZ14zT-PScz00njw\",\n
         \         \"id\": \"UgzyT0qrTjT09_-uXRh4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"好聽\U0001F44D\",\n            \"textOriginal\": \"好聽\U0001F44D\",\n            \"authorDisplayName\":
-        \"楓葉\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwnjHhmTfCZKicTP4-e6HOyDSTxSHEdb5z1-cYw=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \"願得一人心\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwniZM-PvOUn5yB0JBBxT7BMhVkPwRs4bQibptUnULQ=s48-c-k-c0xffffffff-no-rj-mo\",\n
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCEwrHKn1CXPG5e2_m8fXI_A\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCEwrHKn1CXPG5e2_m8fXI_A\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
@@ -727,9 +955,9 @@ http_interactions:
         \           \"updatedAt\": \"2020-09-29T12:20:32Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"i-nlVekVwsOix-eX8bOYiorkUFY\",\n      \"id\": \"UgxeaxmhmCtaMhDmWI14AaABAg\",\n
+        \     \"etag\": \"A_e5qBBOdVhO8R0DRct97uHW_rY\",\n      \"id\": \"UgxeaxmhmCtaMhDmWI14AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"BoGyX7U4jEF7-bM0ABJyMaMNFgE\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"JpQCHFoCjVppFO9XReAzkINvvLc\",\n
         \         \"id\": \"UgxeaxmhmCtaMhDmWI14AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"希望張語噥能夠拿個金曲獎，拿什麼獎我不知道，總能夠把各種曲風詮釋很好聽，加油\",\n            \"textOriginal\":
@@ -738,7 +966,7 @@ http_interactions:
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCIpuNff3TwgMj8UbLA0Weqw\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCIpuNff3TwgMj8UbLA0Weqw\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 14,\n            \"publishedAt\": \"2020-09-28T13:33:21Z\",\n
+        \"none\",\n            \"likeCount\": 16,\n            \"publishedAt\": \"2020-09-28T13:33:21Z\",\n
         \           \"updatedAt\": \"2020-09-28T13:33:21Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
@@ -790,14 +1018,14 @@ http_interactions:
         \           \"updatedAt\": \"2020-09-28T11:29:23Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"hqPo8W8LJgxRqwmC8N-hGaNvZOA\",\n      \"id\": \"UgxZT91kG9HIm4S_w0Z4AaABAg\",\n
+        \     \"etag\": \"1cSGHrFME8FpJ8UUzn-profuKSM\",\n      \"id\": \"UgxZT91kG9HIm4S_w0Z4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"DIO53dvj5XTBFfqJeGZlExb7YVw\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"uzbnER_E6esVkhV8KAoZR6v8pVg\",\n
         \         \"id\": \"UgxZT91kG9HIm4S_w0Z4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"\U0001F44D\U0001F44D\U0001F44D\U0001F44D\",\n            \"textOriginal\":
         \"\U0001F44D\U0001F44D\U0001F44D\U0001F44D\",\n            \"authorDisplayName\":
-        \"Lol Lee\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwnhE8whWgiLkgfV3yCcBVP8VUo6dBywD96S6AGLfDg=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \"Lol Lee\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwnjsvvPoXqiIPLFp11qFS2_UwQZLrBG-BVkaO1kgTg=s48-c-k-c0xffffffff-no-rj-mo\",\n
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCoJ31nt__93z6MXCCGg8uIw\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCoJ31nt__93z6MXCCGg8uIw\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
@@ -879,9 +1107,9 @@ http_interactions:
         \           \"updatedAt\": \"2020-09-26T13:53:55Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"SLWeTicyO3pa55TVwtyg8pSOuSE\",\n      \"id\": \"UgwsMowjta0V7XwHkQJ4AaABAg\",\n
+        \     \"etag\": \"BkkSEdqX2T8RoZaU97BGhOTFLiQ\",\n      \"id\": \"UgwsMowjta0V7XwHkQJ4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"kPp1xJBVFjuuZZmY1AhxPOZDabk\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"juQ0apUm6KI5JnjXOicHUwWUGPE\",\n
         \         \"id\": \"UgwsMowjta0V7XwHkQJ4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"奖励在2020年9月仍在听的任何人\",\n            \"textOriginal\": \"奖励在2020年9月仍在听的任何人\",\n
@@ -890,7 +1118,7 @@ http_interactions:
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCBm5s_mdyER4bkx8gBRdr-w\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCBm5s_mdyER4bkx8gBRdr-w\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 7,\n            \"publishedAt\": \"2020-09-26T08:16:30Z\",\n
+        \"none\",\n            \"likeCount\": 8,\n            \"publishedAt\": \"2020-09-26T08:16:30Z\",\n
         \           \"updatedAt\": \"2020-09-26T08:16:30Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 1,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
@@ -1147,13 +1375,13 @@ http_interactions:
         \           \"updatedAt\": \"2020-09-24T15:39:41Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 1,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"n4LtulKj8BZmHuOzfdNvLnfbZy8\",\n      \"id\": \"UgxTWSxLLh8vLOkQu9R4AaABAg\",\n
+        \     \"etag\": \"4SJ_gfjo-8YVndl9AF3JJwqzkFc\",\n      \"id\": \"UgxTWSxLLh8vLOkQu9R4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"kLIQ16-QwsHwzUF9U5sos5Mpfmw\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"PitQxD7WcOpz7xfWj4TQwy6mLow\",\n
         \         \"id\": \"UgxTWSxLLh8vLOkQu9R4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"簽到 超好聽&lt;3\",\n            \"textOriginal\": \"簽到 超好聽\\u003c3\",\n            \"authorDisplayName\":
-        \"晁晁Chao\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwngYp4E0vNwZeJ13oQrJOX7xpkO3aPL1L9McNY7j7w=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \"晁晁Chao\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwniDPxzvhdyLO3XoEnbCnzSln084yVJJgl2RYlEy7w=s48-c-k-c0xffffffff-no-rj-mo\",\n
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCQTWXJN96bwhOOJUuf0lBEQ\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCQTWXJN96bwhOOJUuf0lBEQ\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
@@ -1177,9 +1405,9 @@ http_interactions:
         \           \"updatedAt\": \"2020-09-24T14:50:26Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"aaUJvmenNQx3dZLsJ7AbR-mZITc\",\n      \"id\": \"UgyDOSYy72B2odsmM8p4AaABAg\",\n
+        \     \"etag\": \"R7kNG2fRXrwJlQ0uhohHlQ6kok8\",\n      \"id\": \"UgyDOSYy72B2odsmM8p4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"C3CAcy42Xm-NYRBZYFxzfgBBkpw\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"FYqoAFY87JGaEAgxZSrPa7FbdfQ\",\n
         \         \"id\": \"UgyDOSYy72B2odsmM8p4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"語噥語噥好棒棒,  我一直都在重播這首歌\\u003cbr /\\u003e\\u003cbr /\\u003eP.S. 女主角怎麼長得像漢典
@@ -1189,7 +1417,7 @@ http_interactions:
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCjh0Ho18rAsnT6kDRUgfw1g\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCjh0Ho18rAsnT6kDRUgfw1g\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 12,\n            \"publishedAt\": \"2020-09-24T14:37:17Z\",\n
+        \"none\",\n            \"likeCount\": 13,\n            \"publishedAt\": \"2020-09-24T14:37:17Z\",\n
         \           \"updatedAt\": \"2020-09-24T14:37:17Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 2,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
@@ -1306,18 +1534,18 @@ http_interactions:
         \           \"updatedAt\": \"2020-09-24T13:40:20Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"S7A0tRehgeZ41NXZd9O24DOvlgw\",\n      \"id\": \"Ugxqqvvi4XhOs_5ADzJ4AaABAg\",\n
+        \     \"etag\": \"T1Zt6qbj2K4xqTMmd3BjZFwLIR8\",\n      \"id\": \"Ugxqqvvi4XhOs_5ADzJ4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"j2pTG9VE0CfHYdU3QBE7Qk_5Fdw\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"DHuMnNmj0rNzIBLDUoihpKqB7nE\",\n
         \         \"id\": \"Ugxqqvvi4XhOs_5ADzJ4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"加入歌單每天聽\U0001F44D\U0001F3FB\",\n            \"textOriginal\": \"加入歌單每天聽\U0001F44D\U0001F3FB\",\n
-        \           \"authorDisplayName\": \"Wei L\",\n            \"authorProfileImageUrl\":
-        \"https://yt3.ggpht.com/ytc/AAUvwnjH2I0OgTSbsk7jucCxKYdqDNALVB0UUywaDF0t_w=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \           \"authorDisplayName\": \"小缸\",\n            \"authorProfileImageUrl\":
+        \"https://yt3.ggpht.com/ytc/AAUvwnidNGDCNXRhRil_W3bd4ouu7hX5C6pPaLnsfxRDSA=s48-c-k-c0xffffffff-no-rj-mo\",\n
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCa_63spXv_iCS4uyt0VOHRQ\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCa_63spXv_iCS4uyt0VOHRQ\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 5,\n            \"publishedAt\": \"2020-09-24T13:40:12Z\",\n
+        \"none\",\n            \"likeCount\": 6,\n            \"publishedAt\": \"2020-09-24T13:40:12Z\",\n
         \           \"updatedAt\": \"2020-09-24T13:40:12Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
@@ -1458,9 +1686,9 @@ http_interactions:
         \           \"updatedAt\": \"2020-09-24T13:09:51Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"kNXHlZFNqEedgQcm7AE7ERyaef0\",\n      \"id\": \"UgxuQd1ISLB5JISQndx4AaABAg\",\n
+        \     \"etag\": \"1745fP_LHSCxBI8AnWYhKjY58-A\",\n      \"id\": \"UgxuQd1ISLB5JISQndx4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"QpPL23uTq4iasu9E6KTlwNcVH8g\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"S6n0OTzuw8feYkNC3niET1YM2SY\",\n
         \         \"id\": \"UgxuQd1ISLB5JISQndx4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"語噥\\u003cbr /\\u003e我是個《默默》支持妳的粉絲，雖然很多活動都沒辦法去到現場幫妳加油，但我是非常支持妳的\\u003cbr
@@ -1469,11 +1697,11 @@ http_interactions:
         》\\u003cbr /\\u003e語噥的歌有點難湊詞，我已經盡力了\U0001F605\U0001F605\",\n            \"textOriginal\":
         \"語噥\\n我是個《默默》支持妳的粉絲，雖然很多活動都沒辦法去到現場幫妳加油，但我是非常支持妳的\\n謝謝妳，讓我的人生增添了許多《色彩》，但想起之前到簽唱會看到妳本人時、《我們》大家一起合唱，聽到妳現場唱歌，當下我真的非常開心，也希望妳能夠《對我好》(威~不是啦，是對所有米粉好啦～\U0001F92A\\n\\n希望妳不要因為酸民而失去了自己的《節奏》，找會自信，對於酸民就《不在乎》，跟酸民say《no
         more 》\\n語噥的歌有點難湊詞，我已經盡力了\U0001F605\U0001F605\",\n            \"authorDisplayName\":
-        \"mi粉卜心粉 采虹\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwnh9d4ONxhmA4stWKPYV_WNDwLxYYrrzbIgbdnKe0g=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \"mi粉卜心粉\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwnikEOc0y019iA_jYaarxTigJQFcD8F-XM-y2cFmTw=s48-c-k-c0xffffffff-no-rj-mo\",\n
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCfX26igvTwGZmwMDpx2J1_Q\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCfX26igvTwGZmwMDpx2J1_Q\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 45,\n            \"publishedAt\": \"2020-09-24T12:40:50Z\",\n
+        \"none\",\n            \"likeCount\": 46,\n            \"publishedAt\": \"2020-09-24T12:40:50Z\",\n
         \           \"updatedAt\": \"2020-12-03T09:30:25Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 2,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
@@ -1492,14 +1720,14 @@ http_interactions:
         \           \"updatedAt\": \"2020-09-24T11:00:07Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"ci1djtKeNV5ZPzR9GG2HNz8mydY\",\n      \"id\": \"UgzRjuhF-WtrxJWcoIp4AaABAg\",\n
+        \     \"etag\": \"urRlcureS4M69pBSthOb5F2uLmA\",\n      \"id\": \"UgzRjuhF-WtrxJWcoIp4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"2Zu6GG3TSHfxzmZga8tBw7W6iXM\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"fbgFZEMeGbGMoukHEEAdrdkAwno\",\n
         \         \"id\": \"UgzRjuhF-WtrxJWcoIp4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"看封面語噥好像唱的很陶醉\U0001F633好美\U0001F60D！\",\n            \"textOriginal\": \"看封面語噥好像唱的很陶醉\U0001F633好美\U0001F60D！\",\n
         \           \"authorDisplayName\": \"黃子芸\",\n            \"authorProfileImageUrl\":
-        \"https://yt3.ggpht.com/ytc/AAUvwng_D11GLMuTBopqrqiSav3wT8khQtZ2c8mqqjUD2g=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \"https://yt3.ggpht.com/ytc/AAUvwngstKzPKsC_Nucdy37W8U6oyai8arsmI6yXXB3Kpw=s48-c-k-c0xffffffff-no-rj-mo\",\n
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCco86v_bM8u1ya_oWK_sRVQ\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCco86v_bM8u1ya_oWK_sRVQ\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
@@ -1582,351 +1810,19 @@ http_interactions:
         \           \"updatedAt\": \"2020-09-28T11:53:57Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
         true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"08t6HEbnxkjgKfh-P7Md284L4Os\",\n      \"id\": \"Ugw1NAZZKa8nkZI8wNx4AaABAg\",\n
+        \     \"etag\": \"NwwCKCRJ5TiK3x00Z6OXmlkRh2U\",\n      \"id\": \"Ugw1NAZZKa8nkZI8wNx4AaABAg\",\n
         \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"M0m3juNx7DqpbmhFxqYSGKGk-FI\",\n
+        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"eFOtgz85tNSMumdD0Zv6sUn-AWg\",\n
         \         \"id\": \"Ugw1NAZZKa8nkZI8wNx4AaABAg\",\n          \"snippet\":
         {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
         \"看mv❤️❤️❤️❤️好興奮\",\n            \"textOriginal\": \"看mv❤️❤️❤️❤️好興奮\",\n            \"authorDisplayName\":
-        \"林甄\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwniQL3n8bOM9eZtHnz1ZFrZBKZpPFlBaDZNPm28QyQ=s48-c-k-c0xffffffff-no-rj-mo\",\n
+        \"jane Lin\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwnhXMK0SmBy05TQGPzEAcJ_zlpOBVTtc3m7vmkcjng=s48-c-k-c0xffffffff-no-rj-mo\",\n
         \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCFuwZpQvXS4k6chuMs--Uyg\",\n
         \           \"authorChannelId\": {\n              \"value\": \"UCFuwZpQvXS4k6chuMs--Uyg\"\n
         \           },\n            \"canRate\": true,\n            \"viewerRating\":
         \"none\",\n            \"likeCount\": 2,\n            \"publishedAt\": \"2020-09-24T03:12:35Z\",\n
         \           \"updatedAt\": \"2020-09-24T03:12:35Z\"\n          }\n        },\n
         \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
-        true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"zeOJcixQFuBQr3zCVy29kvkBBtU\",\n      \"id\": \"UgypJEUN_XS_INcVsPJ4AaABAg\",\n
-        \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"CvZBVhtHS26k0zP-yqIp-BEWNXo\",\n
-        \         \"id\": \"UgypJEUN_XS_INcVsPJ4AaABAg\",\n          \"snippet\":
-        {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
-        \"好聽!讚!\",\n            \"textOriginal\": \"好聽!讚!\",\n            \"authorDisplayName\":
-        \"kobe keiko\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwniU87drjw0b9VZjnipAfCoIuCfZsvEEa5EPrA=s48-c-k-c0xffffffff-no-rj-mo\",\n
-        \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UC9cSqcL5Urv2LO3YGKr97UQ\",\n
-        \           \"authorChannelId\": {\n              \"value\": \"UC9cSqcL5Urv2LO3YGKr97UQ\"\n
-        \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 1,\n            \"publishedAt\": \"2020-09-24T01:43:31Z\",\n
-        \           \"updatedAt\": \"2020-09-24T01:43:31Z\"\n          }\n        },\n
-        \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
-        true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"GWFRRZ1eT7PLbn4sb5N8UlpMycE\",\n      \"id\": \"UgyjBWMlIdKoXSFplC94AaABAg\",\n
-        \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"8crJhQp2pDNewCug1PF8JgTW8GA\",\n
-        \         \"id\": \"UgyjBWMlIdKoXSFplC94AaABAg\",\n          \"snippet\":
-        {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
-        \"\U0001F60D\U0001F60D\",\n            \"textOriginal\": \"\U0001F60D\U0001F60D\",\n
-        \           \"authorDisplayName\": \"hui Lee\",\n            \"authorProfileImageUrl\":
-        \"https://yt3.ggpht.com/ytc/AAUvwnhX91IdHmdTmFdZl2gbA_Z7W3d5Mwr-Fc0PtlPrgQ=s48-c-k-c0xffffffff-no-rj-mo\",\n
-        \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCujFziIxtQYHMrKk3wFTLlQ\",\n
-        \           \"authorChannelId\": {\n              \"value\": \"UCujFziIxtQYHMrKk3wFTLlQ\"\n
-        \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 2,\n            \"publishedAt\": \"2020-09-24T01:38:11Z\",\n
-        \           \"updatedAt\": \"2020-09-24T01:38:11Z\"\n          }\n        },\n
-        \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
-        true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"yfQrw_f5VA41u0OACRAJmkARQ-Y\",\n      \"id\": \"Ugxpj_Ecbis4Pkzoa9N4AaABAg\",\n
-        \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"-jW33mFkm3U3xmdbD3ud_FEEClo\",\n
-        \         \"id\": \"Ugxpj_Ecbis4Pkzoa9N4AaABAg\",\n          \"snippet\":
-        {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
-        \"期待你的新歌喔！\",\n            \"textOriginal\": \"期待你的新歌喔！\",\n            \"authorDisplayName\":
-        \"許許亞婷\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwni74C8GEeVA7VTVadVImQZTwAZ_xb0nOxwOcg=s48-c-k-c0xffffffff-no-rj-mo\",\n
-        \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UC-b0mWbg9K0Lqo91AqpyOjQ\",\n
-        \           \"authorChannelId\": {\n              \"value\": \"UC-b0mWbg9K0Lqo91AqpyOjQ\"\n
-        \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 1,\n            \"publishedAt\": \"2020-09-23T21:11:08Z\",\n
-        \           \"updatedAt\": \"2020-09-23T21:11:08Z\"\n          }\n        },\n
-        \       \"canReply\": true,\n        \"totalReplyCount\": 0,\n        \"isPublic\":
-        true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"dSRopJLLWdcgMg70j16n7C7UR-A\",\n      \"id\": \"Ugyawnge0_pri0GhvRB4AaABAg\",\n
-        \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"CmvL18_VY_fsBgXH62M-eRKdhD4\",\n
-        \         \"id\": \"Ugyawnge0_pri0GhvRB4AaABAg\",\n          \"snippet\":
-        {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
-        \"語噥是天使嗎\U0001F607\\u003cbr /\\u003e專輯裏的歌竟然都有mv\U0001F973\\u003cbr /\\u003e也太有誠意太佛心了吧\U0001F61A\\u003cbr
-        /\\u003e期待\U0001F929\",\n            \"textOriginal\": \"語噥是天使嗎\U0001F607\\n專輯裏的歌竟然都有mv\U0001F973\\n也太有誠意太佛心了吧\U0001F61A\\n期待\U0001F929\",\n
-        \           \"authorDisplayName\": \"挑戰無影片500訂閱\",\n            \"authorProfileImageUrl\":
-        \"https://yt3.ggpht.com/ytc/AAUvwniW8FUd8ZxSqNytVd-ucg52_xYJ2pgaKYoxJw=s48-c-k-c0xffffffff-no-rj-mo\",\n
-        \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCQVPKPxlV9cMqTJZe1H_V-g\",\n
-        \           \"authorChannelId\": {\n              \"value\": \"UCQVPKPxlV9cMqTJZe1H_V-g\"\n
-        \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 52,\n            \"publishedAt\": \"2020-09-23T20:14:53Z\",\n
-        \           \"updatedAt\": \"2020-09-23T20:14:53Z\"\n          }\n        },\n
-        \       \"canReply\": true,\n        \"totalReplyCount\": 5,\n        \"isPublic\":
-        true\n      }\n    },\n    {\n      \"kind\": \"youtube#commentThread\",\n
-        \     \"etag\": \"m4DAb1w9FT3B81aSLdREaocuqNw\",\n      \"id\": \"UgzfMPBkvk1SSwe1WrJ4AaABAg\",\n
-        \     \"snippet\": {\n        \"videoId\": \"DA8nk83xumg\",\n        \"topLevelComment\":
-        {\n          \"kind\": \"youtube#comment\",\n          \"etag\": \"tGwgajFaQwKyIb-P84NQ5OwA-BI\",\n
-        \         \"id\": \"UgzfMPBkvk1SSwe1WrJ4AaABAg\",\n          \"snippet\":
-        {\n            \"videoId\": \"DA8nk83xumg\",\n            \"textDisplay\":
-        \"期待好久，語噥又出新歌了，我一定會認真的聽完，一直重複播放，成為我的主題曲\",\n            \"textOriginal\":
-        \"期待好久，語噥又出新歌了，我一定會認真的聽完，一直重複播放，成為我的主題曲\",\n            \"authorDisplayName\":
-        \"Andy\",\n            \"authorProfileImageUrl\": \"https://yt3.ggpht.com/ytc/AAUvwnhVeHmWMGd0nGm5fyMTR3uU0_doPYKrAIrK9PUnxj4=s48-c-k-c0xffffffff-no-rj-mo\",\n
-        \           \"authorChannelUrl\": \"http://www.youtube.com/channel/UCMp2_SojryrGDBZhJKD1HPA\",\n
-        \           \"authorChannelId\": {\n              \"value\": \"UCMp2_SojryrGDBZhJKD1HPA\"\n
-        \           },\n            \"canRate\": true,\n            \"viewerRating\":
-        \"none\",\n            \"likeCount\": 4,\n            \"publishedAt\": \"2020-09-23T16:53:54Z\",\n
-        \           \"updatedAt\": \"2020-09-23T16:53:54Z\"\n          }\n        },\n
-        \       \"canReply\": true,\n        \"totalReplyCount\": 1,\n        \"isPublic\":
         true\n      }\n    }\n  ]\n}\n"
-  recorded_at: Sun, 13 Dec 2020 01:57:43 GMT
-- request:
-    method: get
-    uri: https://www.googleapis.com/youtube/v3/videos?id=DA8nk83xumg&key=<YOUTUBE_TOKEN>&part=snippet
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      Connection:
-      - close
-      Host:
-      - www.googleapis.com
-      User-Agent:
-      - http.rb/4.4.1
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Type:
-      - application/json; charset=UTF-8
-      Vary:
-      - Origin,Accept-Encoding
-      - Referer
-      - X-Origin
-      Date:
-      - Sun, 13 Dec 2020 01:58:06 GMT
-      Server:
-      - scaffolding on HTTPServer2
-      Cache-Control:
-      - private
-      X-Xss-Protection:
-      - '0'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Accept-Ranges:
-      - none
-      Transfer-Encoding:
-      - chunked
-      Alt-Svc:
-      - h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
-        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
-      Connection:
-      - close
-    body:
-      encoding: UTF-8
-      string: "{\n  \"kind\": \"youtube#videoListResponse\",\n  \"etag\": \"FAPwO8WIMQxlqwZMo0X5hX26ij8\",\n
-        \ \"items\": [\n    {\n      \"kind\": \"youtube#video\",\n      \"etag\":
-        \"8QN1hHZm6CRAQxt3SBjxs6_GlPk\",\n      \"id\": \"DA8nk83xumg\",\n      \"snippet\":
-        {\n        \"publishedAt\": \"2020-09-24T13:00:12Z\",\n        \"channelId\":
-        \"UCveuRV_jio_ivRlUhUla8sA\",\n        \"title\": \"張語噥 Sammy -【我們】《劇集 腦波小姐
-        片尾曲》Official MV\",\n        \"description\": \"\U0001F3A7 KKBOX ➡️ https://kkbox.fm/xa5e3m\\n\U0001F3A7
-        Spotify ➡️ https://spoti.fi/32WjNZ6\\n\U0001F3A7 All Platforms ➡️ https://www.soundscape.net/a/12164\\n\\n張語噥
-        IG ➡️ https://www.instagram.com/sammymimi3/\\n張語噥 FB ➡️ https://www.facebook.com/loveyunung/\\n\\n耗資億萬的跨國製作，近四千顆動畫鏡頭打造出的奇幻世界\\n《腦波小姐》於9/12周六晚八點，中天綜合台播出，愛奇藝台灣站跟播\\n歐陽妮妮首挑大樑，影評一致讚譽\\n張書豪一人分飾多角，精彩可期\\n還有豆花妹、張捷、狄志杰、劉修甫、楊麗音、黃仲崑、陳孝萱、夏靖庭、湯志偉與韓瑜\\n一起演出這榮獲文化部長篇劇本首獎劇本\\n\\n【我們】是一首量身定做的片尾曲。兩個人從「你」、「我」變成「我們」，這樣的關係，到底是朋友、戀人還是仇人？！也許有一種關係是無法被歸類的，「我們」也許就是這樣獨一無二的關係。\\n張語噥以細膩中帶著暖度的嗓音，唱著這段撲朔迷離的「我們」，令人感到隱隱心疼，卻也回想起自己生命中，彷彿也曾有過這樣的一個人，無法被定義、被歸類的關係的「我們」。\\n\\n我們
-        Us \\n詞曲 Composers：許芸齊\\n製作人 Producer ：Victor Lau 劉偉德\\n編曲 Arranger：Elisa
-        Lin 林依霖/Victor Lau 劉偉德\\n吉他 Guitarist: Victor Lau 劉偉德\\n和聲 Backing Vocal :
-        張語噥\\n配唱製作人 Vocal Producer：Victor Lau 劉偉德\\n錄音/混音 Engineer/Mixer : Victor劉偉德
-        @ Downtown Music\\n\\n我常常會想  如果有一天你消失在我身旁\\n那這個世界  再怎麼運轉也轉不出完整的模樣\\n\\n我們的立場從不一樣
-        \ 總是鍋碗瓢盆什麼都能吵\\n就因為這樣我才不能想像  你不在的時候我有多孤單\\n \\n我們不像戀人  不是敵人  不做朋友  \\n是什麼
-        \ 只是曾經手勾過手\\n說好活到八十歲的時候  你要揹著我去環繞地球\\n我們不像戀人  不是敵人  不做朋友  \\n沒什麼  不能歸類獨一無二的感受\\n有彼此以後
-        \ 才找到出發的點  \\n去畫更多更遠更美的圓周\\n\\n我們的立場從不一樣  總是鍋碗瓢盆什麼都能吵\\n就因為這樣我才不能想像  你不在的時候我有多孤單\\n
-        \\n我們不像戀人  不是敵人  不做朋友  \\n是什麼  只是曾經手勾過手\\n說好活到八十歲的時候  你要揹著我去環繞地球\\n我們不像戀人
-        \ 不是敵人  不做朋友  \\n沒什麼  不能歸類獨一無二的感受\\n有彼此以後 才找到那塊遺失的 \\n深深烙印在角落\\n\\n【MV製作 Music
-        Video Credit List】\\n導演 Director：李洹宇 Sean Li  \\n攝影師 DOP：古曜華         \\n剪接
-        Editor : 李洹宇     \\n\\n【工作人員名單 Staff List】\\n上城娛樂股份有限公司 Uptown Entertainment
-        Co., Ltd.\\n團隊統籌 & 音樂總監 Team Supervisor & Music Supervisor：劉偉德 Victor Lau\\n藝人經紀
-        & 宣傳統籌 & 行政統籌 Artist Manager & Publicity Planning & Administrative Support：柯斈霖
-        Mollie Ke\\n宣傳執行 Publicity Execution：陳心瑀 Arielle Chen\\n妝髮 Make up & Hair:
-        平平 Naomi\\n\\n#張語噥  #我們 #腦波小姐\",\n        \"thumbnails\": {\n          \"default\":
-        {\n            \"url\": \"https://i.ytimg.com/vi/DA8nk83xumg/default.jpg\",\n
-        \           \"width\": 120,\n            \"height\": 90\n          },\n          \"medium\":
-        {\n            \"url\": \"https://i.ytimg.com/vi/DA8nk83xumg/mqdefault.jpg\",\n
-        \           \"width\": 320,\n            \"height\": 180\n          },\n          \"high\":
-        {\n            \"url\": \"https://i.ytimg.com/vi/DA8nk83xumg/hqdefault.jpg\",\n
-        \           \"width\": 480,\n            \"height\": 360\n          },\n          \"standard\":
-        {\n            \"url\": \"https://i.ytimg.com/vi/DA8nk83xumg/sddefault.jpg\",\n
-        \           \"width\": 640,\n            \"height\": 480\n          },\n          \"maxres\":
-        {\n            \"url\": \"https://i.ytimg.com/vi/DA8nk83xumg/maxresdefault.jpg\",\n
-        \           \"width\": 1280,\n            \"height\": 720\n          }\n        },\n
-        \       \"channelTitle\": \"張語噥\",\n        \"tags\": [\n          \"張語噥\",\n
-        \         \"Sammy\",\n          \"華語流行音樂\",\n          \"kkbox\",\n          \"MV\",\n
-        \         \"上城娛樂\",\n          \"狼人殺\",\n          \"新歌\",\n          \"超級偶像\",\n
-        \         \"sammy chang\",\n          \"Sammy 1.0\",\n          \"抒情歌\",\n
-        \         \"我們\",\n          \"腦波小姐\",\n          \"片尾曲\",\n          \"偶像劇\"\n
-        \       ],\n        \"categoryId\": \"10\",\n        \"liveBroadcastContent\":
-        \"none\",\n        \"defaultLanguage\": \"zh-TW\",\n        \"localized\":
-        {\n          \"title\": \"張語噥 Sammy -【我們】《劇集 腦波小姐 片尾曲》Official MV\",\n          \"description\":
-        \"\U0001F3A7 KKBOX ➡️ https://kkbox.fm/xa5e3m\\n\U0001F3A7 Spotify ➡️ https://spoti.fi/32WjNZ6\\n\U0001F3A7
-        All Platforms ➡️ https://www.soundscape.net/a/12164\\n\\n張語噥 IG ➡️ https://www.instagram.com/sammymimi3/\\n張語噥
-        FB ➡️ https://www.facebook.com/loveyunung/\\n\\n耗資億萬的跨國製作，近四千顆動畫鏡頭打造出的奇幻世界\\n《腦波小姐》於9/12周六晚八點，中天綜合台播出，愛奇藝台灣站跟播\\n歐陽妮妮首挑大樑，影評一致讚譽\\n張書豪一人分飾多角，精彩可期\\n還有豆花妹、張捷、狄志杰、劉修甫、楊麗音、黃仲崑、陳孝萱、夏靖庭、湯志偉與韓瑜\\n一起演出這榮獲文化部長篇劇本首獎劇本\\n\\n【我們】是一首量身定做的片尾曲。兩個人從「你」、「我」變成「我們」，這樣的關係，到底是朋友、戀人還是仇人？！也許有一種關係是無法被歸類的，「我們」也許就是這樣獨一無二的關係。\\n張語噥以細膩中帶著暖度的嗓音，唱著這段撲朔迷離的「我們」，令人感到隱隱心疼，卻也回想起自己生命中，彷彿也曾有過這樣的一個人，無法被定義、被歸類的關係的「我們」。\\n\\n我們
-        Us \\n詞曲 Composers：許芸齊\\n製作人 Producer ：Victor Lau 劉偉德\\n編曲 Arranger：Elisa
-        Lin 林依霖/Victor Lau 劉偉德\\n吉他 Guitarist: Victor Lau 劉偉德\\n和聲 Backing Vocal :
-        張語噥\\n配唱製作人 Vocal Producer：Victor Lau 劉偉德\\n錄音/混音 Engineer/Mixer : Victor劉偉德
-        @ Downtown Music\\n\\n我常常會想  如果有一天你消失在我身旁\\n那這個世界  再怎麼運轉也轉不出完整的模樣\\n\\n我們的立場從不一樣
-        \ 總是鍋碗瓢盆什麼都能吵\\n就因為這樣我才不能想像  你不在的時候我有多孤單\\n \\n我們不像戀人  不是敵人  不做朋友  \\n是什麼
-        \ 只是曾經手勾過手\\n說好活到八十歲的時候  你要揹著我去環繞地球\\n我們不像戀人  不是敵人  不做朋友  \\n沒什麼  不能歸類獨一無二的感受\\n有彼此以後
-        \ 才找到出發的點  \\n去畫更多更遠更美的圓周\\n\\n我們的立場從不一樣  總是鍋碗瓢盆什麼都能吵\\n就因為這樣我才不能想像  你不在的時候我有多孤單\\n
-        \\n我們不像戀人  不是敵人  不做朋友  \\n是什麼  只是曾經手勾過手\\n說好活到八十歲的時候  你要揹著我去環繞地球\\n我們不像戀人
-        \ 不是敵人  不做朋友  \\n沒什麼  不能歸類獨一無二的感受\\n有彼此以後 才找到那塊遺失的 \\n深深烙印在角落\\n\\n【MV製作 Music
-        Video Credit List】\\n導演 Director：李洹宇 Sean Li  \\n攝影師 DOP：古曜華         \\n剪接
-        Editor : 李洹宇     \\n\\n【工作人員名單 Staff List】\\n上城娛樂股份有限公司 Uptown Entertainment
-        Co., Ltd.\\n團隊統籌 & 音樂總監 Team Supervisor & Music Supervisor：劉偉德 Victor Lau\\n藝人經紀
-        & 宣傳統籌 & 行政統籌 Artist Manager & Publicity Planning & Administrative Support：柯斈霖
-        Mollie Ke\\n宣傳執行 Publicity Execution：陳心瑀 Arielle Chen\\n妝髮 Make up & Hair:
-        平平 Naomi\\n\\n#張語噥  #我們 #腦波小姐\"\n        },\n        \"defaultAudioLanguage\":
-        \"zh\"\n      }\n    }\n  ],\n  \"pageInfo\": {\n    \"totalResults\": 1,\n
-        \   \"resultsPerPage\": 1\n  }\n}\n"
-  recorded_at: Sun, 13 Dec 2020 01:58:04 GMT
-- request:
-    method: get
-    uri: https://www.googleapis.com/youtube/v3/videos?id=I_LOVE_IU&key=<YOUTUBE_TOKEN>&part=snippet
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      Connection:
-      - close
-      Host:
-      - www.googleapis.com
-      User-Agent:
-      - http.rb/4.4.1
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Type:
-      - application/json; charset=UTF-8
-      Vary:
-      - Origin,Accept-Encoding
-      - Referer
-      - X-Origin
-      Date:
-      - Sun, 13 Dec 2020 01:58:27 GMT
-      Server:
-      - scaffolding on HTTPServer2
-      Cache-Control:
-      - private
-      X-Xss-Protection:
-      - '0'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Accept-Ranges:
-      - none
-      Transfer-Encoding:
-      - chunked
-      Alt-Svc:
-      - h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
-        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
-      Connection:
-      - close
-    body:
-      encoding: UTF-8
-      string: |
-        {
-          "kind": "youtube#videoListResponse",
-          "etag": "N3cH4-8Qyt6di3nGkvNQ0-9oBYc",
-          "items": [],
-          "pageInfo": {
-            "totalResults": 0,
-            "resultsPerPage": 0
-          }
-        }
-  recorded_at: Sun, 13 Dec 2020 01:58:24 GMT
-- request:
-    method: get
-    uri: https://www.googleapis.com/youtube/v3/videos?id=ffff%08&key=<YOUTUBE_TOKEN>&part=snippet
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      Connection:
-      - close
-      Host:
-      - www.googleapis.com
-      User-Agent:
-      - http.rb/4.4.1
-  response:
-    status:
-      code: 400
-      message: Bad Request
-    headers:
-      Content-Length:
-      - '54'
-      Content-Type:
-      - text/html; charset=UTF-8
-      Date:
-      - Sun, 13 Dec 2020 01:59:06 GMT
-    body:
-      encoding: UTF-8
-      string: "<html><title>Error 400 (Bad Request)!!1</title></html>"
-  recorded_at: Sun, 13 Dec 2020 01:59:04 GMT
-- request:
-    method: get
-    uri: https://www.googleapis.com/youtube/v3/videos?id=DA8nk83xumg&key=WRONG_TOKEN&part=snippet
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      Connection:
-      - close
-      Host:
-      - www.googleapis.com
-      User-Agent:
-      - http.rb/4.4.1
-  response:
-    status:
-      code: 400
-      message: Bad Request
-    headers:
-      Vary:
-      - Origin,Accept-Encoding
-      - Referer
-      - X-Origin
-      Content-Type:
-      - application/json; charset=UTF-8
-      Date:
-      - Sun, 13 Dec 2020 01:59:06 GMT
-      Server:
-      - scaffolding on HTTPServer2
-      Cache-Control:
-      - private
-      X-Xss-Protection:
-      - '0'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Accept-Ranges:
-      - none
-      Transfer-Encoding:
-      - chunked
-      Alt-Svc:
-      - h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
-        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
-      Connection:
-      - close
-    body:
-      encoding: UTF-8
-      string: |
-        {
-          "error": {
-            "code": 400,
-            "message": "API key not valid. Please pass a valid API key.",
-            "errors": [
-              {
-                "message": "API key not valid. Please pass a valid API key.",
-                "domain": "global",
-                "reason": "badRequest"
-              }
-            ],
-            "status": "INVALID_ARGUMENT"
-          }
-        }
-  recorded_at: Sun, 13 Dec 2020 01:59:04 GMT
+  recorded_at: Thu, 07 Jan 2021 08:56:39 GMT
 recorded_with: VCR 6.0.0

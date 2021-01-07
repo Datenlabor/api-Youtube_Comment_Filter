@@ -16,8 +16,8 @@ describe 'Test API routes' do
   DatabaseHelper.setup_database_cleaner
 
   before do
-    VcrHelper.configure_vcr_for_github
-    DatabaseHelper.wipe_database
+    VcrHelper.configure_vcr_for_youtube
+    #DatabaseHelper.wipe_database
   end
 
   after do

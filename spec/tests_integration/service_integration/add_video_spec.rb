@@ -17,9 +17,9 @@ describe 'AddVideo Service Integration Test' do
   end
 
   describe 'Retrieve and store video' do
-    before do
-      DatabaseHelper.wipe_database
-    end
+    #before do
+    #  DatabaseHelper.wipe_database
+    #end
 
     it 'HAPPY: should be able to find and save remote one videoid to database' do
       # GIVEN: a valid url request for an existing remote project:
