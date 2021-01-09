@@ -41,7 +41,7 @@ module GetComment
         def get(url)
           http_response = HTTP.get(url)
           Response.new(http_response).tap do |response|
-            fail(response.error) unless response.successful?
+            raise(response.error) unless response.successful?
           end
         end
       end

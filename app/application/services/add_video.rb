@@ -13,10 +13,10 @@ module GetComment
 
       private
 
-      DB_ERR_MSG = 'Having trouble accessing the database'.freeze
-      YT_NOT_FOUND = 'Could not find that video on YouTube'.freeze
-      PROCESSING_MSG = 'Waiting for worker to finish the task'.freeze
-      GETCOMMENT_ERR = 'Could not get or analyze comment'.freeze
+      DB_ERR_MSG = 'Having trouble accessing the database'
+      YT_NOT_FOUND = 'Could not find that video on YouTube'
+      PROCESSING_MSG = 'Waiting for worker to finish the task'
+      GETCOMMENT_ERR = 'Could not get or analyze comment'
 
       def find_video(input)
         if (video = video_in_database(input))
@@ -54,7 +54,8 @@ module GetComment
 
         Failure(Response::ApiResult.new(
                   status: :processing,
-                  message: { request_id: input[:request_id] }))
+                  message: { request_id: input[:request_id] }
+                ))
       rescue StandardError => e
         print_error(e)
         Failure(Response::ApiResult.new(status: :internal_error, message: GETCOMMENT_ERR))

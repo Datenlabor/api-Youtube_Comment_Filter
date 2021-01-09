@@ -13,7 +13,7 @@ module GetComment
 
       private
 
-      DB_ERR = 'Could not access database'.freeze
+      DB_ERR = 'Could not access database'
 
       def validate_list(input)
         list_request = input[:list_request].call
@@ -25,7 +25,8 @@ module GetComment
       end
 
       def retrieve_video(input)
-        Repository::For.klass(Entity::Video).find_videos([input[:list]])
+        puts "==DEBUG== retrieve_video -> input: #{input[:list]}" # 2.7.1要寫 [input[:list]]
+        Repository::For.klass(Entity::Video).find_videos(input[:list])
                        .then { |videos| Response::VideosList.new(videos) }
                        .then { |list| Success(Response::ApiResult.new(status: :ok, message: list)) }
       rescue StandardError
@@ -34,3 +35,4 @@ module GetComment
     end
   end
 end
+¸

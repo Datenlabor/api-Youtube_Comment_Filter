@@ -29,10 +29,10 @@ def extract_data(rawdata)
 end
 
 # 1. Set API_KEY, Select testcase
-API_ROOT_URL = 'https://www.googleapis.com/youtube/v3/'.freeze
-TEST_VIDEO_ID = 'DA8nk83xumg'.freeze
+API_ROOT_URL = 'https://www.googleapis.com/youtube/v3/'
+TEST_VIDEO_ID = 'DA8nk83xumg'
 API_KEY = YAML.safe_load(File.read('config/secrets.yml'))['development']['YT_TOKEN']
-DEFAULT_OPTION = 'part=snippet&order=time&maxResults=100'.freeze
+DEFAULT_OPTION = 'part=snippet&order=time&maxResults=100'
 
 # 2. http request and get response
 request_comment_threads_url = "#{API_ROOT_URL}commentThreads?&key=#{API_KEY}&videoId=#{TEST_VIDEO_ID}&#{DEFAULT_OPTION}"

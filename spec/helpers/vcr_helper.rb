@@ -5,9 +5,9 @@ require 'webmock'
 
 # Setting up VCR
 class VcrHelper
-  CASSETTES_FOLDER = 'spec/fixtures/cassettes'.freeze
-  YOUTUBE_CASSETTE = 'youtube_api'.freeze
-  YOUTUBE_TITLE_CASSETTE = 'youtube_title_api'.freeze
+  CASSETTES_FOLDER = 'spec/fixtures/cassettes'
+  YOUTUBE_CASSETTE = 'youtube_api'
+  YOUTUBE_TITLE_CASSETTE = 'youtube_title_api'
 
   def self.setup_vcr
     VCR.configure do |c|
@@ -23,14 +23,14 @@ class VcrHelper
     VCR.configure do |c|
       c.filter_sensitive_data('<YOUTUBE_TOKEN>') { YT_TOKEN }
       c.filter_sensitive_data('<YOUTUBE_TOKEN_ESC>') { CGI.escape(YT_TOKEN) }
-      #c.filter_sensitive_data('<REDIS_URL>') { REDISCLOUD_URL }
-      #c.filter_sensitive_data('<REDIS_URL_ESC>') { CGI.escape(REDISCLOUD_URL) }
+      # c.filter_sensitive_data('<REDIS_URL>') { REDISCLOUD_URL }
+      # c.filter_sensitive_data('<REDIS_URL_ESC>') { CGI.escape(REDISCLOUD_URL) }
     end
 
     VCR.insert_cassette(
       YOUTUBE_CASSETTE,
       record: :new_episodes,
-      match_requests_on: %i(method uri headers)
+      match_requests_on: %i[method uri headers]
     )
   end
 

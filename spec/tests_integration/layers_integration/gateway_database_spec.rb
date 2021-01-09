@@ -17,9 +17,9 @@ describe 'Integration Tests of Youtube API and Database' do
   end
 
   describe 'Retrieve and store project' do
-    #before do
+    # before do
     #  DatabaseHelper.wipe_database
-    #end
+    # end
 
     it 'Should be able to save data and comments from Youtube to database' do
       yt_video = GetComment::Youtube::VideoMapper.new(YT_TOKEN).extract(VIDEO_ID)

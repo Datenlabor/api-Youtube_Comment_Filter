@@ -91,6 +91,7 @@ module GetComment
           end
 
           def gets_snippet
+            puts "==DEBUG== data_snippet: #{@data_snippet}"
             @data_snippet
           end
         end
@@ -115,7 +116,10 @@ module GetComment
           end
 
           def parse_author_id
+            # authorChannelId could be null
             @data_p_top_snp['authorChannelId']['value']
+          rescue StandardError
+            ''
           end
 
           def parse_author_img
