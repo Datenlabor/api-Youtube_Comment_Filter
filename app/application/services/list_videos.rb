@@ -35,4 +35,3 @@ module GetComment
     end
   end
 end
-¸
