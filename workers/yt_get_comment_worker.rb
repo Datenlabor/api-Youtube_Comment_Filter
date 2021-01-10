@@ -25,7 +25,6 @@ module FindComment
     shoryuken_options queue: config.GET_COMMENT_QUEUE_URL, auto_delete: true
 
     def perform(_sqs_msg, request)
-      puts '== DEBUG == worker is working'
       # JobReporter is used to handle the request
       job = JobReporter.new(request, Worker.config)
 

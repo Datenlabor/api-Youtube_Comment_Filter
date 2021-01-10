@@ -22,10 +22,7 @@ module GetComment
       end
 
       def self.find_one_by_video_db_id(video_db_id)
-        puts "==DEBUG== video_db_id #{video_db_id}"
-        comment = Database::CommentOrm.first(video_db_id: video_db_id)
-        puts "==DEBUG== comment found #{comment}"
-        comment
+        Database::CommentOrm.first(video_db_id: video_db_id)
       end
 
       def self.create_many_of_one_video(entities, video_db_id)

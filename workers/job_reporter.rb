@@ -17,7 +17,6 @@ module FindComment
     end
 
     def report(msg)
-      puts "==DEBUG== #{msg} is being published"
       @publisher.publish msg
     end
 

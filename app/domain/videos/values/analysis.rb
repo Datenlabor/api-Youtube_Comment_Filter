@@ -50,12 +50,10 @@ module GetComment
         end
 
         def readtxt
-          puts '==DEBUG== Starts reading file'
           polarity_list = []
           @output_f.each_line do |line|
             polarity_list.append(line.delete("\n").to_f)
           end
-          puts '==DEBUG== Finish reading file'
           polarity_list
         end
       end

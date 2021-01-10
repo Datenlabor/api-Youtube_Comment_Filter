@@ -14,13 +14,10 @@ module GetComment
         # CommentMapper.extract_video_id(url)
         # We will get video_id directly from the controller of MVC
         @video_id = video_id
-        puts "==DEBUG== #{Time.new.strftime('%H:%M:%S')} || Start getting datas from API"
         raw_data = @gateway.get_comment(@video_id)
-        puts "==DEBUG== #{Time.new.strftime('%H:%M:%S')} || Finish getting datas from API"
 
         # Get a list of comments
         comments = DataProcess.new(@gateway).processing(raw_data)
-        puts "==DEBUG== #{Time.new.strftime('%H:%M:%S')} || Finish data processing"
 
         # Sentiment Analysis on each comment
         # Here we take the whole comments to python in order to speedup the processing time.
@@ -91,7 +88,6 @@ module GetComment
           end
 
           def gets_snippet
-            puts "==DEBUG== data_snippet: #{@data_snippet}"
             @data_snippet
           end
         end

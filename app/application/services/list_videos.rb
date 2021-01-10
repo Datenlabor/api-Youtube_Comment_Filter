@@ -25,7 +25,6 @@ module GetComment
       end
 
       def retrieve_video(input)
-        puts "==DEBUG== retrieve_video -> input: #{input[:list]}" # 2.7.1要寫 [input[:list]]
         Repository::For.klass(Entity::Video).find_videos(input[:list])
                        .then { |videos| Response::VideosList.new(videos) }
                        .then { |list| Success(Response::ApiResult.new(status: :ok, message: list)) }
