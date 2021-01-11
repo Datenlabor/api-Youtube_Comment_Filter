@@ -29,7 +29,8 @@ module GetComment
         Failure(Response::ApiResult.new(status: :not_found, message: e.to_s))
       end
 
-      # 目前這樣做是希望DB出問題時能顯示對應error message
+      # We separate this step as we want to show the corrent error message
+      # if error occurs when accessing DB
       def store_video(input)
         input[:video] =
           if input[:remote_video]
@@ -43,7 +44,7 @@ module GetComment
         Failure(Response::ApiResult.new(status: :internal_error, message: DB_ERR_MSG))
       end
 
-      # TODO: 若comment已在DB，return response: video ; 問題：若video無comment會卡住
+      # TODO: Issue: When searching a video with 0 comment, it would never return Success
       def find_comment(input)
         # Return video if comment is found in db
         return Success(Response::ApiResult.new(status: :created, message: input[:video])) if comment_in_database(input)

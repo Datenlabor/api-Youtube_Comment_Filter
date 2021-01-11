@@ -16,7 +16,7 @@ module GetComment
 
       def get_comment(video_id)
         url = "commentThreads?key=#{@yt_key}&videoId=#{video_id}"
-        url += '&order=time&part=snippet&maxResults=100'
+        url += '&order=time&part=snippet&maxResults=25'
         Request.new.get(yt_api_path(url)).parse
       end
 

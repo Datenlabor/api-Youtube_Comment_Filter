@@ -16,7 +16,8 @@ module GetComment
         @video_id = video_id
         raw_data = @gateway.get_comment(@video_id)
 
-        # Get a list of comments
+        # Get a list of comments and saved the design columns into hash
+        # Note: video_id is not in raw data
         comments = DataProcess.new(@gateway).processing(raw_data)
 
         # Sentiment Analysis on each comment
@@ -25,12 +26,11 @@ module GetComment
         polarity_list = Value::Analysis.new(onlytext).polarity
 
         comments = comments.map.with_index do |comment, index|
-          # polarity = Value::Analysis.new(comment['textDisplay']).polarity
           comment.store('polarity', polarity_list[index])
           comment
         end
 
-        # Return a list of Comment entities
+        # Store video_id into the hash and return a list of Comment entities
         comments.map do |comment|
           comment.store('video_id', @video_id)
           EntityBuild.new(comment).build_entity

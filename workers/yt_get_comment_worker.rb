@@ -52,9 +52,9 @@ module FindComment
 
       # Keep sending finished status to any latecoming subscribers
       job.report_each_second(5) { FindCommentMonitor.finished_percent }
-    rescue StandardError => e
-      # TODO: worker should crash early & often - only catch errors we expect!
-      print_error(e)
+      # rescue StandardError => e
+      #   # TODO: worker should crash early & often - only catch errors we expect!
+      #   print_error(e)
     end
 
     def print_error(error)
