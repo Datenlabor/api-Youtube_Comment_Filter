@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../init'
-require_relative '../app/presentation/representers/init'
 require_relative 'job_reporter'
 require_relative 'find_comment_monitor'
 

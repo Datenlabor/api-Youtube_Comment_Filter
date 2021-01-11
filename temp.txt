@@ -1,0 +1,1 @@
+worker: bundle exec shoryuken -r ./workers/yt_get_comment_worker.rb -C ./workers/shoryuken.yml

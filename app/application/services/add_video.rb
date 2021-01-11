@@ -48,7 +48,7 @@ module GetComment
       def find_comment(input)
         # Return video if comment is found in db
         return Success(Response::ApiResult.new(status: :created, message: input[:video])) if comment_in_database(input)
-
+        
         Messaging::Queue
           .new(App.config.GET_COMMENT_QUEUE_URL, App.config)
           .send(find_comment_request_json(input))
