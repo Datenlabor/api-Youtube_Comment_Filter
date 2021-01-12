@@ -1,3 +1,5 @@
+[![Ruby 2.7.2](https://img.shields.io/badge/ruby-2.7.2-orange)](https://www.ruby-lang.org/en/news/2020/10/02/ruby-2-7-2-released/)
+
 # YCF - Youtube Comment Filter
 A solution for users to have a comfortable environment to enjoy their video time.
 
@@ -17,6 +19,29 @@ In our product, we try to solve the problem by using Machine Learning algorithm.
 - Analyze the comments with more funny ways (EX. Word Cloud)
 - Try to speedup
 - Try to get more comments dynamically
+
+## Installation
+
+STEP1: Clone the api-Youtube_Comment_Filter
+
+` git clone https://github.com/Datenlabor/api-Youtube_Comment_Filter.git `
+
+STEP2: Set your Youtube developer api key in `config/secrets.yml`
+
+STEP3: Run the Web api
+
+` puma config.ru -p 9090`
+
+## Spec
+
+If you want to spec the code. Please run ` rake spec `
+
+## Usage
+Use the api to get the specific youtube video, which it has already stored on the Database.
+
+` http://127.0.0.1:9090/api/v1/comments/{Your_Video_ID} `
+
+
 
 
 ## Requirement
